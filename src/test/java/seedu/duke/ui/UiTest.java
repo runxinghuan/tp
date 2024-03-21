@@ -27,8 +27,8 @@ class UiTest {
 
     @Test
     public void readUserInput_returnsCorrectly() {
-        Ui ui = new Ui();
-        String userInput = ui.readUserInput();
+        Ui.beginListening();
+        String userInput = Ui.getUserInput();
         assertEquals("test input", userInput, "The method should return the input provided by the user.");
     }
 }

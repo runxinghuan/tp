@@ -1,0 +1,12 @@
+diff a/src/main/java/seedu/duke/Formatter.java b/src/main/java/seedu/duke/Formatter.java	(rejected hunks)
+@@ -1,8 +1,9 @@
+ package seedu.duke;
+-
++import java.util.logging.Logger;
+ public class Formatter {
+     public static final String footballIcon = "⚽";
+     public static final String emojiSad = "☹";
++    private static final Logger logger = Logger.getLogger(Formatter.class.getName());
+ 
+     /**
+      * Appends a newline to a given string and returns the resulting string

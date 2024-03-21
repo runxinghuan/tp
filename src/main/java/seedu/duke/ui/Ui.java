@@ -20,7 +20,7 @@ public class Ui {
     private static boolean isRunning = true;
     private static String userInput;
     private static Parser userCommandReader;
-    public static int roundCount = 0;
+    public static int roundCount = 1;
     private static final Logger logger = Logger.getLogger("Foo");
 
     /**
@@ -81,5 +81,9 @@ public class Ui {
 
     public static boolean getIsRunning() {
         return isRunning;
+    }
+
+    public static String getUserInput() {
+        return userInput;
     }
 }
