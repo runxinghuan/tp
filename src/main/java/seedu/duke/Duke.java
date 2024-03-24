@@ -12,6 +12,7 @@ public class Duke {
      * Main entry-point for the java.duke.Duke application.
      */
     public static void main(String[] args) {
+        assert false : "dummy assertion";
         Formatter.printWelcomeMsg();
 
         while (Ui.getIsRunning()) {
