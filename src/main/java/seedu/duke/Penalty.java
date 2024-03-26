@@ -12,13 +12,11 @@ public class Penalty {
     /**
      * Executes the penalty command.
      */
-    public static void executePenalty() {
+    public static void executePenalty(Ai ai) {
         int userDirection = getUserPenaltyDirection();
-        int aiDirection = Ai.getAiDirection();
-
+        int aiDirection = ai.getAiDirection();
         boolean isGoal = CommandList.goalCheck(userDirection, aiDirection);
         Formatter.printGoalAfterShot(isGoal);
-
     }
 
     /**

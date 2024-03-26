@@ -1,12 +1,12 @@
 package seedu.duke;
 
+import seedu.duke.ai.Ai;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
-import seedu.duke.ai.Ai;
 
 public enum CommandList {
 
-    BYE, SHOOT, PENALTY, YES, NO
+    BYE, SHOOT, PENALTY, YES, NO, EASY, MEDIUM, HARD;
 
     //insert new user command name here
     ;
@@ -26,6 +26,11 @@ public enum CommandList {
                 "Illegal aiInput generated!";
         return userInput != aiInput;
     }
+
+    public static void executePenalty(DifficultyLevel difficultyLevel) {
+        Ai ai = new Ai(difficultyLevel);
+        Penalty.executePenalty(ai);
+    }
   
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
@@ -34,10 +39,6 @@ public enum CommandList {
 
         MatchStat.updateStat(true, isScoreGoal); //Need to update after save command.
         Formatter.printGoalAfterShot(isScoreGoal);
-    }
-
-    public static void executePenalty() {
-        Penalty.executePenalty();
     }
     
     //insert new command here
