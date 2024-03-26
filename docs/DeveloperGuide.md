@@ -36,3 +36,26 @@
 ## Instructions for manual testing
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+
+### Real penalty shootout setting
+
+
+As we are making a penalty shootout game, we should make the procedure of a match in the game the same as that of a 
+real penalty shootout. Here is the procedure of a real penalty shootout:
+
+
+Teams take turns to kick from the penalty mark, until each has taken five kicks. However, if one side has scored more 
+goals than the other could possibly reach with all of its remaining kicks, the shoot-out immediately ends, regardless 
+of the number of kicks remaining; this basis is called "best-of-five kicks".
+
+
+If after five rounds of kicks, the teams have scored an equal number of goals (or neither team has scored any goals), 
+additional rounds of one kick each are used until one team scores and the other misses. This is known as sudden death.
+
+
+The procedure is facilitated by `MatchStat`. It converts the outcomes of player's commands into player score and Ai 
+score. It then decides whether a match ends. If the match ends, it asks the user whether to start a new match.
