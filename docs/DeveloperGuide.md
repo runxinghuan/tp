@@ -57,5 +57,13 @@ If after five rounds of kicks, the teams have scored an equal number of goals (o
 additional rounds of one kick each are used until one team scores and the other misses. This is known as sudden death.
 
 
-The procedure is facilitated by `MatchStat`. It converts the outcomes of player's commands into player score and Ai 
-score. It then decides whether a match ends. If the match ends, it asks the user whether to start a new match.
+The procedure is facilitated by `MatchStat`. It records current round and match numbers. 
+The `updateStat(boolean isPlayer, boolean isGoal)` method converts the outcomes of player's commands into player score 
+and Ai score after `penalty` or `save` commands. The `decideMatchEnd()` method decides whether a match ends based on the 
+rules mentioned above. 
+
+As we now only need to record the match stats of one player, the class is implemented as a utility class. (i.e. Using 
+class level fields and methods.) We may change it to an instantiable class later when we need to record the match stats 
+of multiple players. Here is the class diagram of the class:
+
+![](./diagrams/MatchStatClassDiagram-0.png)
