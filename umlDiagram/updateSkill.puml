@@ -1,0 +1,32 @@
+@startuml skillUpgradeSequence
+
+actor User
+entity "Ui" as UI
+control "PlayerList" as PL
+entity "Player" as P
+entity "MediumSkill" as MS
+entity "ExpertSkill" as ES
+database "MatchStat" as MSDB
+
+User -> PL : skillUpgrade(curPlayer)
+PL -> PL : get(curPlayer)
+PL -> P : matchCount = getMatchCount()
+PL -> P : getSkill()
+
+alt skill == 1
+    PL -> MS : new(name, matchCount)
+    PL -> PL : add(MediumSkill)
+    PL -> UI : print("Skill updated to medium level.")
+else skill == 2 and matchCount >= 5
+    PL -> ES : new(name, matchCount)
+    PL -> PL : add(ExpertSkill)
+    PL -> UI : print("Skill updated to expert level.")
+else
+    PL -> UI : return
+end
+
+PL -> PL : curplayer = l1.size()-2
+PL -> PL : remove(0)
+PL -> P : printSelfInfo()
+
+@enduml
