@@ -66,4 +66,5 @@ As we now only need to record the match stats of one player, the class is implem
 class level fields and methods.) We may change it to an instantiable class later when we need to record the match stats 
 of multiple players. Here is the class diagram of the class:
 
+
 ![MatchStatClassDiagram-0.png](diagrams%2FMatchStatClassDiagram-0.png)
