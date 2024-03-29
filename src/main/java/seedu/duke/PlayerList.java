@@ -32,8 +32,8 @@ public class PlayerList {
         }else{
             return;
         }
-        Ui.curplayer= l1.size()-2;
+        Ui.curPlayer = l1.size()-2;
         l1.remove(0);
-        l1.get(Ui.curplayer).printSelfInfo();
+        l1.get(Ui.curPlayer).printSelfInfo();
     }
 }

@@ -30,7 +30,28 @@ public class MatchStat {
     }
 
     private static void decideMatchEnd() {
-        if (roundCount >= 2 && isCompleteRound() && playerScore != aiScore) {
+        int roundsLeftForOneSide = (10 - roundCount) / 2;
+        if (roundCount % 2 == 1) {
+            roundsLeftForOneSide += 1;
+        }
+
+        if (roundCount < 10 && playerScore > aiScore) {
+            int scoreDifference = playerScore - aiScore;
+            if (scoreDifference > roundsLeftForOneSide) {
+                isMatchEnd = true;
+                isPlayerWin = true;
+            }
+        }
+
+        if (roundCount < 10 && playerScore < aiScore) {
+            int scoreDifference = aiScore - playerScore;
+            if (scoreDifference > roundsLeftForOneSide) {
+                isMatchEnd = true;
+                isPlayerWin = false;
+            }
+        }
+
+        if (roundCount >= 10 && isCompleteRound() && playerScore != aiScore) {
             isMatchEnd = true;
             isPlayerWin = playerScore > aiScore;
         }
