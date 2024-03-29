@@ -255,6 +255,61 @@ The `convertToShootDirection()` method first tries to parse the input string int
 
 An alternative implementation could be to have separate methods for handling different types of input validation, such as checking if the input is a valid integer and checking if the input is within the valid range. This would make the code more modular and easier to maintain.
 
+## Save Class
+
+### Overview
+
+The `Save` class handles the save command in the game. It prompts the user to enter the direction to save the penalty and checks if the user's input is valid. It then compares the user's input with the AI's direction and determines whether a goal is saved or not.
+
+### Design
+
+The `Save` class has the following components:
+
+1. An `executeSave()` method that prompts the user for a direction, gets the AI's penalty kick direction, and then checks if the save is successful.
+2. A `getUserSaveDirection()` method that reads the user's input and returns a corresponding integer value after validation.
+3. Integration with the `ShootDirectionConverter` class to validate the user's input and ensure it's within the expected range.
+
+### Implementation
+
+Here is the implementation structure of the `Save` class:
+
+```java
+public class Save {
+    
+  public static void executeSave() {
+    int userSaveDirection = getUserSaveDirection();
+    int aiPenaltyDirection = Ai.getAiDirection();
+    boolean isGoalSaved = userSaveDirection == aiPenaltyDirection;
+
+
+    Formatter.printSaveResult(isGoalSaved);
+    Ui.roundCount++;
+  }
+  
+  private static int getUserSaveDirection() {
+    int userDirection;
+    do {
+      System.out.print("Enter the direction to save the penalty (0, 1, or 2): ");
+      String directionString = Ui.IN.nextLine().trim();
+      userDirection = ShootDirectionConverter.convertToShootDirection(directionString);
+      if (userDirection == -1) {
+        System.out.println("Invalid direction! Please enter 0, 1, or 2.");
+      }
+    } while (userDirection == -1);
+    return userDirection;
+  }
+  
+}
+```
+
+The `executeSave()` method drives the process, starting by invoking `getUserSaveDirection()` to prompt the user for input. It then retrieves the AI's direction with `Ai.getAiDirection()`. A comparison is made, and the result of the attempted save is passed to the `Formatter` for output. The `roundCount` is incremented at the end of the method, signaling the progression of the game.
+
+The `getUserSaveDirection()` method repeatedly prompts the user for input until a valid direction (0, 1, or 2) is entered. Input validation is offloaded to `ShootDirectionConverter.convertToShootDirection()`, which translates the string input into a numeric direction or returns -1 for invalid input.
+
+### Alternatives Considered
+
+The current implementation could be further modularized by separating input collection and input validation into distinct methods. This would potentially improve the readability and maintainability of the code by delineating clear responsibilities within the class structure. Additionally, using exceptions to handle invalid input could provide a cleaner mechanism for managing input errors and reduce the reliance on sentinel values like `-1`.
+
 ## DifficultyLevel Enum
 
 ### Overview
