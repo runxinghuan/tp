@@ -45,8 +45,8 @@ public enum CommandList {
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
 
-        PlayerList.l1.get(Ui.curplayer).upgradePower(upgradeLevelIndex);
-        PlayerList.l1.get(Ui.curplayer).printSelfInfo();
+        PlayerList.l1.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
+        PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
     }
 
 //    public static void executeSave() {

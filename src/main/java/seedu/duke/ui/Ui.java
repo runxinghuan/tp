@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 
 public class Ui {
     public static final Scanner IN = new Scanner(System.in);
-    public static int curplayer=0; // The player in current game return by account login.
+    public static int curPlayer = 0; // The player in current game return by account login.
     private static boolean isRunning = true;
     public static String userInput;
     private static Parser userCommandReader;
@@ -61,6 +61,20 @@ public class Ui {
         String readUserCommand = userCommandReader.getCommandName();
         String[] readArgumentTokens = userCommandReader.getArgumentTokens();
         CommandList selectedCommand = CommandList.valueOf(readUserCommand);
+
+        if (MatchStat.getIsMatchEnd()) {
+            switch (selectedCommand) {
+            case YES:
+                MatchStat.updateForNewMatch();
+                return;
+            case NO:
+                CommandList.executeBye();
+                return;
+            default:
+                Formatter.printErrorUnknown();
+            }
+        }
+
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();
@@ -83,27 +97,13 @@ public class Ui {
             difficultyLevel = DifficultyLevel.HARD;
             System.out.println("Difficulty level set to HARD");
             break;
-        case YES:
-            if (MatchStat.getIsMatchEnd()) {
-                MatchStat.updateForNewMatch();
-            } else {
-                Formatter.printErrorUnknown();
-            }
-            break;
-        case NO:
-            if (MatchStat.getIsMatchEnd()) {
-                CommandList.executeBye();
-            } else {
-                Formatter.printErrorUnknown();
-            }
-            break;
         case UPGRADE:
             CommandList.executeUpgrade(readArgumentTokens);
             break;
 //        case SAVE:
 //            CommandList.executeSave();
 //            break;
-            //insert new executable command here
+        //insert new executable command here
         default:
             Formatter.printErrorUnknown();
         }
