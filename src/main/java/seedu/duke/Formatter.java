@@ -116,6 +116,10 @@ public class Formatter {
     }
 
     //@@author runxinghuan
+
+    /**
+     * Prints the result after a match ends.
+     */
     public static void printMatchResult() {
         if (MatchStat.getIsPlayerWin()) {
             System.out.println("Nice! You won this match! Wanna a new match?");

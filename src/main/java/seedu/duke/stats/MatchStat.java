@@ -1,6 +1,10 @@
 package seedu.duke.stats;
 
 //@@author runxinghuan
+
+/**
+ * Records and update the stats of the match, and decides whether a match ends and the winner.
+ */
 public class MatchStat {
     private static int matchCount = 1;
     private static int roundCount = 1;
@@ -9,6 +13,12 @@ public class MatchStat {
     private static boolean isPlayerWin = false;
     private static boolean isMatchEnd = false;
 
+    /**
+     * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
+     *
+     * @param isPlayer Who is scoring.
+     * @param isGoal Whether he scores or not.
+     */
     public static void updateStat(boolean isPlayer, boolean isGoal) {
         if (isPlayer && isGoal) {
             playerScore += 1;
@@ -21,6 +31,9 @@ public class MatchStat {
         roundCount += 1;
     }
 
+    /**
+     * Reset the stats after a new match starts.
+     */
     public static void updateForNewMatch() {
         roundCount = 1;
         playerScore = 0;
@@ -29,6 +42,9 @@ public class MatchStat {
         isMatchEnd = false;
     }
 
+    /**
+     * Decides whether a match ends based on best-of-five kicks and sudden death rules.
+     */
     private static void decideMatchEnd() {
         int roundsLeftForOneSide = (10 - roundCount) / 2;
         if (roundCount % 2 == 1) {
@@ -57,6 +73,9 @@ public class MatchStat {
         }
     }
 
+    /**
+     * Decides whether both sides have finished shooting in a round.
+     */
     private static boolean isCompleteRound() {
         return roundCount % 2 == 0;
     }
