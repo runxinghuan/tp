@@ -94,6 +94,38 @@ he mechanism operates through a structured process, enhancing the gaming experie
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 
+## Implementation
+This section describes some noteworthy details on how certain features are implemented.
+
+
+### Real penalty shootout setting
+
+
+As we are making a penalty shootout game, we should make the procedure of a match in the game the same as that of a 
+real penalty shootout. Here is the procedure of a real penalty shootout:
+
+
+Teams take turns to kick from the penalty mark, until each has taken five kicks. However, if one side has scored more 
+goals than the other could possibly reach with all of its remaining kicks, the shoot-out immediately ends, regardless 
+of the number of kicks remaining; this basis is called "best-of-five kicks".
+
+
+If after five rounds of kicks, the teams have scored an equal number of goals (or neither team has scored any goals), 
+additional rounds of one kick each are used until one team scores and the other misses. This is known as sudden death.
+
+
+The procedure is facilitated by `MatchStat`. It records current round and match numbers. 
+The `updateStat(boolean isPlayer, boolean isGoal)` method converts the outcomes of player's commands into player score 
+and Ai score after `penalty` or `save` commands. The `decideMatchEnd()` method decides whether a match ends based on the 
+rules mentioned above. 
+
+As we now only need to record the match stats of one player, the class is implemented as a utility class. (i.e. Using 
+class level fields and methods.) We may change it to an instantiable class later when we need to record the match stats 
+of multiple players. Here is the class diagram of the class:
+
+
+![MatchStatClassDiagram-0.png](diagrams%2FMatchStatClassDiagram-0.png)
+
 
 ## AI Class 
 
@@ -316,3 +348,4 @@ The `Ai` class depends on the `DifficultyLevel` enum to determine the range of d
 4. **Advanced AI Strategies**: Enhance the AI's decision-making capabilities by implementing more advanced strategies and algorithms. This could involve considering factors such as the player's previous shots, game statistics, or other relevant data.
 
 5. **Multiplayer Mode**: Implement a multiplayer mode where multiple players can participate in the game, either locally or over a network.
+
