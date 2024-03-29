@@ -1,10 +1,7 @@
 package seedu.duke.ui;
 
-import seedu.duke.CommandList;
-import seedu.duke.Formatter;
-import seedu.duke.Parser;
-import seedu.duke.SyntaxAnalyser;
-
+import seedu.duke.*;
+import seedu.duke.stats.MatchStat;
 import seedu.duke.exception.ProcessInputException;
 import seedu.duke.exception.ArgumentMismatchException;
 import seedu.duke.exception.BadTokenException;
@@ -15,11 +12,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Ui {
-    public static int roundCount = 1;
     public static final Scanner IN = new Scanner(System.in);
+    public static int curplayer=0; // The player in current game return by account login.
     private static boolean isRunning = true;
-    private static String userInput;
+    public static String userInput;
     private static Parser userCommandReader;
+    private static DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
 
     private static final Logger logger = Logger.getLogger("Foo");
 
@@ -62,19 +60,45 @@ public class Ui {
     public static void executeCommand() {
         String readUserCommand = userCommandReader.getCommandName();
         String[] readArgumentTokens = userCommandReader.getArgumentTokens();
-
         CommandList selectedCommand = CommandList.valueOf(readUserCommand);
-
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();
             break;
         case SHOOT:
             CommandList.executeShoot(readArgumentTokens);
-            roundCount++;
             break;
         case PENALTY:
-            CommandList.executePenalty();
+            CommandList.executePenalty(difficultyLevel);
+            break;
+        case EASY:
+            difficultyLevel = DifficultyLevel.EASY;
+            System.out.println("Difficulty level set to EASY");
+            break;
+        case MEDIUM:
+            difficultyLevel = DifficultyLevel.MEDIUM;
+            System.out.println("Difficulty level set to MEDIUM");
+            break;
+        case HARD:
+            difficultyLevel = DifficultyLevel.HARD;
+            System.out.println("Difficulty level set to HARD");
+            break;
+        case YES:
+            if (MatchStat.getIsMatchEnd()) {
+                MatchStat.updateForNewMatch();
+            } else {
+                Formatter.printErrorUnknown();
+            }
+            break;
+        case NO:
+            if (MatchStat.getIsMatchEnd()) {
+                CommandList.executeBye();
+            } else {
+                Formatter.printErrorUnknown();
+            }
+            break;
+        case UPGRADE:
+            CommandList.executeUpgrade(readArgumentTokens);
             break;
         case SAVE:
             CommandList.executeSave();
