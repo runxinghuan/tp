@@ -100,9 +100,9 @@ public class Ui {
         case UPGRADE:
             CommandList.executeUpgrade(readArgumentTokens);
             break;
-        case SAVE:
-            CommandList.executeSave();
-            break;
+//        case SAVE:
+//            CommandList.executeSave();
+//            break;
             //insert new executable command here
         default:
             Formatter.printErrorUnknown();

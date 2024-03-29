@@ -115,6 +115,7 @@ public class Formatter {
         System.out.println("Opponent's score: " + MatchStat.getAiScore());
     }
 
+    //@@author runxinghuan
     public static void printMatchResult() {
         if (MatchStat.getIsPlayerWin()) {
             System.out.println("Nice! You won this match! Wanna a new match?");
@@ -122,6 +123,7 @@ public class Formatter {
             System.out.println("You lost this match. Wanna a new match?");
         }
     }
+    //@@author
     
     public static void printSaveResult(boolean isGoalSaved) {
         if (isGoalSaved) {

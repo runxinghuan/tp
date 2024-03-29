@@ -49,9 +49,9 @@ public enum CommandList {
         PlayerList.l1.get(Ui.curplayer).printSelfInfo();
     }
 
-    public static void executeSave() {
-        Save.executeSave();
-    }
+//    public static void executeSave() {
+//        Save.executeSave();
+//    }
 
     //insert new command here
 }
