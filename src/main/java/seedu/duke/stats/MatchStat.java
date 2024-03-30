@@ -12,19 +12,21 @@ public class MatchStat {
     private static int aiScore = 0;
     private static boolean isPlayerWin = false;
     private static boolean isMatchEnd = false;
+    private static boolean isPlayerTurn = true;
 
     /**
      * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
      *
-     * @param isPlayer Who is scoring.
      * @param isGoal Whether he scores or not.
      */
-    public static void updateStat(boolean isPlayer, boolean isGoal) {
-        if (isPlayer && isGoal) {
+    public static void updateStat(boolean isGoal) {
+        if (isPlayerTurn && isGoal) {
             playerScore += 1;
+            isPlayerTurn = false;
         }
-        if (!isPlayer && isGoal) {
+        if (!isPlayerTurn && isGoal) {
             aiScore += 1;
+            isPlayerTurn = true;
         }
         decideMatchEnd();
         assert playerScore + aiScore <= roundCount : "Wrong computation of score.";
@@ -40,6 +42,7 @@ public class MatchStat {
         aiScore = 0;
         matchCount += 1;
         isMatchEnd = false;
+        isPlayerTurn = true;
     }
 
     /**
@@ -105,5 +108,9 @@ public class MatchStat {
     }
     public static void setMatchCount(int matchCount) {
         MatchStat.matchCount = matchCount+1;
+    }
+
+    public static boolean getIsPlayerTurn() {
+        return isPlayerTurn;
     }
 }
