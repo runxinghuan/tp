@@ -75,6 +75,16 @@ public class Ui {
             }
         }
 
+        if (MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SAVE) {
+            Formatter.printErrorUnknown();
+            return;
+        }
+
+        if (!MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SHOOT) {
+            Formatter.printErrorUnknown();
+            return;
+        }
+
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();
@@ -100,9 +110,9 @@ public class Ui {
         case UPGRADE:
             CommandList.executeUpgrade(readArgumentTokens);
             break;
-//        case SAVE:
-//            CommandList.executeSave();
-//            break;
+        case SAVE:
+            CommandList.executeSave();
+            break;
         //insert new executable command here
         default:
             Formatter.printErrorUnknown();

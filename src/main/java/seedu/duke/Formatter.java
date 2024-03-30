@@ -127,6 +127,57 @@ public class Formatter {
             System.out.println("You lost this match. Wanna a new match?");
         }
     }
+
+    /**
+     * Prints out the goal before "save" command when the player's saving ability is beginner.
+     */
+    public static void printGoalBeforeSaveForBeginner() {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
+        logger.info("Round " + MatchStat.getRoundCount());
+        System.out.println("Match " + MatchStat.getMatchCount());
+        System.out.println("Round " + MatchStat.getRoundCount());
+        System.out.println("_______________________________");
+        System.out.println("|         |         |         |");
+        System.out.println("|         |         |         |");
+        System.out.println("|    0    |    1    |    2    |");
+        System.out.println("|         |         |         |");
+        System.out.println("|         |         |         |");
+        System.out.println("\nSelect direction to save : [0-2]");
+    }
+
+    /**
+     * Prints out the goal before "save" command when the player's saving ability is medium.
+     */
+    public static void printGoalBeforeSaveForMedium() {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
+        logger.info("Round " + MatchStat.getRoundCount());
+        System.out.println("Match " + MatchStat.getMatchCount());
+        System.out.println("Round " + MatchStat.getRoundCount());
+        System.out.println("_______________________________");
+        System.out.println("|    0    |    1    |    2    |");
+        System.out.println("|         |         |         |");
+        System.out.println("|_________|_________|_________|");
+        System.out.println("|         |         |         |");
+        System.out.println("|    3    |    4    |    5    |");
+        System.out.println("\nSelect direction to save : [0-2] WILL COMPLETE IN V2.0b");
+    }
+
+    /**
+     * Prints out the goal before "save" command when the player's saving ability is expert.
+     */
+    public static void printGoalBeforeSaveForExpert() {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
+        logger.info("Round " + MatchStat.getRoundCount());
+        System.out.println("Match " + MatchStat.getMatchCount());
+        System.out.println("Round " + MatchStat.getRoundCount());
+        System.out.println("_______________________________");
+        System.out.println("|    0    |    1    |    2    |");
+        System.out.println("|---------|---------|---------|");
+        System.out.println("|    3    |    4    |    5    |");
+        System.out.println("|---------|---------|---------|");
+        System.out.println("|    6    |    7    |    8    |");
+        System.out.println("\nSelect direction to save : [0-2] WILL COMPLETE IN V2.0b");
+    }
     //@@author
     
     public static void printSaveResult(boolean isGoalSaved) {

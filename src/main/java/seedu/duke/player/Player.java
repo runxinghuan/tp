@@ -28,5 +28,8 @@ public class Player {
     protected void printSkill(){} //For override
 
     public void printGoalBeforeShoot(){} //For override
+
+    public void printGoalBeforeSave(){} //For override
+
     public void upgradePower(int level){} //For override
 }

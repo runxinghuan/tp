@@ -37,7 +37,7 @@ public enum CommandList {
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
         boolean isScoreGoal = goalCheck(Ai.getAiDirection(), selectedDirectionIndex);
 
-        MatchStat.updateStat(true, isScoreGoal); //Need to update after save command.
+        MatchStat.updateStat(isScoreGoal); //Need to update after save command.
         Formatter.printGoalAfterShot(isScoreGoal);
     }
 
@@ -49,9 +49,9 @@ public enum CommandList {
         PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
     }
 
-//    public static void executeSave() {
-//        Save.executeSave();
-//    }
+    public static void executeSave() {
+        Save.executeSave();
+    }
 
     //insert new command here
 }
