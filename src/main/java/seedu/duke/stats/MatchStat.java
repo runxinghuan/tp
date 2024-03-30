@@ -23,8 +23,7 @@ public class MatchStat {
         if (isPlayerTurn && isGoal) {
             playerScore += 1;
             isPlayerTurn = false;
-        }
-        if (!isPlayerTurn && isGoal) {
+        } else if (!isPlayerTurn && isGoal) {
             aiScore += 1;
             isPlayerTurn = true;
         }
@@ -106,8 +105,9 @@ public class MatchStat {
     public static int getAiScore() {
         return aiScore;
     }
+
     public static void setMatchCount(int matchCount) {
-        MatchStat.matchCount = matchCount+1;
+        MatchStat.matchCount = matchCount + 1;
     }
 
     public static boolean getIsPlayerTurn() {
