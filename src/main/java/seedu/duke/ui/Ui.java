@@ -111,7 +111,7 @@ public class Ui {
             CommandList.executeUpgrade(readArgumentTokens);
             break;
         case SAVE:
-            CommandList.executeSave();
+            CommandList.executeSave(readArgumentTokens);
             break;
         //insert new executable command here
         default:

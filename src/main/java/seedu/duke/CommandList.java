@@ -49,8 +49,13 @@ public enum CommandList {
         PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
     }
 
-    public static void executeSave() {
-        Save.executeSave();
+    public static void executeSave(String[] readArgumentTokens) {
+        String userSaveDirection = readArgumentTokens[0];
+        int userSaveDirectionIndex = Integer.parseInt(userSaveDirection);
+        int aiPenaltyDirection = Ai.getAiDirection();
+        boolean isGoalSaved = userSaveDirectionIndex == aiPenaltyDirection;
+        MatchStat.updateStat(isGoalSaved);
+        Formatter.printSaveResult(isGoalSaved);
     }
 
     //insert new command here
