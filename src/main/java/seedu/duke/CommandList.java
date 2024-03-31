@@ -54,7 +54,8 @@ public enum CommandList {
         int userSaveDirectionIndex = Integer.parseInt(userSaveDirection);
         int aiPenaltyDirection = Ai.getAiDirection();
         boolean isGoalSaved = userSaveDirectionIndex == aiPenaltyDirection;
-        MatchStat.updateStat(isGoalSaved);
+        boolean isGoal = !isGoalSaved;
+        MatchStat.updateStat(isGoal);
         Formatter.printSaveResult(isGoalSaved);
     }
 

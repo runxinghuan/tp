@@ -5,8 +5,8 @@ import seedu.duke.DifficultyLevel;
 import java.util.Random;
 
 public class Ai {
-    private static int minDirection;
-    private static int maxDirection;
+    private static int minDirection = 0;
+    private static int maxDirection = 2;
 
     public Ai(DifficultyLevel difficultyLevel) {
         switch (difficultyLevel) {

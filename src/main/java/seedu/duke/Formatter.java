@@ -111,6 +111,10 @@ public class Formatter {
             System.out.println("no goal :((((");
         }
 
+        showScore();
+    }
+
+    private static void showScore() {
         System.out.println("Your score: " + MatchStat.getPlayerScore());
         System.out.println("Opponent's score: " + MatchStat.getAiScore());
     }
@@ -188,6 +192,7 @@ public class Formatter {
             logger.info("Goal conceded :(");
             System.out.println("You failed to save the penalty!");
         }
+        showScore();
     }
 
     /**

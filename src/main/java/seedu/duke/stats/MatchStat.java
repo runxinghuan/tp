@@ -22,11 +22,11 @@ public class MatchStat {
     public static void updateStat(boolean isGoal) {
         if (isPlayerTurn && isGoal) {
             playerScore += 1;
-            isPlayerTurn = false;
         } else if (!isPlayerTurn && isGoal) {
             aiScore += 1;
-            isPlayerTurn = true;
         }
+        isPlayerTurn = !isPlayerTurn;
+
         decideMatchEnd();
         assert playerScore + aiScore <= roundCount : "Wrong computation of score.";
         roundCount += 1;
