@@ -14,7 +14,7 @@ public class SyntaxAnalyser {
             {VALID_INDEX_REGEX}, // Added regex pattern for penalty command
             {},
             {},
-            {},
+            {VALID_INDEX_REGEX},
             {},
             {},
             {},
