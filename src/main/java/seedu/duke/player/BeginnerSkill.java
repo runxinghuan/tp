@@ -58,6 +58,11 @@ public class BeginnerSkill extends Player {
     }
 
     @Override
+    public void printGoalBeforeSave() {
+        Formatter.printGoalBeforeSaveForBeginner();
+    }
+
+    @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
         this.power=level+1;

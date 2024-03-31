@@ -1,11 +1,12 @@
 package seedu.duke;
 
+import seedu.duke.ai.Ai;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
-import seedu.duke.ai.Ai;
 
 public enum CommandList {
-    BYE, SHOOT, PENALTY, UPGRADE, YES, NO
+
+    BYE, SHOOT, PENALTY, YES, NO, UPGRADE, EASY, MEDIUM, HARD, SAVE;
 
     //insert new user command name here
     ;
@@ -25,13 +26,18 @@ public enum CommandList {
                 "Illegal aiInput generated!";
         return userInput != aiInput;
     }
+
+    public static void executePenalty(DifficultyLevel difficultyLevel) {
+        Ai ai = new Ai(difficultyLevel);
+        Penalty.executePenalty(ai);
+    }
   
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
         boolean isScoreGoal = goalCheck(Ai.getAiDirection(), selectedDirectionIndex);
 
-        MatchStat.updateStat(true, isScoreGoal); //Need to update after save command.
+        MatchStat.updateStat(isScoreGoal); //Need to update after save command.
         Formatter.printGoalAfterShot(isScoreGoal);
     }
 
@@ -39,9 +45,20 @@ public enum CommandList {
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
 
-        PlayerList.l1.get(Ui.curplayer).upgradePower(upgradeLevelIndex);
-        PlayerList.l1.get(Ui.curplayer).printSelfInfo();
+        PlayerList.l1.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
+        PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
     }
+
+    public static void executeSave(String[] readArgumentTokens) {
+        String userSaveDirection = readArgumentTokens[0];
+        int userSaveDirectionIndex = Integer.parseInt(userSaveDirection);
+        int aiPenaltyDirection = Ai.getAiDirection();
+        boolean isGoalSaved = userSaveDirectionIndex == aiPenaltyDirection;
+        boolean isGoal = !isGoalSaved;
+        MatchStat.updateStat(isGoal);
+        Formatter.printSaveResult(isGoalSaved);
+    }
+
     //insert new command here
 }
 

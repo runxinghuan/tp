@@ -23,10 +23,12 @@ public class Duke {
         while (Ui.getIsRunning()) {
             if (MatchStat.getIsMatchEnd()) {
                 Formatter.printMatchResult();
-                PlayerList.skillUpgrade(Ui.curplayer);
-                playerThisRound = PlayerList.l1.get(Ui.curplayer);
-            } else {
+                PlayerList.skillUpgrade(Ui.curPlayer);
+                playerThisRound = PlayerList.l1.get(Ui.curPlayer);
+            } else if (MatchStat.getIsPlayerTurn()) {
                 playerThisRound.printGoalBeforeShoot();
+            } else {
+                playerThisRound.printGoalBeforeSave();
             }
             try {
                 Ui.beginListening();
@@ -41,7 +43,7 @@ public class Duke {
     //Bruno is a sample player for demonstration, you can try any level player
     private static Player createNewPlayer() {
         PlayerList.l1.add(new MediumSkill("Bruno",3));
-        Player playerThisRound = PlayerList.l1.get(Ui.curplayer);
+        Player playerThisRound = PlayerList.l1.get(Ui.curPlayer);
         playerThisRound.printSelfInfo();
         MatchStat.setMatchCount(playerThisRound.matchCount);
         return playerThisRound;

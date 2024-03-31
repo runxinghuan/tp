@@ -17,3 +17,5 @@ bin/
 text-ui-test/EXPECTED-UNIX.TXT
 *.jar
 /.vscode
+
+META-INF/MANIFEST.MF

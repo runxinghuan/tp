@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+skinparam classAttributeIconSize 0
+
+class MatchStat {
+- {static} matchCount: int
+- {static} roundCount: int
+- {static} playerScore: int
+- {static} aiScore: int
+- {static} isPlayerWin: boolean
+- {static} isMatchEnd: boolean
++ {static} updateStat(isPlayer: boolean, isGoal: boolean)
++ {static} updateForNewMatch()
+- {static} decideMatchEnd()
+}
+
+
+@enduml

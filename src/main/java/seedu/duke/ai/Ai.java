@@ -1,27 +1,37 @@
 package seedu.duke.ai;
 
+import seedu.duke.DifficultyLevel;
+
 import java.util.Random;
 
-/**
- * Ai of the game.
- */
 public class Ai {
     private static int minDirection = 0;
     private static int maxDirection = 2;
 
-    public Ai() {
+    public Ai(DifficultyLevel difficultyLevel) {
+        switch (difficultyLevel) {
+            case EASY:
+                minDirection = 0;
+                maxDirection = 2;
+                break;
+            case MEDIUM:
+                minDirection = 0;
+                maxDirection = 3;
+                break;
+            case HARD:
+                minDirection = 0;
+                maxDirection = 4;
+                break;
+        }
     }
 
-    /**
-     * Returns a random number representing the direction chosen by the AI.
-     */
     public static int getAiDirection() {
         Random rand = new Random();
-        int direction = rand.nextInt(3);
-        assert direction >= Ai.getMinDirection() && direction <= Ai.getMaxDirection() :
-                "Illegal AI direction generated!";
+        int direction = rand.nextInt(maxDirection - minDirection + 1) + minDirection;
+        assert direction >= minDirection && direction <= maxDirection : "Illegal AI direction generated!";
         return direction;
     }
+
 
     public static int getMinDirection() {
         return minDirection;

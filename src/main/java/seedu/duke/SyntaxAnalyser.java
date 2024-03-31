@@ -11,10 +11,15 @@ public class SyntaxAnalyser {
     private static final String[][] lutRegexSeq = {
             {},
             {VALID_INDEX_REGEX},
-            {},
             {VALID_INDEX_REGEX}, // Added regex pattern for penalty command
             {},
-            {}
+            {},
+            {},
+            {},
+            {},
+            {},
+            {VALID_INDEX_REGEX}
+
             //insert new command syntax here
     };
 

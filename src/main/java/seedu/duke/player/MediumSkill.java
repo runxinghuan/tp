@@ -60,6 +60,11 @@ public class MediumSkill extends Player {
     }
 
     @Override
+    public void printGoalBeforeSave() {
+        Formatter.printGoalBeforeSaveForMedium();
+    }
+
+    @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
         this.power=level+1;

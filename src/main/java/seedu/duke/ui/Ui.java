@@ -1,9 +1,6 @@
 package seedu.duke.ui;
 
-import seedu.duke.Parser;
-import seedu.duke.Formatter;
-import seedu.duke.CommandList;
-import seedu.duke.SyntaxAnalyser;
+import seedu.duke.*;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.exception.ProcessInputException;
 import seedu.duke.exception.ArgumentMismatchException;
@@ -16,10 +13,11 @@ import java.util.logging.Logger;
 
 public class Ui {
     public static final Scanner IN = new Scanner(System.in);
-    public static int curplayer=0; // The player in current game return by account login.
+    public static int curPlayer = 0; // The player in current game return by account login.
     private static boolean isRunning = true;
-    private static String userInput;
+    public static String userInput;
     private static Parser userCommandReader;
+    private static DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
 
     private static final Logger logger = Logger.getLogger("Foo");
 
@@ -63,6 +61,30 @@ public class Ui {
         String readUserCommand = userCommandReader.getCommandName();
         String[] readArgumentTokens = userCommandReader.getArgumentTokens();
         CommandList selectedCommand = CommandList.valueOf(readUserCommand);
+
+        if (MatchStat.getIsMatchEnd()) {
+            switch (selectedCommand) {
+            case YES:
+                MatchStat.updateForNewMatch();
+                return;
+            case NO:
+                CommandList.executeBye();
+                return;
+            default:
+                Formatter.printErrorUnknown();
+            }
+        }
+
+        if (MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SAVE) {
+            Formatter.printErrorUnknown();
+            return;
+        }
+
+        if (!MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SHOOT) {
+            Formatter.printErrorUnknown();
+            return;
+        }
+
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();
@@ -70,24 +92,28 @@ public class Ui {
         case SHOOT:
             CommandList.executeShoot(readArgumentTokens);
             break;
-        case YES:
-            if (MatchStat.getIsMatchEnd()) {
-                MatchStat.updateForNewMatch();
-            } else {
-                Formatter.printErrorUnknown();
-            }
+        case PENALTY:
+            CommandList.executePenalty(difficultyLevel);
             break;
-        case NO:
-            if (MatchStat.getIsMatchEnd()) {
-                CommandList.executeBye();
-            } else {
-                Formatter.printErrorUnknown();
-            }
+        case EASY:
+            difficultyLevel = DifficultyLevel.EASY;
+            System.out.println("Difficulty level set to EASY");
+            break;
+        case MEDIUM:
+            difficultyLevel = DifficultyLevel.MEDIUM;
+            System.out.println("Difficulty level set to MEDIUM");
+            break;
+        case HARD:
+            difficultyLevel = DifficultyLevel.HARD;
+            System.out.println("Difficulty level set to HARD");
             break;
         case UPGRADE:
             CommandList.executeUpgrade(readArgumentTokens);
             break;
-            //insert new executable command here
+        case SAVE:
+            CommandList.executeSave(readArgumentTokens);
+            break;
+        //insert new executable command here
         default:
             Formatter.printErrorUnknown();
         }
