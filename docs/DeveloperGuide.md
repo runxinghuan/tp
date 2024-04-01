@@ -134,6 +134,34 @@ of multiple players. Here is the class diagram of the class:
 
 ![MatchStatClassDiagram.png](diagrams%2FMatchStatClassDiagram.png)
 
+The sequence diagram below illustrates the interactions between other classes and the `MatchStat` class. For this 
+example, `shoot 1` is entered by the player.
+
+
+![MatchStatSequential.png](diagrams%2FMatchStatSequential.png)
+
+How the `MatchStat` class works:
+1. After parsing of the input, `executeShoot("1")` in the `CommandList` class is called.
+
+2. Then `getAiDirection()` in the `Ai` class is called. It returns `direction` of type `int`, which represents the 
+direction at which Ai wants to save the penalty.
+
+3. After that, `CommandList` has a self invocation to call its `goalCheck(1, direction)` method. This method decides 
+whether the shoot scores or not, and returns `isScoreGoal` of type `boolean`.
+
+4. `isScoreGoal` is then passed to the `updateStat(isScoreGoal)` method in the `MatchStat` class. The method changes 
+`playerScore` and `aiScore` (both stored in the same class) based on `isScoreGoal` read and `isPlayerTurn` stored in the
+same class. `MatchStat` then has a self invocation to call its `decideMatchEnd()` method.
+
+5. `decideMatchEnd()` method reads `roundCount`, `playerScore` and `aiScore` in the same class, and decides whether a 
+match ends based on the two rules mentioned above. It then changes `isMatchEnd` and `isPlayerWin` in the same class 
+accordingly.
+
+6. After step 5, all the stats that need to be changed after `shoot` command have been updated. Hence, 
+`updateStat(isScoreGoal)` method returns. However, messages need to be printed out for the player to see that his 
+command finishes executing. Thus, the `printGoalAfterShot(isScoreGoal)` method in the `Formatter` class is called. It 
+prints out all the necessary messages for the user.
+
 
 ## AI Class 
 
