@@ -1,0 +1,90 @@
+@startuml FootballPenaltyShooterGameClassDiagram
+
+skinparam classAttributeIconSize 0
+
+class Player {
+    - name : String
+    - matchCount : int
+    - power : int
+    - skill : int
+    + Player(name : String, matchCount : int)
+    + printSelfInfo() : void
+    - printPower() : void
+    - printSkill() : void
+    + getSkill() : int
+    + printGoalBeforeShoot() : void
+    + printGoalBeforeSave() : void
+    + public printGoalAfterShoot(goalScored: boolean, direction: int) : void
+    + upgradePower(level : int) : void
+    + aiDirectionAdjust(aiDir: int) : float
+    + directionAdjust(dir: int) : float
+    - shootDirectionFormula(left: int, right:int, dir: int, power int) : float
+    + rangeAdjust() : float
+}
+
+class MediumSkill {
+    - power : int = 1
+    - final skill : int = 2
+    + MediumSkill(name : String, matchCount : int)
+    + printSelfInfo() : void
+    - printPower() : void
+    - printSkill() : void
+    + getSkill() : int
+    + printGoalBeforeShoot() : void
+    + printGoalBeforeSave() : void
+    + public printGoalAfterShoot(goalScored: boolean, direction: int) : void
+    + upgradePower(level : int) : void
+    + aiDirectionAdjust(aiDir: int) : float
+    + directionAdjust(dir: int) : float
+    - shootDirectionFormula(left: int, right:int, dir: int, power int) : float
+    + rangeAdjust() : float
+}
+
+class BeginnerSkill {
+    - power : int = 1
+    - final skill : int = 1
+    + BeginnerSkill(name : String, matchCount : int)
+    + printSelfInfo() : void
+    - printPower() : void
+    - printSkill() : void
+    + getSkill() : int
+    + printGoalBeforeShoot() : void
+    + printGoalBeforeSave() : void
+    + public printGoalAfterShoot(goalScored: boolean, direction: int) : void
+    + upgradePower(level : int) : void
+    + aiDirectionAdjust(aiDir: int) : float
+    + directionAdjust(dir: int) : float
+    - shootDirectionFormula(left: int, right:int, dir: int, power int) : float
+    + rangeAdjust() : float
+}
+
+class ExpertSkill {
+    - power : int = 1
+    - final skill : int = 3
+    + ExpertSkill(name : String, matchCount : int)
+    + printSelfInfo() : void
+    - printPower() : void
+    - printSkill() : void
+    + getSkill() : int
+    + printGoalBeforeShoot() : void
+    + printGoalBeforeSave() : void
+    + public printGoalAfterShoot(goalScored: boolean, direction: int) : void
+    + upgradePower(level : int) : void
+    + aiDirectionAdjust(aiDir: int) : float
+    + directionAdjust(dir: int) : float
+    - shootDirectionFormula(left: int, right:int, dir: int, power int) : float
+    + rangeAdjust() : float
+}
+
+class PlayerList {
+    + {static} l1 : ArrayList<Player>
+    + {static} skillUpgrade(curPlayer : int) : void
+}
+
+Player <|-- MediumSkill
+Player <|-- BeginnerSkill
+Player <|-- ExpertSkill
+
+PlayerList "1" -- "*" Player : manages >
+
+@enduml
