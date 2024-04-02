@@ -1,11 +1,15 @@
 package seedu.duke.player;
 
 import seedu.duke.Formatter;
+import seedu.duke.ui.Ui;
+import java.util.Random;
+
+//@@author HenryGan138
 
 public class MediumSkill extends Player {
     private int power = 1;
     private final int skill = 2;
-
+    Random rand = new Random();
     public MediumSkill(String name, int matchCount) {
         super(name, matchCount);
     }
@@ -65,8 +69,53 @@ public class MediumSkill extends Player {
     }
 
     @Override
+    public void printGoalAfterShoot(boolean goalScored, int direction) {
+        Formatter.printGoalAfterShotMedium(goalScored, direction);
+    }
+    @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
         this.power=level+1;
+    }
+
+    @Override
+    public float directionAdjust(int dir){
+        if (dir>5){
+            System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
+            System.out.println("Practice makes perfect. Let's aim for those goals together!");
+            dir = dir%6;
+        }
+        int left=(dir-1==0)?0:dir-1;
+        int right=(dir+1==5)?5:dir+1;
+        return this.directionFormula(left,right,dir,this.power);
+    }
+
+    @Override
+    public float directionFormula(int left, int right, int dir, int power) {
+        return super.directionFormula(left, right, dir, power);
+    }
+
+    @Override
+    public float aiDirectionAdjust(int aiDir) {
+        return (float) (2.5*aiDir);
+    }
+
+    @Override
+    public float rangeAdjust() {
+        float range=0;
+        switch (Ui.difficultyLevel){
+        case EASY:
+            range = (float)0.25;
+            break;
+        case MEDIUM:
+            range = (float)0.5;
+            break;
+        case HARD:
+            range = (float)1.25;
+            break;
+        default:
+            range =0;
+        }
+        return range;
     }
 }

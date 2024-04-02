@@ -1,6 +1,9 @@
 package seedu.duke.player;
 
 import seedu.duke.Formatter;
+import seedu.duke.ui.Ui;
+
+//@@author HenryGan138
 
 public class BeginnerSkill extends Player {
     private int power=1;
@@ -63,8 +66,54 @@ public class BeginnerSkill extends Player {
     }
 
     @Override
+    public void printGoalAfterShoot(boolean goalScored, int direction) {
+        Formatter.printGoalAfterShotBeginner(goalScored, direction);
+    }
+
+    @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
         this.power=level+1;
+    }
+
+    @Override
+    public float directionAdjust(int dir){
+        if (dir>2){
+            System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
+            System.out.println("Practice makes perfect. Let's aim for those goals together!");
+            dir = dir%3;
+        }
+        int left=(dir-1==0)?0:dir-1;
+        int right=(dir+1==2)?2:dir+1;
+        return this.directionFormula(left,right,dir,this.power);
+    }
+
+    @Override
+    public float directionFormula(int left, int right, int dir, int power) {
+        return super.directionFormula(left, right, dir, power);
+    }
+
+    @Override
+    public float aiDirectionAdjust(int aiDir) {
+        return (float) (aiDir);
+    }
+
+    @Override
+    public float rangeAdjust() {
+        float range=0;
+        switch (Ui.difficultyLevel){
+        case EASY:
+            range = (float)0.1;
+            break;
+        case MEDIUM:
+            range = (float)0.2;
+            break;
+        case HARD:
+            range = (float)0.5;
+            break;
+        default:
+            range =0;
+        }
+        return range;
     }
 }
