@@ -79,15 +79,15 @@ public class ExpertSkill extends Player {
     }
 
     @Override
-    public float directionAdjust(int dir){
+    public float shootDirectionAdjust(int dir){
         int left=(dir-1==0)?0:dir-1;
         int right=(dir+1==8)?8:dir+1;
-        return this.directionFormula(left,right,dir,this.power);
+        return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
     @Override
-    public float directionFormula(int left, int right, int dir, int power) {
-        return super.directionFormula(left, right, dir, power);
+    public float shootDirectionFormula(int left, int right, int dir, int power) {
+        return super.shootDirectionFormula(left, right, dir, power);
     }
 
     @Override

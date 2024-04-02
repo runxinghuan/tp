@@ -77,7 +77,7 @@ public class BeginnerSkill extends Player {
     }
 
     @Override
-    public float directionAdjust(int dir){
+    public float shootDirectionAdjust(int dir){
         if (dir>2){
             System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
             System.out.println("Practice makes perfect. Let's aim for those goals together!");
@@ -85,12 +85,12 @@ public class BeginnerSkill extends Player {
         }
         int left=(dir-1==0)?0:dir-1;
         int right=(dir+1==2)?2:dir+1;
-        return this.directionFormula(left,right,dir,this.power);
+        return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
     @Override
-    public float directionFormula(int left, int right, int dir, int power) {
-        return super.directionFormula(left, right, dir, power);
+    public float shootDirectionFormula(int left, int right, int dir, int power) {
+        return super.shootDirectionFormula(left, right, dir, power);
     }
 
     @Override

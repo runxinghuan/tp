@@ -1,8 +1,5 @@
 package seedu.duke.player;
 
-import seedu.duke.DifficultyLevel;
-import seedu.duke.ui.Ui;
-
 import java.util.Random;
 
 //@@author HenryGan138
@@ -47,11 +44,11 @@ public class Player {
         return 0;
     } //For override
 
-    public float directionAdjust(int dir){
+    public float shootDirectionAdjust(int dir){
         return 0;
     }  //For override
 
-    public float directionFormula(int left, int right, int dir, int power){
+    public float shootDirectionFormula(int left, int right, int dir, int power){
         float prob=rand.nextFloat();
         if (power==1){
             prob=prob/2;

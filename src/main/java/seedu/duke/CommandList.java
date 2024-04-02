@@ -3,7 +3,6 @@ package seedu.duke;
 import seedu.duke.ai.Ai;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
-import seedu.duke.DifficultyLevel;
 
 public enum CommandList {
 
@@ -36,7 +35,7 @@ public enum CommandList {
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
-        float adjustedDirection = PlayerList.l1.get(Ui.curPlayer).directionAdjust(selectedDirectionIndex);
+        float adjustedDirection = PlayerList.l1.get(Ui.curPlayer).shootDirectionAdjust(selectedDirectionIndex);
         float adjustedAiDirection = PlayerList.l1.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = PlayerList.l1.get(Ui.curPlayer).rangeAdjust();
 
