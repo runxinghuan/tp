@@ -1,11 +1,4 @@
-/**
- * Provides functionality for managing a list of player objects,
- * v2.0 add the ability to upgrade a player's skill based on their current skill level and match count.
- *
- */
-
 package seedu.duke;
-
 import seedu.duke.player.ExpertSkill;
 import seedu.duke.player.MediumSkill;
 import seedu.duke.player.Player;
@@ -14,12 +7,19 @@ import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;
 
+//@@author HenryGan138
+
+/**
+ * Provides functionality for managing a list of player objects,
+ * v2.0 add the ability to upgrade a player's skill based on their current skill level and match count.
+ *
+ */
 public class PlayerList {
     public static ArrayList<Player> l1 = new ArrayList<>();
 
     public static void skillUpgrade(int curPlayer){
         Player player = l1.get(curPlayer);
-        player.matchCount= MatchStat.getMatchCount();
+        player.matchCount= Math.max(MatchStat.getMatchCount(),player.matchCount);
 
         if (player.getSkill()==1){
             l1.add(new MediumSkill(player.name,player.matchCount));

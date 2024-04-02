@@ -17,7 +17,7 @@ public class Ui {
     private static boolean isRunning = true;
     public static String userInput;
     private static Parser userCommandReader;
-    private static DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
+    public static DifficultyLevel difficultyLevel = DifficultyLevel.EASY;
 
     private static final Logger logger = Logger.getLogger("Foo");
 

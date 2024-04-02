@@ -1,6 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.exception.ProcessInputException;
+import seedu.duke.player.BeginnerSkill;
 import seedu.duke.player.MediumSkill;
 import seedu.duke.player.Player;
 import seedu.duke.stats.MatchStat;
@@ -42,7 +43,7 @@ public class Duke {
 
     //Bruno is a sample player for demonstration, you can try any level player
     private static Player createNewPlayer() {
-        PlayerList.l1.add(new MediumSkill("Bruno",3));
+        PlayerList.l1.add(new MediumSkill("Bruno",5));
         Player playerThisRound = PlayerList.l1.get(Ui.curPlayer);
         playerThisRound.printSelfInfo();
         MatchStat.setMatchCount(playerThisRound.matchCount);

@@ -3,6 +3,7 @@ package seedu.duke;
 import seedu.duke.ai.Ai;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
+import seedu.duke.DifficultyLevel;
 
 public enum CommandList {
 
@@ -19,12 +20,12 @@ public enum CommandList {
         Ui.setIsRunning(false);
     }
 
-    public static boolean goalCheck(int userInput, int aiInput) {
-        assert userInput >= 0 && userInput <= 2 :
+    public static boolean goalCheck(float userInput, float aiInput, float range) {
+        assert userInput >= 0 && userInput <= 8 :
                 "Illegal userInput generated!";
-        assert aiInput >= 0 && aiInput <= 2 :
+        assert aiInput >= 0 && aiInput <= 8 :
                 "Illegal aiInput generated!";
-        return userInput != aiInput;
+        return ((userInput>(aiInput+range))||userInput<(aiInput-range));
     }
 
     public static void executePenalty(DifficultyLevel difficultyLevel) {
@@ -35,16 +36,26 @@ public enum CommandList {
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
-        boolean isScoreGoal = goalCheck(Ai.getAiDirection(), selectedDirectionIndex);
+        float adjustedDirection = PlayerList.l1.get(Ui.curPlayer).directionAdjust(selectedDirectionIndex);
+        float adjustedAiDirection = PlayerList.l1.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
+        float adjustedRange = PlayerList.l1.get(Ui.curPlayer).rangeAdjust();
 
-        MatchStat.updateStat(isScoreGoal); //Need to update after save command.
-        Formatter.printGoalAfterShot(isScoreGoal);
+        testForShoot(adjustedDirection, adjustedAiDirection, adjustedRange);
+        boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection,adjustedRange);
+
+        MatchStat.updateStat(isScoreGoal);
+        PlayerList.l1.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
+    }
+
+    private static void testForShoot(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
+        System.out.println("Shoot: " + adjustedDirection);
+        System.out.println("Save: " + adjustedAiDirection);
+        System.out.println("Range: " + adjustedRange);
     }
 
     public static void executeUpgrade(String[] level){
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
-
         PlayerList.l1.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
         PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
     }

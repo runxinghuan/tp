@@ -15,8 +15,8 @@ public class Penalty {
     public static void executePenalty(Ai ai) {
         int userDirection = getUserPenaltyDirection();
         int aiDirection = ai.getAiDirection();
-        boolean isGoal = CommandList.goalCheck(userDirection, aiDirection);
-        Formatter.printGoalAfterShot(isGoal);
+        boolean isGoal = CommandList.goalCheck(userDirection, aiDirection,0);
+        Formatter.printGoalAfterShot(isGoal,0);
     }
 
     /**
