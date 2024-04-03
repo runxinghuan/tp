@@ -35,12 +35,13 @@ public enum CommandList {
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
+
         float adjustedDirection = PlayerList.playerList.get(Ui.curPlayer).shootDirectionAdjust(selectedDirectionIndex);
         float adjustedAiDirection = PlayerList.playerList.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = PlayerList.playerList.get(Ui.curPlayer).rangeAdjust();
 
         testForShoot(adjustedDirection, adjustedAiDirection, adjustedRange);
-        boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection,adjustedRange);
+        boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection, adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
         PlayerList.playerList.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
