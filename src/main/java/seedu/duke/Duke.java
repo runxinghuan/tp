@@ -1,8 +1,7 @@
 package seedu.duke;
 
 import seedu.duke.exception.ProcessInputException;
-import seedu.duke.player.BeginnerSkill;
-import seedu.duke.player.MediumSkill;
+import seedu.duke.player.BeginnerSkillPlayer;
 import seedu.duke.player.Player;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
@@ -25,7 +24,7 @@ public class Duke {
             if (MatchStat.getIsMatchEnd()) {
                 Formatter.printMatchResult();
                 PlayerList.skillUpgrade(Ui.curPlayer);
-                playerThisRound = PlayerList.l1.get(Ui.curPlayer);
+                playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
             } else if (MatchStat.getIsPlayerTurn()) {
                 playerThisRound.printGoalBeforeShoot();
             } else {
@@ -43,8 +42,8 @@ public class Duke {
 
     //Bruno is a sample player for demonstration, you can try any level player
     private static Player createNewPlayer() {
-        PlayerList.l1.add(new MediumSkill("Bruno",5));
-        Player playerThisRound = PlayerList.l1.get(Ui.curPlayer);
+        PlayerList.playerList.add(new BeginnerSkillPlayer("Bruno",0));
+        Player playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
         playerThisRound.printSelfInfo();
         MatchStat.setMatchCount(playerThisRound.matchCount);
         return playerThisRound;

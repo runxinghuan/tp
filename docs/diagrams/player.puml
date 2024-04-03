@@ -22,8 +22,7 @@ class Player {
     + rangeAdjust() : float
 }
 
-class MediumSkill {
-    - power : int = 1
+class MediumSkillPlayer {
     - final skill : int = 2
     + MediumSkill(name : String, matchCount : int)
     + printSelfInfo() : void
@@ -40,8 +39,7 @@ class MediumSkill {
     + rangeAdjust() : float
 }
 
-class BeginnerSkill {
-    - power : int = 1
+class BeginnerSkillPlayer {
     - final skill : int = 1
     + BeginnerSkill(name : String, matchCount : int)
     + printSelfInfo() : void
@@ -58,8 +56,7 @@ class BeginnerSkill {
     + rangeAdjust() : float
 }
 
-class ExpertSkill {
-    - power : int = 1
+class ExpertSkillPlayer {
     - final skill : int = 3
     + ExpertSkill(name : String, matchCount : int)
     + printSelfInfo() : void
@@ -77,7 +74,7 @@ class ExpertSkill {
 }
 
 class PlayerList {
-    + {static} l1 : ArrayList<Player>
+    + {static} playerList : ArrayList<Player>
     + {static} skillUpgrade(curPlayer : int) : void
 }
 

@@ -7,14 +7,22 @@ import java.util.Random;
 public class Player {
     public String name;
     public int matchCount;
-    private int power;
+    public int power;
     private int skill;
     Random rand = new Random();
 
     public Player(String name, int matchCount) {
         this.name = name;
         this.matchCount = matchCount;
+        this.power=1;
     }
+
+    public Player(String name, int matchCount, int power) {
+        this.name = name;
+        this.matchCount = matchCount;
+        this.power = power;
+    }
+
     public void printSelfInfo(){
         System.out.println("--------Player Info--------");
         System.out.println("Name: "+this.name);

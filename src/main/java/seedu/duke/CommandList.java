@@ -35,15 +35,15 @@ public enum CommandList {
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
-        float adjustedDirection = PlayerList.l1.get(Ui.curPlayer).shootDirectionAdjust(selectedDirectionIndex);
-        float adjustedAiDirection = PlayerList.l1.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
-        float adjustedRange = PlayerList.l1.get(Ui.curPlayer).rangeAdjust();
+        float adjustedDirection = PlayerList.playerList.get(Ui.curPlayer).shootDirectionAdjust(selectedDirectionIndex);
+        float adjustedAiDirection = PlayerList.playerList.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
+        float adjustedRange = PlayerList.playerList.get(Ui.curPlayer).rangeAdjust();
 
         testForShoot(adjustedDirection, adjustedAiDirection, adjustedRange);
         boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection,adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
-        PlayerList.l1.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
+        PlayerList.playerList.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
     }
 
     private static void testForShoot(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
@@ -55,8 +55,8 @@ public enum CommandList {
     public static void executeUpgrade(String[] level){
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
-        PlayerList.l1.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
-        PlayerList.l1.get(Ui.curPlayer).printSelfInfo();
+        PlayerList.playerList.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
+        PlayerList.playerList.get(Ui.curPlayer).printSelfInfo();
     }
 
     public static void executeSave(String[] readArgumentTokens) {
