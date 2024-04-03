@@ -35,9 +35,9 @@ public enum CommandList {
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
-        boolean isScoreGoal = goalCheck(Ai.getAiDirection(), selectedDirectionIndex);
+        boolean isScoreGoal = goalCheck(selectedDirectionIndex, Ai.getAiDirection());
 
-        MatchStat.updateStat(isScoreGoal); //Need to update after save command.
+        MatchStat.updateStat(isScoreGoal);
         Formatter.printGoalAfterShot(isScoreGoal);
     }
 

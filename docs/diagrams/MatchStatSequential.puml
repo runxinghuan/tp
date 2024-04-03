@@ -1,0 +1,35 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+autonumber
+
+ -> CommandList: executeShoot("1")
+activate CommandList
+
+CommandList -> Ai: getAiDirection()
+activate Ai
+return direction
+
+CommandList -> CommandList: goalCheck(1, direction)
+activate CommandList
+return isScoreGoal
+
+CommandList -> MatchStat: updateStat(isScoreGoal)
+activate MatchStat
+MatchStat -> MatchStat: decideMatchEnd()
+activate MatchStat
+return
+
+return
+
+CommandList -> Formatter: printGoalAfterShot(isScoreGoal)
+activate Formatter
+Formatter -> Formatter: showScore()
+activate Formatter
+return
+
+return
+
+return
+deactivate CommandList
+@enduml
