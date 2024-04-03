@@ -10,7 +10,8 @@ class MatchStat {
 - {static} aiScore: int
 - {static} isPlayerWin: boolean
 - {static} isMatchEnd: boolean
-+ {static} updateStat(isPlayer: boolean, isGoal: boolean)
+- {static} isPlayerTurn: boolean
++ {static} updateStat(isGoal: boolean)
 + {static} updateForNewMatch()
 - {static} decideMatchEnd()
 }

@@ -94,11 +94,10 @@ he mechanism operates through a structured process, enhancing the gaming experie
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 
-## Implementation
-This section describes some noteworthy details on how certain features are implemented.
+## Real penalty shootout setting
 
 
-### Real penalty shootout setting
+### Overview
 
 
 As we are making a penalty shootout game, we should make the procedure of a match in the game the same as that of a 
@@ -114,17 +113,54 @@ If after five rounds of kicks, the teams have scored an equal number of goals (o
 additional rounds of one kick each are used until one team scores and the other misses. This is known as sudden death.
 
 
-The procedure is facilitated by `MatchStat`. It records current round and match numbers. 
+### Design
+
+
+The procedure is facilitated by `MatchStat`. It records current round number, match number, player score, Ai score, 
+whether it's the player's turn to shoot, whether the match ends, and whether the player wins. 
+
 The `updateStat(boolean isPlayer, boolean isGoal)` method converts the outcomes of player's commands into player score 
-and Ai score after `penalty` or `save` commands. The `decideMatchEnd()` method decides whether a match ends based on the 
-rules mentioned above. 
+and Ai score after `penalty` or `save` commands. 
+
+The `decideMatchEnd()` method decides whether a match ends based on the rules mentioned above. 
+
+The `updateForNewMatch()` method is called after a match ends, and the player starts a new match. The method resets all 
+the stats recorded except for the `matchCount`, which is added one to show that the player has finished one more match.
 
 As we now only need to record the match stats of one player, the class is implemented as a utility class. (i.e. Using 
 class level fields and methods.) We may change it to an instantiable class later when we need to record the match stats 
 of multiple players. Here is the class diagram of the class:
 
 
-![MatchStatClassDiagram-0.png](diagrams%2FMatchStatClassDiagram-0.png)
+![MatchStatClassDiagram.png](diagrams%2FMatchStatClassDiagram.png)
+
+The sequence diagram below illustrates the interactions between other classes and the `MatchStat` class. For this 
+example, `shoot 1` is entered by the player.
+
+
+![MatchStatSequential.png](diagrams%2FMatchStatSequential.png)
+
+How the `MatchStat` class works:
+1. After parsing of the input, `executeShoot("1")` in the `CommandList` class is called.
+
+2. Then `getAiDirection()` in the `Ai` class is called. It returns `direction` of type `int`, which represents the 
+direction at which Ai wants to save the penalty.
+
+3. After that, `CommandList` has a self invocation to call its `goalCheck(1, direction)` method. This method decides 
+whether the shoot scores or not, and returns `isScoreGoal` of type `boolean`.
+
+4. `isScoreGoal` is then passed to the `updateStat(isScoreGoal)` method in the `MatchStat` class. The method changes 
+`playerScore` and `aiScore` (both stored in the same class) based on `isScoreGoal` read and `isPlayerTurn` stored in the
+same class. `MatchStat` then has a self invocation to call its `decideMatchEnd()` method.
+
+5. `decideMatchEnd()` method reads `roundCount`, `playerScore` and `aiScore` in the same class, and decides whether a 
+match ends based on the two rules mentioned above. It then changes `isMatchEnd` and `isPlayerWin` in the same class 
+accordingly.
+
+6. After step 5, all the stats that need to be changed after `shoot` command have been updated. Hence, 
+`updateStat(isScoreGoal)` method returns. However, messages need to be printed out for the player to see that his 
+command finishes executing. Thus, the `printGoalAfterShot(isScoreGoal)` method in the `Formatter` class is called. It 
+prints out all the necessary messages for the user.
 
 
 ## AI Class 
