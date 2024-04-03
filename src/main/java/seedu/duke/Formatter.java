@@ -48,6 +48,7 @@ public class Formatter {
      * If shoot direction matches save direction, it's not a goal and the returned value is false.
      */
 
+    //@@author HenryGan138
     public static void printGoalBeforeShotforBeginner() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         logger.info("Round " + MatchStat.getRoundCount());
@@ -59,7 +60,7 @@ public class Formatter {
         System.out.println("|    0    |    1    |    2    |");
         System.out.println("|         |         |         |");
         System.out.println("|         |         |         |");
-        System.out.println("\nSelect direction to shoot : [0-2]");
+        System.out.println("Select direction to shoot :");
     }
 
     public static void printGoalBeforeShotforMedium() {
@@ -73,7 +74,7 @@ public class Formatter {
         System.out.println("|_________|_________|_________|");
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
-        System.out.println("\nSelect direction to shoot : [0-2] WILL COMPLETE IN V2.0b");
+        System.out.println("Select direction to shoot :");
     }
 
     public static void printGoalBeforeShotforExpert() {
@@ -87,20 +88,11 @@ public class Formatter {
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|---------|---------|---------|");
         System.out.println("|    6    |    7    |    8    |");
-        System.out.println("\nSelect direction to shoot : [0-2] WILL COMPLETE IN V2.0b");
+        System.out.println("Select direction to shoot :");
     }
 
-    public static void printGoalAfterShot(boolean goalScored) {
-        if (goalScored) {
-            logger.info("GOAL!!!!");
-            System.out.println("_______________________________");
-            System.out.println("| *    *  |  *  *   | *      *|");
-            System.out.println("|    *    |       * |     *   |");
-            System.out.println("|*   *    | *   *   |  *   *  |");
-            System.out.println("|      *  |    *    |*      * |");
-            System.out.println("|   *     |*   *  * | *   *   |");
-            System.out.println("GOAL!!!!");
-        } else {
+    public static void printGoalAfterShotBeginner(boolean goalScored, int direction) {
+        if (!goalScored) {
             logger.info("No goal :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
@@ -109,8 +101,241 @@ public class Formatter {
             System.out.println("   \\         \\         \\         \\");
             System.out.println("    \\         \\         \\         \\");
             System.out.println("no goal :((((");
-        }
 
+        } else {
+            logger.info("GOAL!!!!");
+            switch (direction){
+            case 0:
+                System.out.println("_______________________________");
+                System.out.println("| *    *  |         |         |");
+                System.out.println("|    *    |         |         |");
+                System.out.println("|*   *    |    1    |    2    |");
+                System.out.println("|      *  |         |         |");
+                System.out.println("|   *     |         |         |");
+                break;
+            case 1:
+                System.out.println("_______________________________");
+                System.out.println("|         |  *  *   |         |");
+                System.out.println("|         |       * |         |");
+                System.out.println("|    0    | *   *   |    2    |");
+                System.out.println("|         |    *    |         |");
+                System.out.println("|         |*   *  * |         |");
+                break;
+            case 2:
+                System.out.println("_______________________________");
+                System.out.println("|         |         | *      *|");
+                System.out.println("|         |         |     *   |");
+                System.out.println("|    0    |    1    |  *   *  |");
+                System.out.println("|         |         |*      * |");
+                System.out.println("|         |         | *   *   |");
+                break;
+            }
+            System.out.println("GOAL!!!!");
+        }
+        showScore();
+    }
+
+    public static void printGoalAfterShotMedium(boolean goalScored, int direction) {
+        if (!goalScored) {
+            logger.info("No goal :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no goal :((((");
+        } else {
+            logger.info("GOAL!!!!");
+            switch (direction) {
+            case 0:
+                System.out.println("_______________________________");
+                System.out.println("|*   *    |    1    |    2    |");
+                System.out.println("|  *   *  |         |         |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("|         |         |         |");
+                System.out.println("|    3    |    4    |    5    |");
+                break;
+            case 1:
+                System.out.println("_______________________________");
+                System.out.println("|    0    | *   *   |    2    |");
+                System.out.println("|         |*   *  * |         |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("|         |         |         |");
+                System.out.println("|    3    |    4    |    5    |");
+                break;
+            case 2:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |  *   *  |");
+                System.out.println("|         |         |*      * |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("|         |         |         |");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|         |         |         |");
+                break;
+            case 3:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|         |         |         |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("| *    *  |         |         |");
+                System.out.println("|*   *    |    4    |    5    |");
+                break;
+            case 4:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|         |         |         |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("|         |       * |         |");
+                System.out.println("|    3    | *   *   |    5    |");
+                break;
+            case 5:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|         |         |         |");
+                System.out.println("|_________|_________|_________|");
+                System.out.println("|         |         | *      *|");
+                System.out.println("|    3    |    4    |  *   *  |");
+                break;
+            }
+            System.out.println("GOAL!!!!");
+        }
+        showScore();
+    }
+
+    public static void printGoalAfterShotExpert(boolean goalScored, int direction) {
+        if (!goalScored) {
+            logger.info("No goal :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no goal :((((");
+        } else {
+            logger.info("GOAL!!!!");
+            switch (direction) {
+            case 0:
+                System.out.println("_______________________________");
+                System.out.println("|*   *   *|    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 1:
+                System.out.println("_______________________________");
+                System.out.println("|    0    | *   *   |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 2:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |  *   *  |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 3:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|  *   *  |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 4:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |*   *   *|    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 5:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    | *  * *  |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |    8    |");
+                break;
+            case 6:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|*   *    |    7    |    8    |");
+                break;
+            case 7:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    | *   *   |    8    |");
+                break;
+            case 8:
+                System.out.println("_______________________________");
+                System.out.println("|    0    |    1    |    2    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|---------|---------|---------|");
+                System.out.println("|    6    |    7    |  *   *  |");
+                break;
+            }
+            System.out.println("GOAL!!!!");
+        }
+        showScore();
+    }
+    //@@author
+
+    public static void printGoalAfterShot(boolean goalScored, int direction) {
+        if (!goalScored) {
+            logger.info("No goal :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no goal :((((");
+
+        } else {
+            logger.info("GOAL!!!!");
+            switch (direction){
+            case 0:
+                System.out.println("_______________________________");
+                System.out.println("| *    *  |         |         |");
+                System.out.println("|    *    |         |         |");
+                System.out.println("|*   *    |    1    |    2    |");
+                System.out.println("|      *  |         |         |");
+                System.out.println("|   *     |         |         |");
+                break;
+            case 1:
+                System.out.println("_______________________________");
+                System.out.println("|         |  *  *   |         |");
+                System.out.println("|         |       * |         |");
+                System.out.println("|    0    | *   *   |    2    |");
+                System.out.println("|         |    *    |         |");
+                System.out.println("|         |*   *  * |         |");
+                break;
+            case 2:
+                System.out.println("_______________________________");
+                System.out.println("|         |         | *      *|");
+                System.out.println("|         |         |     *   |");
+                System.out.println("|    0    |    1    |  *   *  |");
+                System.out.println("|         |         |*      * |");
+                System.out.println("|         |         | *   *   |");
+                break;
+            }
+            System.out.println("GOAL!!!!");
+        }
         showScore();
     }
 
@@ -163,7 +388,7 @@ public class Formatter {
         System.out.println("|_________|_________|_________|");
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
-        System.out.println("\nSelect direction to save : [0-2] WILL COMPLETE IN V2.0b");
+        System.out.println("\nSelect direction to save : [0-5]");
     }
 
     /**
@@ -180,7 +405,7 @@ public class Formatter {
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|---------|---------|---------|");
         System.out.println("|    6    |    7    |    8    |");
-        System.out.println("\nSelect direction to save : [0-2] WILL COMPLETE IN V2.0b");
+        System.out.println("\nSelect direction to save : [0-8]");
     }
     //@@author
     

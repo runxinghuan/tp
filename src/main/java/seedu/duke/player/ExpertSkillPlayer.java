@@ -1,13 +1,18 @@
 package seedu.duke.player;
 
 import seedu.duke.Formatter;
+import seedu.duke.ui.Ui;
 
-public class ExpertSkill extends Player {
-    private int power = 1;
+//@@author HenryGan138
+
+public class ExpertSkillPlayer extends Player {
     private final int skill = 3;
 
-    public ExpertSkill(String name, int matchCount) {
+    public ExpertSkillPlayer(String name, int matchCount) {
         super(name, matchCount);
+    }
+    public ExpertSkillPlayer(String name, int matchCount, int power) {
+        super(name, matchCount, power);
     }
 
     @Override
@@ -65,8 +70,49 @@ public class ExpertSkill extends Player {
     }
 
     @Override
+    public void printGoalAfterShoot(boolean goalScored, int direction) {
+        Formatter.printGoalAfterShotExpert(goalScored, direction);
+    }
+
+    @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
         this.power=level+1;
+    }
+
+    @Override
+    public float shootDirectionAdjust(int dir){
+        int left=(dir-1==0)?0:dir-1;
+        int right=(dir+1==8)?8:dir+1;
+        return this.shootDirectionFormula(left,right,dir,this.power);
+    }
+
+    @Override
+    public float shootDirectionFormula(int left, int right, int dir, int power) {
+        return super.shootDirectionFormula(left, right, dir, power);
+    }
+
+    @Override
+    public float aiDirectionAdjust(int aiDir) {
+        return (float) (4*aiDir);
+    }
+
+    @Override
+    public float rangeAdjust() {
+        float range=0;
+        switch (Ui.difficultyLevel){
+        case EASY:
+            range = (float)0.4;
+            break;
+        case MEDIUM:
+            range = (float)0.8;
+            break;
+        case HARD:
+            range = (float)2;
+            break;
+        default:
+            range =0;
+        }
+        return range;
     }
 }

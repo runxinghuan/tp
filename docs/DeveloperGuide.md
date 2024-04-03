@@ -6,65 +6,6 @@
 
 ## Class Structure
 
-### Player Class
-
-- **Attributes:**
-    - `name`: String - The player's name.
-    - `matchCount`: int - The number of matches played.
-    - `power`: int - The player's power level.
-    - `skill`: int - The player's skill level.
-
-- **Methods:**
-    - `printSelfInfo()`: void - Displays the player's basic information.
-    - `printGoalBeforeShoot()`: void - Abstract method to display goal during a penalty shoot.
-    - `getSkill()`: int - Returns the player's skill level.
-      ![UML Class Diagram](../umlDiagram/player.png) 
-### Skill Level Subclasses (BeginnerSkill, MediumSkill, ExpertSkill)
-
-These subclasses extend Player, each representing different skill levels and overriding methods to provide specific functionalities.
-
-### PlayerList Class
-
-- **Attributes:**
-    - `l1`: ArrayList<Player> - A list of player objects.
-
-- **Methods:**
-    - `skillUpgrade(int curPlayer)`: void - Upgrades the skill level of the player at the specified index.
-
-
-## Design & implementation
-
-The implementation of the player management system in the NUSFC24 is designed with extensibility and flexibility in mind. This section delves into the design rationale, how the system accommodates new and returning players, and how skill upgrades are managed.
-
-### Player Management
-
-The system is built around the Player class and its subclasses (BeginnerSkill, MediumSkill, ExpertSkill), with a `PlayerList` class managing all player instances. This design allows for a scalable way to add new player types and manage their interactions within the game:
-
-- **Player Class**: Serves as the base class for all players, encapsulating common attributes such as `name`, `matchCount`, `power`, and `skill`, and common behaviors.
-- **Skill Level Subclasses**: These subclasses inherit from Player and override specific methods to reflect their skill level's unique behaviors and characteristics.
-- **PlayerList Class**: Manages a collection of Player instances, facilitating operations like adding new players and upgrading their skills through the `skillUpgrade` method.
-
-### Handling New and Returning Players
-
-Upon a user entering the game, the system determines whether to fetch an existing player from PlayerList or to create a new player instance. This process is crucial for providing a seamless user experience, whether they are returning players or first-time participants.
-
-- **New Players**: For users new to the game, a Player object is created with the BeginnerSkill level by default. This player is then added to the PlayerList, ready for game participation.
-- **Returning Players**: For users returning to the game, their Player object is retrieved from the PlayerList using identifying information (e.g., player name). This allows the game to maintain continuity in the player's progression.
-
-### Skill Upgrade Mechanism
-
-The `skillUpgrade` method in the `PlayerList` class is a key feature, allowing players to improve their skills based on game performance. The method checks the player's current skill and match count, upgrading their skill level if certain conditions are met.
-he mechanism operates through a structured process, enhancing the gaming experience by offering a realistic approach to skill progression:
-
-1. **Skill Level Assessment**: The system evaluates a player's current skill level alongside their performance metrics, such as match count and success rate.
-
-2. **Determination of Skill Upgrade Eligibility**: Utilizing predefined criteria, the system determines if a player qualifies for a skill upgrade. These criteria may include metrics like a minimum number of matches played or specific performance thresholds.
-
-3. **Application of Skill Upgrade**: Eligible players will have their skill attribute adjusted to a higher level. This upgrade might unlock new abilities, enhance stats, or offer other in-game advantages.
-
-4. **Feedback to the User**: The system informs the user of the successful skill upgrade through UI messages or other feedback mechanisms, providing immediate recognition of their achievement.
-
-![UML Class Diagram](../umlDiagram/updateSkill.png)
 ## Product scope
 ### Target user profile
 
@@ -226,6 +167,125 @@ The constructor initializes the `minDirection` and `maxDirection` based on the `
 ### Alternatives Considered
 
 An alternative design could be to have separate classes for different difficulty levels, each with its own implementation of the `getAiDirection()` method. However, this would lead to code duplication and make the codebase more difficult to maintain.
+
+## Player Class
+
+### Introduction
+
+The `Player` class utilizes Object-Oriented Programming principles to track and store a user's performance, implementing functionality that varies based on the player's skill level. As the foundation of our player management system, it encapsulates common attributes and behaviors essential for all player types.
+
+### Skill Level Subclasses
+
+Subclasses `BeginnerSkill`, `MediumSkill`, and `ExpertSkill` are derived from the `Player` base class, each tailored to represent different skill levels. These subclasses override specific methods to provide behaviors unique to each skill level, ensuring a dynamic and engaging gameplay experience.
+
+### Attributes
+
+- `name`: String - Identifies the player.
+- `matchCount`: int - Tracks the number of matches played.
+- `power`: int - Represents the player's power level.
+- `skill`: int - Indicates the player's skill level.
+
+### Methods
+
+- `printSelfInfo()`: Displays the player's basic information.
+- `printGoalBeforeShoot()`: Prepares the player for a shooting attempt.
+- `printGoalBeforeSave()`: Prepares the player for a saving attempt.
+- `printGoalAfterShoot(boolean goalScored, int direction)`: Shows the outcome of a shooting attempt.
+- `upgradePower(int level)`: Enhances the player's power based on the specified level.
+- `shootDirectionAdjust(int dir)`: Modifies the shooting direction for the player.
+- `shootDirectionFormula(int left, int right, int dir, int power)`: Computes the shooting direction.
+- `aiDirectionAdjust(int aiDir)`: Modifies the AI's direction to offer a challenge.
+- `rangeAdjust()`: Modifies the shooting range according to the game's difficulty.
+
+  ![UML Class Diagram](diagrams%2Fplayer.png)
+
+```java
+public class MediumSkill extends Player {
+    @Override
+    public void printGoalBeforeShoot() {
+        Formatter.printGoalBeforeShotforMedium();
+    }
+
+    @Override
+    public void printGoalBeforeSave() {
+        Formatter.printGoalBeforeSaveForMedium();
+    }
+
+    @Override
+    public void printGoalAfterShoot(boolean goalScored, int direction) {
+        Formatter.printGoalAfterShotMedium(goalScored, direction);
+    }
+}
+```
+## PlayerList Class
+
+### Attributes
+
+- `l1`: ArrayList<Player> - Manages a dynamic list of player objects.
+
+### Methods
+
+- `skillUpgrade(int curPlayer)`: Enhances the skill level of the specified player.
+
+### Utilizing ArrayList
+
+The `PlayerList` class showcases the strategic use of `ArrayList<Player>` for player management, chosen for its dynamic resizing capabilities and efficient access times. This choice aligns with our need to manage a variable number of player objects dynamically.
+
+### Leveraging Polymorphism
+
+Polymorphism is integral to our game, allowing us to abstract player actions in the `Player` class and provide specific implementations in its subclasses. This design pattern simplifies codebase maintenance and enhances gameplay by introducing dynamic behavior based on the player's skill level.
+
+#### ExecuteShoot Method
+
+The `executeShoot` method exemplifies polymorphism in action, adjusting player behavior during shooting based on their skill level.
+
+```java
+public static void executeShoot(String[] readArgumentTokens) {
+  float adjustedDirection = PlayerList.l1.get(Ui.curPlayer).shootDirectionAdjust(selectedDirectionIndex);
+  float adjustedAiDirection = PlayerList.l1.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
+  float adjustedRange = PlayerList.l1.get(Ui.curPlayer).rangeAdjust();
+  //...
+  PlayerList.l1.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
+}
+```
+### Skill Upgrade Mechanism
+
+The `skillUpgrade` method in the `PlayerList` class is a key feature, allowing players to improve their skills based on game performance. The method checks the player's current skill and match count, upgrading their skill level if certain conditions are met.
+he mechanism operates through a structured process, enhancing the gaming experience by offering a realistic approach to skill progression:
+
+1. **Skill Level Assessment**: The system evaluates a player's current skill level alongside their performance metrics, such as match count and success rate.
+
+2. **Determination of Skill Upgrade Eligibility**: Utilizing predefined criteria, the system determines if a player qualifies for a skill upgrade. These criteria may include metrics like a minimum number of matches played or specific performance thresholds.
+
+3. **Application of Skill Upgrade**: Eligible players will have their skill attribute adjusted to a higher level. This upgrade might unlock new abilities, enhance stats, or offer other in-game advantages.
+
+4. **Feedback to the User**: The system informs the user of the successful skill upgrade through UI messages or other feedback mechanisms, providing immediate recognition of their achievement.
+
+![UML Class Diagram](diagrams%2FupdateSkill.png)
+
+### Alternatives Considered
+
+#### Alternative Collections for Player Management
+- **HashSet<Player>**: Evaluated for its uniqueness properties and constant-time performance for add, remove, and contains operations. It was ultimately not selected due to the ordered nature of player management required in our game, which is better served by a List implementation.
+
+#### Polymorphism Implementation Methods
+- **Interface-based Polymorphism**: An alternative approach using interfaces to define common behaviors for all players was considered. While this would have provided a clean separation of concerns, the decision to use class inheritance and method overriding was driven by the shared attributes and methods across player types, favoring a more hierarchical structure.
+
+### Future Improvements and Additions
+
+The player management system is designed with extensibility in mind, allowing for continuous improvements and the addition of new features. Here are some planned enhancements:
+
+#### Skill-Based Matchmaking
+
+- Implement an algorithm for skill-based matchmaking, allowing players to compete against opponents with similar skill levels, enhancing the competitiveness and fairness of matches.
+
+#### Advanced Player Statistics
+
+- Expand the player class to include more detailed statistics, such as win/loss ratios, average scores, and other performance metrics. This data could be used to provide insights to players on their gameplay and areas for improvement.
+
+#### Dynamic Skill Level Adjustments
+
+- Introduce a more dynamic skill level adjustment mechanism, possibly incorporating machine learning to analyze player performance and adjust skill levels in a more nuanced and responsive manner.
 
 ## Penalty Class
 
