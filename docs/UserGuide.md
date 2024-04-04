@@ -97,6 +97,77 @@ exits the game directly.
 
 Format: `no`
 
+### Save Command: `save`
+
+#### Overview
+
+The `save` command is an integral part of the game's penalty shootout mechanics, allowing the player to attempt to save a penalty by choosing one of the available directions. This command pits the player's choice against the AI's shot direction, determining whether the penalty is saved or not.
+
+#### Usage
+
+To use the `save` command, enter the command followed by a space and then the direction number where you predict the AI will shoot. The direction options are:
+
+- `0`: Left
+- `1`: Center
+- `2`: Right
+
+#### Example: save 1
+
+This command will execute the player's save attempt towards the center.
+
+Command Structure
+`save <direction>`: Executes the save attempt where `<direction>` is the direction you choose to save.
+
+#### Expected Outcome
+
+Upon executing the save command, one of two outcomes will occur:
+
+- If your chosen direction matches the AI's shot direction, you successfully save the penalty, and the game will display a message: 
+
+```
+You saved the penalty!
+```
+
+- If your chosen direction does not match the AI's shot direction, the penalty is not saved, and the game will display a message: 
+
+```
+You failed to save the penalty!
+```
+
+The game will then update the match statistics accordingly.
+
+#### Input Validation
+If an invalid direction is entered (anything other than `0`, `1`, or `2`), the game will prompt you to enter a valid direction by displaying the message: 
+
+```
+Invalid direction! Please enter 0, 1, or 2."
+```
+
+#### Example of Command Flow
+
+```
+Select direction to save : [0-2] 
+save 1
+You saved the penalty!
+```
+
+Or, in case of an invalid input:
+
+```
+Select direction to save : [0-2] 
+save 4
+SyntaxAnalyser: SAVE expects the 1st argument to be ^[0-2]$
+	 Ui: Bad Token Error, please check your arguments
+	 Ui: Command could not be executed 
+	 Try again
+Select direction to save : [0-2]
+```
+
+#### Additional Notes
+- The `save` command is only available during the penalty shootout phase.
+- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
+- The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
 ## FAQ
 
 **Q**: How do I transfer my data to another computer? 
