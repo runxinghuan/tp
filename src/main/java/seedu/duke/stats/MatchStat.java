@@ -13,6 +13,7 @@ public class MatchStat {
     private static boolean isPlayerWin = false;
     private static boolean isMatchEnd = false;
     private static boolean isPlayerTurn = true;
+    private static boolean isNewMatch = true;
 
     /**
      * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
@@ -82,6 +83,10 @@ public class MatchStat {
         return roundCount % 2 == 0;
     }
 
+    public static boolean getIsNewMatch() {
+        return isNewMatch;
+    }
+
     public static boolean getIsPlayerWin() {
         return isPlayerWin;
     }
@@ -112,5 +117,17 @@ public class MatchStat {
 
     public static boolean getIsPlayerTurn() {
         return isPlayerTurn;
+    }
+
+    public static void setForShootFirst() {
+        isPlayerTurn = true;
+    }
+
+    public static void setForSaveFirst() {
+        isPlayerTurn = false;
+    }
+
+    public static void setMatchReady() {
+        isNewMatch = false;
     }
 }

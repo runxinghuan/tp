@@ -21,6 +21,19 @@ public class Duke {
         //the PlayerThisRound will either return a new player, or a player existed in the PlayerList
 
         while (Ui.getIsRunning()) {
+            if (MatchStat.getIsNewMatch()) {
+                Formatter.printBeforeCoinToss();
+                try {
+                    Ui.beginListening();
+                    Ui.processInput();
+                    Ui.executeCommand();
+                    continue;
+                } catch (ProcessInputException e) {
+                    Formatter.printErrorExecutionFail();
+                    continue;
+                }
+            }
+
             if (MatchStat.getIsMatchEnd()) {
                 Formatter.printMatchResult();
                 PlayerList.skillUpgrade(Ui.curPlayer);
