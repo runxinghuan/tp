@@ -3,7 +3,7 @@ package seedu.duke.stats;
 //@@author runxinghuan
 
 /**
- * Records and update the stats of the match, and decides whether a match ends and the winner.
+ * Stats related to match progress of the game.
  */
 public class MatchStat {
     private static int matchCount = 1;
@@ -18,7 +18,7 @@ public class MatchStat {
     /**
      * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
      *
-     * @param isGoal Whether he scores or not.
+     * @param isGoal Whether the shooter scores or not.
      */
     public static void updateStat(boolean isGoal) {
         if (isPlayerTurn && isGoal) {
@@ -34,7 +34,7 @@ public class MatchStat {
     }
 
     /**
-     * Reset the stats after a new match starts.
+     * Resets the stats after a new match starts.
      */
     public static void updateForNewMatch() {
         roundCount = 1;

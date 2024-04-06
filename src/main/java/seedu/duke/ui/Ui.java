@@ -62,6 +62,7 @@ public class Ui {
         String[] readArgumentTokens = userCommandReader.getArgumentTokens();
         CommandList selectedCommand = CommandList.valueOf(readUserCommand);
 
+        //@@author runxinghuan
         if (MatchStat.getIsNewMatch()) {
             switch (selectedCommand) {
             case HEAD:
@@ -103,6 +104,7 @@ public class Ui {
             Formatter.printErrorUnknown();
             return;
         }
+        //@@author
 
         switch (selectedCommand) {
         case BYE:

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import seedu.duke.player.BeginnerSkillPlayer;
 import seedu.duke.player.ExpertSkillPlayer;
 import seedu.duke.player.MediumSkillPlayer;
+import seedu.duke.stats.PlayerList;
 
 import static org.junit.jupiter.api.Assertions.*;
 

@@ -4,6 +4,7 @@ import seedu.duke.exception.ProcessInputException;
 import seedu.duke.player.BeginnerSkillPlayer;
 import seedu.duke.player.Player;
 import seedu.duke.stats.MatchStat;
+import seedu.duke.stats.PlayerList;
 import seedu.duke.ui.Ui;
 
 public class Duke {
@@ -21,6 +22,7 @@ public class Duke {
         //the PlayerThisRound will either return a new player, or a player existed in the PlayerList
 
         while (Ui.getIsRunning()) {
+            //@@author runxinghuan
             if (MatchStat.getIsNewMatch()) {
                 Formatter.printBeforeCoinToss();
                 try {
@@ -33,6 +35,7 @@ public class Duke {
                     continue;
                 }
             }
+            //@@author
 
             if (MatchStat.getIsMatchEnd()) {
                 Formatter.printMatchResult();

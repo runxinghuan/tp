@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.ai.Ai;
 import seedu.duke.stats.MatchStat;
+import seedu.duke.stats.PlayerList;
 import seedu.duke.ui.Ui;
 
 public enum CommandList {
