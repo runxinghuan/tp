@@ -124,7 +124,7 @@ public enum CommandList {
         testForSave(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
         boolean isScoreGoal = goalCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
         MatchStat.updateStat(isScoreGoal);
-        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(isScoreGoal, Math.round(adjustedSaveDirection));
+        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(!isScoreGoal, Math.round(adjustedSaveDirection));
     }
 
 }
