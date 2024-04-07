@@ -61,16 +61,71 @@ public enum CommandList {
         PlayerList.playerList.get(Ui.curPlayer).printSelfInfo();
     }
 
-    public static void executeSave(String[] readArgumentTokens) {
-        String userSaveDirection = readArgumentTokens[0];
-        int userSaveDirectionIndex = Integer.parseInt(userSaveDirection);
-        int aiPenaltyDirection = Ai.getAiDirection();
-        boolean isGoalSaved = userSaveDirectionIndex == aiPenaltyDirection;
-        boolean isGoal = !isGoalSaved;
-        MatchStat.updateStat(isGoal);
-        Formatter.printSaveResult(isGoalSaved);
+    //@@author ymirmeddeb
+    /**
+     * Logs the details of a save attempt for testing and debugging purposes.
+     * This method prints the adjusted direction of the saver's attempt, the direction of the AI's shot, and the range within which a save is considered successful.
+     *
+     * @param adjustedDirection The adjusted direction of the saver's save attempt.
+     * @param adjustedAiDirection The direction of the AI's shot.
+     * @param adjustedRange The range within which a save attempt is considered successful.
+     */
+    private static void testForSave(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
+        System.out.println("Save: " + adjustedDirection);
+        System.out.println("Shoot: " + adjustedAiDirection);
+        System.out.println("Range: " + adjustedRange);
     }
 
-    //insert new command here
+    //@@author ymirmeddeb
+    /**
+     * Checks whether a save attempt was successful based on the user's input, AI's shot direction, and the allowed range for a successful save.
+     * This method asserts that both the user's input and the AI's input are within valid bounds before determining the success of the save.
+     *
+     * @param userInput The direction of the saver's attempt to save the goal.
+     * @param aiInput The direction of the AI's shot.
+     * @param range The range within which a save attempt is considered successful.
+     * @return {@code true} if the save attempt is successful, {@code false} otherwise.
+     */
+    public static boolean saveCheck(float userInput, float aiInput, float range) {
+        assert userInput >= 0 && userInput <= 8 :
+                "Illegal userInput generated!";
+        assert aiInput >= 0 && aiInput <= 8 :
+                "Illegal aiInput generated!";
+        return ((userInput>(aiInput+range))||userInput<(aiInput-range));
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Executes the upgrade of the current saver's power level based on the specified level.
+     * This method retrieves the current saver from {@code SaverList}, upgrades their power, and then prints their updated information.
+     *
+     * @param level The array containing the new power level to upgrade the saver to.
+     */
+    public static void executeSaverUpgrade(String[] level){
+        String upgradeLevel = level[0];
+        int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
+        SaverList.saverList.get(Ui.curSaver).upgradePower(upgradeLevelIndex);
+        SaverList.saverList.get(Ui.curSaver).printSelfInfo();
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Executes a save attempt, adjusting the direction based on the current saver's abilities, comparing it to the AI's shot direction, and determining the success of the save.
+     * It then updates the match statistics and prints the outcome of the save attempt.
+     *
+     * @param readArgumentTokens The array containing the selected direction for the save attempt.
+     */
+    public static void executeSave(String[] readArgumentTokens) {
+        String selectedDirection = readArgumentTokens[0];
+        int selectedDirectionIndex = Integer.parseInt(selectedDirection);
+        float adjustedSaveDirection = SaverList.saverList.get(Ui.curSaver).saveDirectionAdjust(selectedDirectionIndex);
+        float adjustedAiDirection = SaverList.saverList.get(Ui.curSaver).aiDirectionAdjust(Ai.getAiDirection());
+        float adjustedRange = SaverList.saverList.get(Ui.curSaver).rangeAdjust();
+        testForSave(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
+        boolean isSaveSuccessful = saveCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
+        MatchStat.updateStat(isSaveSuccessful);
+        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(isSaveSuccessful, Math.round(adjustedSaveDirection));
+    }
+
 }
 
