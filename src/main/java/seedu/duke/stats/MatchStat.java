@@ -6,6 +6,10 @@ package seedu.duke.stats;
  * Stats related to match progress of the game.
  */
 public class MatchStat {
+    public static final int MAX_ROUND_FOR_NOT_A_DRAW = 10;
+    public static final int INITIAL_ROUND_COUNT = 1;
+    public static final int INITIAL_SCORE = 0;
+    public static final int NUMBER_OF_TEAMS = 2;
     private static int matchCount = 1;
     private static int roundCount = 1;
     private static int playerScore = 0;
@@ -37,9 +41,9 @@ public class MatchStat {
      * Resets the stats after a new match starts.
      */
     public static void updateForNewMatch() {
-        roundCount = 1;
-        playerScore = 0;
-        aiScore = 0;
+        roundCount = INITIAL_ROUND_COUNT;
+        playerScore = INITIAL_SCORE;
+        aiScore = INITIAL_SCORE;
         matchCount += 1;
         isMatchEnd = false;
         isPlayerTurn = true;
@@ -49,12 +53,12 @@ public class MatchStat {
      * Decides whether a match ends based on best-of-five kicks and sudden death rules.
      */
     private static void decideMatchEnd() {
-        int roundsLeftForOneSide = (10 - roundCount) / 2;
-        if (roundCount % 2 == 1) {
+        int roundsLeftForOneSide = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
+        if (!isCompleteRound()) {
             roundsLeftForOneSide += 1;
         }
 
-        if (roundCount < 10 && playerScore > aiScore) {
+        if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore > aiScore) {
             int scoreDifference = playerScore - aiScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
@@ -62,7 +66,7 @@ public class MatchStat {
             }
         }
 
-        if (roundCount < 10 && playerScore < aiScore) {
+        if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore < aiScore) {
             int scoreDifference = aiScore - playerScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
@@ -70,7 +74,7 @@ public class MatchStat {
             }
         }
 
-        if (roundCount >= 10 && isCompleteRound() && playerScore != aiScore) {
+        if (roundCount >= MAX_ROUND_FOR_NOT_A_DRAW && isCompleteRound() && playerScore != aiScore) {
             isMatchEnd = true;
             isPlayerWin = playerScore > aiScore;
         }
@@ -78,9 +82,11 @@ public class MatchStat {
 
     /**
      * Decides whether both sides have finished shooting in a round.
+     * As there are two teams, they shoot penalties in turns, an even roundCount means both sides have finished
+     * shooting in a round.
      */
     private static boolean isCompleteRound() {
-        return roundCount % 2 == 0;
+        return roundCount % NUMBER_OF_TEAMS == 0;
     }
 
     public static boolean getIsNewMatch() {
