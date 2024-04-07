@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class Ui {
     public static final Scanner IN = new Scanner(System.in);
     public static int curPlayer = 0; // The player in current game return by account login.
+    public static int curSaver = 0; // The saver in current game return by account login.
     private static boolean isRunning = true;
     public static String userInput;
     private static Parser userCommandReader;
@@ -109,6 +110,7 @@ public class Ui {
             break;
         case UPGRADE:
             CommandList.executeUpgrade(readArgumentTokens);
+            CommandList.executeSaverUpgrade(readArgumentTokens);
             break;
         case SAVE:
             CommandList.executeSave(readArgumentTokens);

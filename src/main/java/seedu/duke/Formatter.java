@@ -74,6 +74,7 @@ public class Formatter {
         System.out.println("|_________|_________|_________|");
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
+        System.out.println("|         |         |         |");
         System.out.println("Select direction to shoot :");
     }
 
@@ -155,6 +156,7 @@ public class Formatter {
                 System.out.println("|_________|_________|_________|");
                 System.out.println("|         |         |         |");
                 System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|         |         |         |");
                 break;
             case 1:
                 System.out.println("_______________________________");
@@ -163,6 +165,7 @@ public class Formatter {
                 System.out.println("|_________|_________|_________|");
                 System.out.println("|         |         |         |");
                 System.out.println("|    3    |    4    |    5    |");
+                System.out.println("|         |         |         |");
                 break;
             case 2:
                 System.out.println("_______________________________");
@@ -180,6 +183,8 @@ public class Formatter {
                 System.out.println("|_________|_________|_________|");
                 System.out.println("| *    *  |         |         |");
                 System.out.println("|*   *    |    4    |    5    |");
+                System.out.println("|         |         |         |");
+
                 break;
             case 4:
                 System.out.println("_______________________________");
@@ -188,6 +193,7 @@ public class Formatter {
                 System.out.println("|_________|_________|_________|");
                 System.out.println("|         |       * |         |");
                 System.out.println("|    3    | *   *   |    5    |");
+                System.out.println("|         |         |         |");
                 break;
             case 5:
                 System.out.println("_______________________________");
@@ -196,6 +202,7 @@ public class Formatter {
                 System.out.println("|_________|_________|_________|");
                 System.out.println("|         |         | *      *|");
                 System.out.println("|    3    |    4    |  *   *  |");
+                System.out.println("|         |         |         |");
                 break;
             }
             System.out.println("GOAL!!!!");
@@ -351,12 +358,13 @@ public class Formatter {
      */
     public static void printMatchResult() {
         if (MatchStat.getIsPlayerWin()) {
-            System.out.println("Nice! You won this match! Wanna a new match?");
+            System.out.println("Nice! You won this match! Want a new match?");
         } else {
             System.out.println("You lost this match. Wanna a new match?");
         }
     }
 
+    //@@author ymirmeddeb
     /**
      * Prints out the goal before "save" command when the player's saving ability is beginner.
      */
@@ -388,6 +396,7 @@ public class Formatter {
         System.out.println("|_________|_________|_________|");
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
+        System.out.println("|         |         |         |");
         System.out.println("\nSelect direction to save : [0-5]");
     }
 
@@ -407,15 +416,238 @@ public class Formatter {
         System.out.println("|    6    |    7    |    8    |");
         System.out.println("\nSelect direction to save : [0-8]");
     }
-    //@@author
-    
-    public static void printSaveResult(boolean isGoalSaved) {
-        if (isGoalSaved) {
-            logger.info("Penalty saved!");
-            System.out.println("You saved the penalty!");
+
+    //@@author ymirmeddeb
+    /**
+     * Prints out the goal after "save" command when the player's saving ability is expert.
+     * If isGoalSaved is false, "no save :((((" is printed with a depiction of a broken goal post.
+     * If isGoalSaved is true, "SAVED!!!!" is printed with a depiction of a goal post with the square corresponding to direction has "SAVED" instead of the direction.
+     *
+     * @param isGoalSaved Indicates whether a goal was scored or not.
+     * @param direction The direction in which the save was attempted.
+     */
+    public static void printGoalAfterSaveForBeginner(boolean isGoalSaved, int direction) {
+        if (!isGoalSaved) {
+            logger.info("No save :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no save :((((");
+
         } else {
-            logger.info("Goal conceded :(");
-            System.out.println("You failed to save the penalty!");
+            logger.info("SAVE!!!!");
+            switch (direction){
+                case 0:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|  SAVED  |    1    |    2    |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 1:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |  SAVED  |    2    |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 2:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |    1    |  SAVED  |");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|         |         |         |");
+                    break;
+            }
+            System.out.println("SAVE!!!!");
+        }
+        showScore();
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Prints out the goal after "save" command when the player's saving ability is expert.
+     * If isGoalSaved is false, "no save :((((" is printed with a depiction of a broken goal post.
+     * If isGoalSaved is true, "SAVED!!!!" is printed with a depiction of a goal post with the square corresponding to direction has "SAVED" instead of the direction.
+     *
+     * @param isGoalSaved Indicates whether a goal was scored or not.
+     * @param direction The direction in which the save was attempted.
+     */
+    public static void printGoalAfterSaveMedium(boolean isGoalSaved, int direction) {
+        if (!isGoalSaved) {
+            logger.info("No save :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no save :((((");
+        } else {
+            logger.info("SAVE!!!!");
+            switch (direction) {
+                case 0:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|  SAVED  |    1    |    2    |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 1:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |  SAVED  |    2    |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 2:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |    1    |  SAVED  |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 3:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|  SAVED  |    4    |    5    |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 4:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    3    |  SAVED  |    5    |");
+                    System.out.println("|         |         |         |");
+                    break;
+                case 5:
+                    System.out.println("_______________________________");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|_________|_________|_________|");
+                    System.out.println("|         |         |         |");
+                    System.out.println("|    3    |    4    |  SAVED  |");
+                    System.out.println("|         |         |         |");
+                    break;
+            }
+            System.out.println("SAVE!!!!");
+        }
+        showScore();
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Prints out the goal after "save" command when the player's saving ability is expert.
+     * If isGoalSaved is false, "no save :((((" is printed with a depiction of a broken goal post.
+     * If isGoalSaved is true, "SAVED!!!!" is printed with a depiction of a goal post with the square corresponding to direction has "SAVED" instead of the direction.
+     *
+     * @param isGoalSaved Indicates whether a goal was scored or not.
+     * @param direction The direction in which the save was attempted.
+     */
+    public static void printGoalAfterSaveExpert(boolean isGoalSaved, int direction) {
+        if (!isGoalSaved) {
+            logger.info("No save :((((");
+            System.out.println("_______________________________");
+            System.out.println("\\         \\         \\         \\");
+            System.out.println(" \\         \\         \\         \\");
+            System.out.println("  \\         \\         \\         \\");
+            System.out.println("   \\         \\         \\         \\");
+            System.out.println("    \\         \\         \\         \\");
+            System.out.println("no save :((((");
+        } else {
+            logger.info("SAVE!!!!");
+            switch (direction) {
+                case 0:
+                    System.out.println("_______________________________");
+                    System.out.println("|  SAVED  |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 1:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |  SAVED  |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 2:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |  SAVED  |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 3:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|  SAVED  |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 4:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |  SAVED  |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 5:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |  SAVED  |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |    8    |");
+                    break;
+                case 6:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|  SAVED  |    7    |    8    |");
+                    break;
+                case 7:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |  SAVED  |    8    |");
+                    break;
+                case 8:
+                    System.out.println("_______________________________");
+                    System.out.println("|    0    |    1    |    2    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    3    |    4    |    5    |");
+                    System.out.println("|---------|---------|---------|");
+                    System.out.println("|    6    |    7    |  SAVED  |");
+                    break;
+            }
+            System.out.println("SAVE!!!!");
         }
         showScore();
     }
