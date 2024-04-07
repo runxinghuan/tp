@@ -360,7 +360,7 @@ public class Formatter {
         if (MatchStat.getIsPlayerWin()) {
             System.out.println("Nice! You won this match! Want a new match?");
         } else {
-            System.out.println("You lost this match. Wanna a new match?");
+            System.out.println("You lost this match. Want a new match?");
         }
     }
 
@@ -424,6 +424,7 @@ public class Formatter {
      * @param direction The direction in which the save was attempted.
      */
     public static void printGoalAfterSaveForBeginner(boolean isGoalSaved, int direction) {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
             logger.info("No save :((((");
             System.out.println("_______________________________");
@@ -477,6 +478,7 @@ public class Formatter {
      * @param direction The direction in which the save was attempted.
      */
     public static void printGoalAfterSaveMedium(boolean isGoalSaved, int direction) {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
             logger.info("No save :((((");
             System.out.println("_______________________________");
@@ -559,6 +561,7 @@ public class Formatter {
      * @param direction The direction in which the save was attempted.
      */
     public static void printGoalAfterSaveExpert(boolean isGoalSaved, int direction) {
+        assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
             logger.info("No save :((((");
             System.out.println("_______________________________");

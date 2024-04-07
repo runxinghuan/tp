@@ -122,9 +122,9 @@ public enum CommandList {
         float adjustedAiDirection = SaverList.saverList.get(Ui.curSaver).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = SaverList.saverList.get(Ui.curSaver).rangeAdjust();
         testForSave(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
-        boolean isSaveSuccessful = saveCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
-        MatchStat.updateStat(isSaveSuccessful);
-        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(isSaveSuccessful, Math.round(adjustedSaveDirection));
+        boolean isScoreGoal = goalCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
+        MatchStat.updateStat(isScoreGoal);
+        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(isScoreGoal, Math.round(adjustedSaveDirection));
     }
 
 }
