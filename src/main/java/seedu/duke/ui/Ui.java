@@ -62,12 +62,32 @@ public class Ui {
         String[] readArgumentTokens = userCommandReader.getArgumentTokens();
         CommandList selectedCommand = CommandList.valueOf(readUserCommand);
 
+        //@@author runxinghuan
+        if (MatchStat.getIsNewMatch()) {
+            switch (selectedCommand) {
+            case HEAD:
+                CoinToss.executeCoinToss(CoinToss.HEAD);
+                return;
+            case TAIL:
+                CoinToss.executeCoinToss(CoinToss.TAIL);
+                return;
+            case BYE:
+                CommandList.executeBye();
+                return;
+            default:
+                Formatter.printErrorUnknown();
+            }
+        }
+
         if (MatchStat.getIsMatchEnd()) {
             switch (selectedCommand) {
             case YES:
                 MatchStat.updateForNewMatch();
                 return;
             case NO:
+                CommandList.executeBye();
+                return;
+            case BYE:
                 CommandList.executeBye();
                 return;
             default:
@@ -84,6 +104,7 @@ public class Ui {
             Formatter.printErrorUnknown();
             return;
         }
+        //@@author
 
         switch (selectedCommand) {
         case BYE:

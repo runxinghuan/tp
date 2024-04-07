@@ -1,4 +1,4 @@
-package seedu.duke;
+package seedu.duke.stats;
 import seedu.duke.player.ExpertSkillPlayer;
 import seedu.duke.player.MediumSkillPlayer;
 import seedu.duke.player.Player;

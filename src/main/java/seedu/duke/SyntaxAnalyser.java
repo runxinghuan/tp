@@ -19,7 +19,9 @@ public class SyntaxAnalyser {
             {},
             {},
             {},
-            {VALID_INDEX_REGEX}
+            {VALID_INDEX_REGEX},
+            {},
+            {}
 
             //insert new command syntax here
     };

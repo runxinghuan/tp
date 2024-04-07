@@ -362,7 +362,6 @@ public class Formatter {
      */
     public static void printGoalBeforeSaveForBeginner() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -379,7 +378,6 @@ public class Formatter {
      */
     public static void printGoalBeforeSaveForMedium() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -396,7 +394,6 @@ public class Formatter {
      */
     public static void printGoalBeforeSaveForExpert() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -518,5 +515,64 @@ public class Formatter {
         System.out.println("Failed to load cache");
         System.out.println("Program will start with empty list");
     }
-}
 
+    //@@author runxinghuan
+    /**
+     * Prints the message guiding the user to guess the coin toss.
+     */
+    public static void printBeforeCoinToss() {
+        System.out.println("Welcome to a new match!");
+        System.out.println("You need to guess a coin toss to decide who shoots the penalty first.");
+        System.out.println("If you guess it correctly, you can shoot first!");
+        System.out.println("Please guess: head or tail?");
+    }
+
+    /**
+     * Prints the result (head) of the coin toss.
+     */
+    public static void printCoinHead() {
+        System.out.println("    ----    ");
+        System.out.println("  / ^ ^ \\  ");
+        System.out.println("  \\  -  /  ");
+        System.out.println("    ----    ");
+        System.out.println("You got a head!");
+    }
+
+    /**
+     * Prints the result (tail) of the coin toss.
+     */
+    public static void printCoinTail() {
+        System.out.println("    ----    ");
+        System.out.println("  /  1  \\  ");
+        System.out.println("  \\     /  ");
+        System.out.println("    ----    ");
+        System.out.println("You got a tail!");
+    }
+
+    /**
+     * Prints the result (upright) of the coin toss.
+     */
+    public static void printCoinUpright() {
+        System.out.println("    --    ");
+        System.out.println("   /  \\  ");
+        System.out.println("   \\  /  ");
+        System.out.println("    --    ");
+        System.out.println("Oh no! The coin is standing upright on the ground!");
+        System.out.println("You need to guess again.");
+    }
+
+    /**
+     * Prints the message when the user makes a correct guess of coin toss.
+     */
+    public static void printCorrectGuess() {
+        System.out.println("You guess it correctly! You can shoot first now!");
+    }
+
+    /**
+     * Prints the message when the user makes a wrong guess of coin toss.
+     */
+    public static void printWrongGuess() {
+        System.out.println("You guess it wrongly. But you can save first.");
+    }
+    //@@author
+}
