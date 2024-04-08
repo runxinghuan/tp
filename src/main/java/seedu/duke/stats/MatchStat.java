@@ -1,5 +1,7 @@
 package seedu.duke.stats;
 
+import seedu.duke.ui.Ui;
+
 //@@author runxinghuan
 
 /**
@@ -35,6 +37,7 @@ public class MatchStat {
         decideMatchEnd();
         assert playerScore + aiScore <= roundCount : "Wrong computation of score.";
         roundCount += 1;
+        PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isGoal);
     }
 
     /**
