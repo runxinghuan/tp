@@ -3,9 +3,12 @@
 
 autonumber
 
+!include Style.puml
+participant CommandList << class >>
  -> CommandList: executeShoot("1")
 activate CommandList
 
+participant Ai << class >>
 CommandList -> Ai: getAiDirection()
 activate Ai
 return direction
@@ -14,6 +17,7 @@ CommandList -> CommandList: goalCheck(1, direction)
 activate CommandList
 return isScoreGoal
 
+participant MatchStat << class >>
 CommandList -> MatchStat: updateStat(isScoreGoal)
 activate MatchStat
 MatchStat -> MatchStat: decideMatchEnd()
@@ -22,6 +26,7 @@ return
 
 return
 
+participant Formatter << class >>
 CommandList -> Formatter: printGoalAfterShot(isScoreGoal)
 activate Formatter
 Formatter -> Formatter: showScore()
