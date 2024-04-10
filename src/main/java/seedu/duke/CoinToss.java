@@ -14,7 +14,7 @@ public class CoinToss {
     public static final int UPRIGHT = 3;
 
     /**
-     * Decides whether the user makes a correct guess.
+     * Displays the coin result.
      * Then displays message according to the correctness of the guess.
      *
      * @param guess guess made by the user
@@ -27,6 +27,17 @@ public class CoinToss {
         if (coinResult == UPRIGHT) {
             return;
         }
+        processGuessResult(guess, coinResult);
+        MatchStat.setMatchReady();
+    }
+
+    /**
+     * Print message and update match stats according to the correctness of the guess.
+     *
+     * @param guess guess made by the user
+     * @param coinResult result of the coin toss
+     */
+    static void processGuessResult(int guess, int coinResult) {
         if (guess == coinResult) {
             Formatter.printCorrectGuess();
             MatchStat.setForShootFirst();
@@ -34,7 +45,6 @@ public class CoinToss {
             Formatter.printWrongGuess();
             MatchStat.setForSaveFirst();
         }
-        MatchStat.setMatchReady();
     }
 
     /**
@@ -43,7 +53,7 @@ public class CoinToss {
      *
      * @param coinResult result of the coin toss
      */
-    private static void displayResult(int coinResult) {
+    static void displayResult(int coinResult) {
         switch (coinResult) {
         case HEAD:
             Formatter.printCoinHead();

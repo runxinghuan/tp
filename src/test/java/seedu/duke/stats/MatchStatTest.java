@@ -6,7 +6,17 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.duke.stats.MatchStat.*;
+import static seedu.duke.stats.MatchStat.INITIAL_MATCH_COUNT;
+import static seedu.duke.stats.MatchStat.INITIAL_ROUND_COUNT;
+import static seedu.duke.stats.MatchStat.INITIAL_SCORE;
+import static seedu.duke.stats.MatchStat.aiScore;
+import static seedu.duke.stats.MatchStat.isMatchEnd;
+import static seedu.duke.stats.MatchStat.isNewMatch;
+import static seedu.duke.stats.MatchStat.isPlayerShootTurn;
+import static seedu.duke.stats.MatchStat.isPlayerWin;
+import static seedu.duke.stats.MatchStat.matchCount;
+import static seedu.duke.stats.MatchStat.playerScore;
+import static seedu.duke.stats.MatchStat.roundCount;
 
 public class MatchStatTest {
     @BeforeEach
