@@ -21,10 +21,14 @@ Teams take turns to kick from the penalty mark, until each has taken five kicks.
 goals than the other could possibly reach with all of its remaining kicks, the shoot-out immediately ends, regardless of
 the number of kicks remaining.
 
-For example, there are two teams team A and team B playing a penalty shoot-out. Both teams have taken three kicks. Team 
-A has scored 3 goals, while team B has scored 0 goal. Now both teams are left with two kicks. As the goal difference 
-between team A and team B (3) is larger than the number of kicks left for team B (2). The game ends immediately, with 
-team A being the winner.
+For example, there are two teams, team A and team B playing a penalty shoot-out. Suppose team A shoots first, and team A
+has taken three kicks, scoring all of them (three goals). While team B has taken two kicks now, scoring 0 goal. Now the 
+score difference between team A and B is three. The kicks remaining for team B is also three. As the score difference is
+not strictly larger than the kicks remaining for team B, it is still possible for team A to miss its two kicks remaining
+while team B scores all the three kicks left, making it to be 3:3 after five kicks. Hence, the game does not end 
+immediately. However, if team B misses its next kick, now the score difference is still three, but the remaining kicks 
+for team B becomes two. The goal difference (3) is larger than the number of kicks left for team B (2). Hence, the game 
+ends immediately, with team A being the winner.
 
 
 #### Sudden Death
@@ -76,7 +80,7 @@ penalty at direction 0 shown in the goal.\
 Some example commands you can try:
 * `shoot 0`: Shoot a penalty at direction 0 shown in the goal.
 * `save 0`: Make a save at direction 0 shown in the goal.
-* `upgrade 2`: Upgrade your player to the medium power level.
+* `upgrade 2`: Upgrade your player to the expert power level.
 * `yes`: Restarts a match after a match ends.
 * `no`: Does not restart a match after a match ends, and exits the game.
 * `bye`: Exits the game.  
