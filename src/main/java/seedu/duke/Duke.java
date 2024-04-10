@@ -48,7 +48,7 @@ public class Duke {
                 playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
                 SaverList.saverSkillUpgrade(curSaver);
                 saverThisRound = SaverList.saverList.get(curSaver);
-            } else if (MatchStat.getIsPlayerTurn()) {
+            } else if (MatchStat.getIsPlayerShootTurn()) {
                 playerThisRound.printGoalBeforeShoot();
             } else {
                 saverThisRound.printGoalBeforeSave();
