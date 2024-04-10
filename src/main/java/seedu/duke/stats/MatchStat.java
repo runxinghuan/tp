@@ -8,16 +8,17 @@ package seedu.duke.stats;
 public class MatchStat {
     public static final int MAX_ROUND_FOR_NOT_A_DRAW = 10;
     public static final int INITIAL_ROUND_COUNT = 1;
+    public static final int INITIAL_MATCH_COUNT = 1;
     public static final int INITIAL_SCORE = 0;
     public static final int NUMBER_OF_TEAMS = 2;
-    private static int matchCount = 1;
-    private static int roundCount = 1;
-    private static int playerScore = 0;
-    private static int aiScore = 0;
-    private static boolean isPlayerWin = false;
-    private static boolean isMatchEnd = false;
-    private static boolean isPlayerTurn = true;
-    private static boolean isNewMatch = true;
+    static int matchCount = INITIAL_MATCH_COUNT;
+    static int roundCount = INITIAL_ROUND_COUNT;
+    static int playerScore = INITIAL_SCORE;
+    static int aiScore = INITIAL_SCORE;
+    static boolean isPlayerWin = false;
+    static boolean isMatchEnd = false;
+    static boolean isPlayerShootTurn = true;
+    static boolean isNewMatch = true;
 
     /**
      * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
@@ -25,12 +26,12 @@ public class MatchStat {
      * @param isGoal Whether the shooter scores or not.
      */
     public static void updateStat(boolean isGoal) {
-        if (isPlayerTurn && isGoal) {
+        if (isPlayerShootTurn && isGoal) {
             playerScore += 1;
-        } else if (!isPlayerTurn && isGoal) {
+        } else if (!isPlayerShootTurn && isGoal) {
             aiScore += 1;
         }
-        isPlayerTurn = !isPlayerTurn;
+        isPlayerShootTurn = !isPlayerShootTurn;
 
         decideMatchEnd();
         assert playerScore + aiScore <= roundCount : "Wrong computation of score.";
@@ -46,13 +47,13 @@ public class MatchStat {
         aiScore = INITIAL_SCORE;
         matchCount += 1;
         isMatchEnd = false;
-        isPlayerTurn = true;
+        isPlayerShootTurn = true;
     }
 
     /**
      * Decides whether a match ends based on best-of-five kicks and sudden death rules.
      */
-    private static void decideMatchEnd() {
+    static void decideMatchEnd() {
         int roundsLeftForOneSide = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
         if (!isCompleteRound()) {
             roundsLeftForOneSide += 1;
@@ -121,16 +122,16 @@ public class MatchStat {
         MatchStat.matchCount = matchCount + 1;
     }
 
-    public static boolean getIsPlayerTurn() {
-        return isPlayerTurn;
+    public static boolean getIsPlayerShootTurn() {
+        return isPlayerShootTurn;
     }
 
     public static void setForShootFirst() {
-        isPlayerTurn = true;
+        isPlayerShootTurn = true;
     }
 
     public static void setForSaveFirst() {
-        isPlayerTurn = false;
+        isPlayerShootTurn = false;
     }
 
     public static void setMatchReady() {
