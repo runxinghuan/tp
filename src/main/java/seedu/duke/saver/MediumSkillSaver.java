@@ -135,9 +135,9 @@ public class MediumSkillSaver extends Saver {
      */
     @Override
     public float saveDirectionAdjust(int dir){
-        if (dir>2){
-            System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
-            System.out.println("Practice makes perfect. Let's aim for those goals together!");
+        if (dir>5){
+            System.out.println("Oops! Remember, medium savers can only save directions 0 to 5. But keep playing to unlock more saves!");
+            System.out.println("Practice makes perfect. Let's save for those goals together!");
             dir = dir%3;
         }
         int left=(dir-1==0)?0:dir-1;

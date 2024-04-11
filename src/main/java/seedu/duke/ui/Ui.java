@@ -76,6 +76,9 @@ public class Ui {
             case BYE:
                 CommandList.executeBye();
                 return;
+            case HELP:
+                CommandList.executeHelpAtStart();
+                return;
             default:
                 Formatter.printErrorUnknown();
             }
@@ -91,6 +94,9 @@ public class Ui {
                 return;
             case BYE:
                 CommandList.executeBye();
+                return;
+            case HELP:
+                CommandList.executeHelpAfterMatch();
                 return;
             default:
                 Formatter.printErrorUnknown();
@@ -137,6 +143,8 @@ public class Ui {
         case SAVE:
             CommandList.executeSave(readArgumentTokens);
             break;
+        case HELP:
+            CommandList.executeHelpDuringGame();
         case CUSTOMIZATION:
             PlayerList.playerList.get(curPlayer).displayCustomizationMenu();
             break;

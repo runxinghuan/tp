@@ -7,6 +7,7 @@ public class SyntaxAnalyser {
     //check if argument token is an integer ranging from 0 to 2
     private static final String VALID_INDEX_REGEX = "^[0-2]$";
     private static final String SHOOT_VALID_INDEX_REGEX = "^[0-8]$";
+    private static final String SAVE_VALID_INDEX_REGEX = "^[0-8]$";
     //check if argument token is any keyboard character
     private static final String UNRESTRICTED_CHAR_LENGTH_REGEX = ".+";
     private static final String[][] lutRegexSeq = {
@@ -19,7 +20,8 @@ public class SyntaxAnalyser {
             {},
             {},
             {},
-            {VALID_INDEX_REGEX},
+            {SAVE_VALID_INDEX_REGEX},
+            {},
             {},
             {}
 
