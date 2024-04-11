@@ -549,6 +549,38 @@ public class Formatter {
         showScore();
     }
 
+    public static void printCustomizationMenu() {
+        System.out.println("Customization Menu:");
+        System.out.println("1. Purchase Customizations");
+        System.out.println("2. View Coin Balance");
+        System.out.println("3. Exit");
+        System.out.print("Enter your choice: ");
+    }
+
+    public static void printCustomizationItems() {
+        System.out.println("Available Customization Items:");
+        System.out.println("1. Power Boost - Cost: 150 coins");
+        System.out.println("2. Skill Boost - Cost: 200 coins");
+        System.out.println("3. Fancy Uniform - Cost: 100 coins");
+        System.out.print("Enter the number of the customization item you want to purchase: ");
+    }
+
+    public static void printInsufficientCoins() {
+        System.out.println("Insufficient coins to make the purchase.");
+    }
+
+    public static void printCustomizationPurchased(String item) {
+        System.out.println("You have successfully purchased the " + item + " customization!");
+    }
+
+    public static void printInvalidCustomizationChoice() {
+        System.out.println("Invalid choice. Please try again.");
+    }
+
+    public static void printExitCustomizationMenu() {
+        System.out.println("Exiting Customization Menu.");
+    }
+
     //@@author ymirmeddeb
     /**
      * Prints out the goal after "save" command when the player's saving ability is expert.

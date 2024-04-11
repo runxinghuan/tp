@@ -7,7 +7,7 @@ import seedu.duke.ui.Ui;
 
 public enum CommandList {
 
-    BYE, SHOOT, PENALTY, YES, NO, UPGRADE, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL;
+    BYE, SHOOT, PENALTY, YES, NO, UPGRADE, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL, CUSTOMIZATION;
 
     //insert new user command name here
     ;

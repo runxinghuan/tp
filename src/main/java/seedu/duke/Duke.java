@@ -65,10 +65,14 @@ public class Duke {
 
     //Bruno is a sample player for demonstration, you can try any level player
     private static Player createNewPlayer() {
-        PlayerList.playerList.add(new BeginnerSkillPlayer("Bruno",0));
+        PlayerList.playerList.add(new BeginnerSkillPlayer("Bruno", 0));
         Player playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
         playerThisRound.printSelfInfo();
         MatchStat.setMatchCount(playerThisRound.matchCount);
+
+        // Initialize the player's coin balance to a default value
+        playerThisRound.addCoins(100); // Example: Starting with 100 coins
+
         return playerThisRound;
     }
 
