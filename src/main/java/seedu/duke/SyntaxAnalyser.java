@@ -22,6 +22,7 @@ public class SyntaxAnalyser {
             {},
             {SAVE_VALID_INDEX_REGEX},
             {},
+            {},
             {}
 
             //insert new command syntax here

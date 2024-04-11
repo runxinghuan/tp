@@ -75,6 +75,9 @@ public class Ui {
             case BYE:
                 CommandList.executeBye();
                 return;
+            case HELP:
+                CommandList.executeHelpAtStart();
+                return;
             default:
                 Formatter.printErrorUnknown();
             }
@@ -90,6 +93,9 @@ public class Ui {
                 return;
             case BYE:
                 CommandList.executeBye();
+                return;
+            case HELP:
+                CommandList.executeHelpAfterMatch();
                 return;
             default:
                 Formatter.printErrorUnknown();
@@ -135,6 +141,9 @@ public class Ui {
             break;
         case SAVE:
             CommandList.executeSave(readArgumentTokens);
+            break;
+        case HELP:
+            CommandList.executeHelpDuringGame();
             break;
         //insert new executable command here
         default:

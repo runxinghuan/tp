@@ -116,68 +116,153 @@ The `save` command is an integral part of the game's penalty shootout mechanics,
 
 #### Usage
 
-To use the `save` command, enter the command followed by a space and then the direction number where you predict the AI will shoot. The direction options are:
+When it's the AI's turn to shoot, you will be prompted to select a direction to save. Enter the save command followed by your chosen direction. For example:
 
-- `0`: Left
-- `1`: Center
-- `2`: Right
+save[direction] - Choose a direction to attempt a save. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
 
-#### Example: save 1
+#### Understanding Saver Skill Levels
 
-This command will execute the player's save attempt towards the center.
+Your ability to save goals is significantly impacted by your saver's skill level. As you progress through the game, you'll have the opportunity to upgrade your saver from a Beginner to Medium and finally to an Expert. Each level enhances your saver's effectiveness:
 
-Command Structure
-`save <direction>`: Executes the save attempt where `<direction>` is the direction you choose to save.
+- BeginnerSkillSaver: Starts with basic saving capabilities. Ideal for new players getting accustomed to the game mechanics.
+
+- MediumSkillSaver: Offers improved saving chances with a moderate increase in skill and power. Suitable for players looking for a balanced challenge.
+
+- ExpertSkillSaver: Provides the best saving abilities, significantly increasing your chances of stopping the AI's shots. Designed for experienced players seeking the ultimate challenge.
+
+#### Difficulty Settings
+
+The game's difficulty setting also affects the save command's effectiveness. You can adjust the difficulty at any time using the following commands:
+
+- `easy` - Sets the game to an easier difficulty, increasing save success rates.
+
+- `medium` - Offers a balanced difficulty setting for an average challenge.
+
+- `hard` - Sets the game to the hardest difficulty, testing your skills with the most challenging saving scenarios.
 
 #### Expected Outcome
 
-Upon executing the save command, one of two outcomes will occur:
-
-- If your chosen direction matches the AI's shot direction, you successfully save the penalty, and the game will display a message: 
+If the goal is not saved:
 
 ```
-You saved the penalty!
+_______________________________
+\         \         \         \
+ \         \         \         \
+  \         \         \         \
+   \         \         \         \
+    \         \         \         \
+no save :((((
 ```
 
-- If your chosen direction does not match the AI's shot direction, the penalty is not saved, and the game will display a message: 
+If the goal is saved as a beginner saver (direction is 0 in this example):
 
 ```
-You failed to save the penalty!
+_______________________________
+|         |         |         |
+|         |         |         |
+|  SAVED  |    1    |    2    |
+|         |         |         |
+|         |         |         |
 ```
 
-The game will then update the match statistics accordingly.
-
-#### Input Validation
-If an invalid direction is entered (anything other than `0`, `1`, or `2`), the game will prompt you to enter a valid direction by displaying the message: 
+If the goal is saved as a medium saver (direction is 4 in this example):
 
 ```
-Invalid direction! Please enter 0, 1, or 2."
-```
-
-#### Example of Command Flow
-
-```
-Select direction to save : [0-2] 
-save 1
-You saved the penalty!
-```
-
-Or, in case of an invalid input:
+_______________________________
+|         |         |         |
+|    0    |    1    |    2    |
+|_________|_________|_________|
+|         |         |         |
+|    3    |  SAVED  |    5    |
+|         |         |         |
 
 ```
-Select direction to save : [0-2] 
-save 4
-SyntaxAnalyser: SAVE expects the 1st argument to be ^[0-2]$
-	 Ui: Bad Token Error, please check your arguments
-	 Ui: Command could not be executed 
-	 Try again
-Select direction to save : [0-2]
+
+If the goal is saved as an expert saver (direction is 6 in this example):
+
+```
+_______________________________
+|    0    |    1    |    2    |
+|---------|---------|---------|
+|    3    |    4    |    5    |
+|---------|---------|---------|
+|    6    |    7    |  SAVED  |
 ```
 
 #### Additional Notes
 - The `save` command is only available during the penalty shootout phase.
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
+## Help Command: `help`
+
+The `help` command is designed to assist you by displaying a list of available commands based on the current stage of the game. Whether you're just starting, in the heat of a match, or reflecting on your results post-match, `help` can guide you through your options.
+
+### At Game Start
+
+When you first start the game, invoking this command will display options available for the initial coin toss, including how to exit the game if you change your mind about playing.
+
+#### Expected Outcome
+
+At game start, the `help` command will display the following:
+
+```
+Here are the commands available
+--------------------------------
+    head - Choose 'head' in a coin toss to decide who starts the game.
+    tail - Choose 'tail' in the same coin toss.
+    bye - Exit the game.
+    help - Display this help message again.
+--------------------------------
+```
+
+### During The Game
+
+Using help during gameplay will list actions you can take, such as shooting, saving, adjusting the difficulty, or upgrading your player's power level.
+
+#### Expected Outcome
+
+During the game, the `help` command will display the following:
+
+```
+Here are the commands available
+--------------------------------
+    If it says 'Select direction to shoot :'
+        shoot[direction] - Choose a direction to shoot.
+    ----------------------------------------------------
+    If it says 'Select direction to save :'
+        save[direction] - Choose a direction to save.
+    ----------------------------------------------------
+    upgrade[power level] - Upgrade the power level of your player.
+        0 - Low power level.
+        1 - Medium power level.
+        2 - High power level.
+    ----------------------------------------------------
+    easy - Set the difficulty to 'easy'.
+    meduim - Set the difficulty to 'medium'.
+    hard - Set the difficulty to 'hard'.
+    bye - Exit the game.
+    help - Display this help message again.
+--------------------------------
+```
+
+### After a Match
+
+Once a match concludes, help will show you options for starting a new game or exiting.
+
+#### Expected Outcome
+
+After a match, the `help` command will display the following:
+
+```
+Here are the commands available
+--------------------------------
+    yes - If you want to start a new game.
+    no - If you do not want to start a new game. Exit the game.
+    bye - Exit the game.
+    help - Display this help message again.
+--------------------------------
+```
 
 ## FAQ
 
