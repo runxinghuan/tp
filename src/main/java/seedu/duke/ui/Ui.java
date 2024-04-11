@@ -2,6 +2,7 @@ package seedu.duke.ui;
 
 import seedu.duke.*;
 import seedu.duke.stats.MatchStat;
+import seedu.duke.stats.PlayerList;
 import seedu.duke.exception.ProcessInputException;
 import seedu.duke.exception.ArgumentMismatchException;
 import seedu.duke.exception.BadTokenException;
@@ -144,6 +145,8 @@ public class Ui {
             break;
         case HELP:
             CommandList.executeHelpDuringGame();
+        case CUSTOMIZATION:
+            PlayerList.playerList.get(curPlayer).displayCustomizationMenu();
             break;
         //insert new executable command here
         default:
