@@ -92,6 +92,141 @@ Some example commands you can try:
 `DIRECTION` refers to the direction the player wants the shot to follow as displayed on the graph.
 Format: `shoot 2`
 
+### Shoot Command: `shoot`
+
+#### Overview
+
+The `shoot` command is an integral part of the game's penalty shootout mechanics, allowing the player to attempt to shoot a penalty by choosing one of the available directions. This command pits the player's choice against the AI's shot direction, determining whether the penalty is scored or not.
+
+#### Usage
+
+When it's the AI's turn to save, you will be prompted to select a direction to shoot. Enter the shoot command followed by your chosen direction. For example:
+
+shoot[direction] - Choose a direction to take a shot. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
+
+#### Understanding Player Skill Levels
+
+Your ability to score goals is significantly impacted by your player's skill level. As you progress through the game, you'll have the opportunity to upgrade your player from a Beginner to Medium and finally to an Expert. Each level enhances your player's effectiveness:
+
+- BeginnerSkillPlayer: Starts with basic shooting capabilities. Ideal for new players getting accustomed to the game mechanics.
+
+- MediumSkillPlayer: Offers improved shooting chances with a moderate increase in skill and power. Suitable for players looking for a balanced challenge.
+
+- ExpertSkillPlayer: Provides the best shooting abilities, significantly increasing your chances of getting your shots through the AI's saves. Designed for experienced players seeking the ultimate challenge.
+
+#### Difficulty Settings
+
+The game's difficulty setting also affects the shoot command's effectiveness. You can adjust the difficulty at any time using the following commands:
+
+- `easy` - Sets the game to an easier difficulty, increasing shot success rates.
+
+- `medium` - Offers a balanced difficulty setting for an average challenge.
+
+- `hard` - Sets the game to the hardest difficulty, testing your skills with the most challenging shooting scenarios.
+
+#### Expected Outcome
+
+If the goal is not scored:
+
+```
+Shoot: [-]
+Save: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+\         \         \         \
+ \         \         \         \
+  \         \         \         \
+   \         \         \         \
+    \         \         \         \
+no goal :((((
+```
+
+If the goal is scored as a beginner player (direction is 0 in this example):
+
+```
+Shoot: [-]
+Save: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+| *    *  |         |         |
+|    *    |         |         |
+|*   *    |    1    |    2    |
+|      *  |         |         |
+|   *     |         |         |
+```
+
+If the goal is scored as a medium player (direction is 4 in this example):
+
+```
+Shoot: [-]
+Save: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+|    0    |    1    |    2    |
+|         |         |         |
+|_________|_________|_________|
+|         |       * |         |
+|    3    | *   *   |    5    |
+|         |         |         |
+
+```
+
+If the goal is scored as an expert player (direction is 6 in this example):
+
+```
+Shoot: [-]
+Save: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+|    0    |    1    |    2    |
+|---------|---------|---------|
+|    3    |    4    |    5    |
+|---------|---------|---------|
+|    6    |    7    |  *   *  |
+```
+
+If the input is above the maximum input allowed for the current expertise level, the game will play for you (beginner inputs 5 and goal is not scored in this example):
+
+```
+Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!
+Practice makes perfect. Let's aim for those goals together!
+Shoot: [-]
+Save: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+\         \         \         \
+ \         \         \         \
+  \         \         \         \
+   \         \         \         \
+    \         \         \         \
+no goal :((((
+```
+
+If the input is above 8, an error will be returned:
+
+```
+ SyntaxAnalyser: SHOOT expects the 1st argument to be ^[0-8]$
+	 Ui: Bad Token Error, please check your arguments
+	 Ui: Command could not be executed 
+	 Try again
+```
+
+#### Additional Notes
+- The `shoot` command is only available during the penalty shootout phase.
+- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
+- The command is case-sensitive, so `shoot 1` is considered a valid command, but `Shoot 1` and `SHOOT 1` are considered invalid inputs.
+
+
 ### Set shooter's power: `upgrade LEVEL`
 `LEVEL` refers to the power level the player possesses, which affects the quality of the shot. The higher the power level, the more accurate the shot will be.
 Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
@@ -311,6 +446,10 @@ Here are the commands available
     help - Display this help message again.
 ------------------------------------------------------------
 ```
+
+#### Additional Notes
+- The `help` command is  available at all stages of the penalty shootout phase.
+- The command is case-sensitive, so `help` is considered a valid command, but `Help` and `HELP` are considered invalid inputs.
 
 ## FAQ
 
