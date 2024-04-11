@@ -145,6 +145,11 @@ The game's difficulty setting also affects the save command's effectiveness. You
 If the goal is not saved:
 
 ```
+Save: [-]
+Shoot: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
 _______________________________
 \         \         \         \
  \         \         \         \
@@ -157,6 +162,11 @@ no save :((((
 If the goal is saved as a beginner saver (direction is 0 in this example):
 
 ```
+Save: [-]
+Shoot: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
 _______________________________
 |         |         |         |
 |         |         |         |
@@ -168,6 +178,11 @@ _______________________________
 If the goal is saved as a medium saver (direction is 4 in this example):
 
 ```
+Save: [-]
+Shoot: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
 _______________________________
 |         |         |         |
 |    0    |    1    |    2    |
@@ -181,6 +196,11 @@ _______________________________
 If the goal is saved as an expert saver (direction is 6 in this example):
 
 ```
+Save: [-]
+Shoot: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
 _______________________________
 |    0    |    1    |    2    |
 |---------|---------|---------|
@@ -189,79 +209,107 @@ _______________________________
 |    6    |    7    |  SAVED  |
 ```
 
+If the input is above the maximum input allowed for the current expertise level, the game will play for you (beginner inputs 5 and goal is not saved in this example):
+
+```
+Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!
+Practice makes perfect. Let's aim for those goals together!
+Save: [-]
+Shoot: [-]
+Range: [-]
+10 coins added to your balance. Current balance: [-]
+Performance Coins earned: 10
+_______________________________
+\         \         \         \
+ \         \         \         \
+  \         \         \         \
+   \         \         \         \
+    \         \         \         \
+no save :((((
+```
+
+If the input is above 8, an error will be returned:
+
+```
+ SyntaxAnalyser: SAVE expects the 1st argument to be ^[0-8]$
+	 Ui: Bad Token Error, please check your arguments
+	 Ui: Command could not be executed 
+	 Try again
+```
+
 #### Additional Notes
 - The `save` command is only available during the penalty shootout phase.
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
-## Help Command: `help`
+### Help Command: `help`
 
 The `help` command is designed to assist you by displaying a list of available commands based on the current stage of the game. Whether you're just starting, in the heat of a match, or reflecting on your results post-match, `help` can guide you through your options.
 
-### At Game Start
+#### At Game Start
 
 When you first start the game, invoking this command will display options available for the initial coin toss, including how to exit the game if you change your mind about playing.
 
-#### Expected Outcome
+Expected Outcome:
 
 At game start, the `help` command will display the following:
 
 ```
 Here are the commands available
---------------------------------
+------------------------------------------------------------
     head - Choose 'head' in a coin toss to decide who starts the game.
     tail - Choose 'tail' in the same coin toss.
     bye - Exit the game.
     help - Display this help message again.
---------------------------------
+------------------------------------------------------------
 ```
 
-### During The Game
+#### During The Game
 
 Using help during gameplay will list actions you can take, such as shooting, saving, adjusting the difficulty, or upgrading your player's power level.
 
-#### Expected Outcome
+Expected Outcome:
 
 During the game, the `help` command will display the following:
 
 ```
 Here are the commands available
---------------------------------
+------------------------------------------------------------
     If it says 'Select direction to shoot :'
         shoot[direction] - Choose a direction to shoot.
-    ----------------------------------------------------
+------------------------------------------------------------
     If it says 'Select direction to save :'
         save[direction] - Choose a direction to save.
-    ----------------------------------------------------
+------------------------------------------------------------
     upgrade[power level] - Upgrade the power level of your player.
         0 - Low power level.
         1 - Medium power level.
         2 - High power level.
-    ----------------------------------------------------
+------------------------------------------------------------
     easy - Set the difficulty to 'easy'.
     meduim - Set the difficulty to 'medium'.
     hard - Set the difficulty to 'hard'.
     bye - Exit the game.
     help - Display this help message again.
---------------------------------
+------------------------------------------------------------
 ```
 
-### After a Match
+#### After a Match
 
 Once a match concludes, help will show you options for starting a new game or exiting.
 
-#### Expected Outcome
+Expected Outcome:
 
 After a match, the `help` command will display the following:
 
 ```
 Here are the commands available
---------------------------------
+------------------------------------------------------------
     yes - If you want to start a new game.
     no - If you do not want to start a new game. Exit the game.
     bye - Exit the game.
     help - Display this help message again.
---------------------------------
+------------------------------------------------------------
 ```
 
 ## FAQ

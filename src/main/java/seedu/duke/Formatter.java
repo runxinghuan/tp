@@ -2,10 +2,7 @@ package seedu.duke;
 
 import seedu.duke.stats.MatchStat;
 
-import java.util.logging.Logger;
-
 public class Formatter {
-    private static final Logger logger = Logger.getLogger(Formatter.class.getName());
 
     /**
      * Appends a newline to a given string and returns the resulting string
@@ -18,7 +15,6 @@ public class Formatter {
     }
 
     public static void printWrapper(String wrapWith) {
-        System.out.print("\t");
         for (int i = 0; i < 60; i++) {
             System.out.print(wrapWith);
         }
@@ -30,7 +26,7 @@ public class Formatter {
      */
     public static void printWelcomeMsg() {
         printWrapper("-");
-        System.out.println("\t Welcome to NUSFC 24 ");
+        System.out.println("                    Welcome to NUSFC 24 ");
         printWrapper("-");
     }
 
@@ -39,7 +35,7 @@ public class Formatter {
      */
     public static void printGoodbyeMsg() {
         printWrapper("-");
-        System.out.println("\t See you next time on court!");
+        System.out.println("                See you next time on court!");
         printWrapper("-");
     }
 
@@ -51,7 +47,6 @@ public class Formatter {
     //@@author HenryGan138
     public static void printGoalBeforeShotforBeginner() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -60,12 +55,11 @@ public class Formatter {
         System.out.println("|    0    |    1    |    2    |");
         System.out.println("|         |         |         |");
         System.out.println("|         |         |         |");
-        System.out.println("Select direction to shoot :");
+        System.out.println("\nSelect direction to shoot : [0-2]");
     }
 
     public static void printGoalBeforeShotforMedium() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -75,12 +69,11 @@ public class Formatter {
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|         |         |         |");
-        System.out.println("Select direction to shoot :");
+        System.out.println("\nSelect direction to shoot : [0-5]");
     }
 
     public static void printGoalBeforeShotforExpert() {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
-        logger.info("Round " + MatchStat.getRoundCount());
         System.out.println("Match " + MatchStat.getMatchCount());
         System.out.println("Round " + MatchStat.getRoundCount());
         System.out.println("_______________________________");
@@ -89,12 +82,11 @@ public class Formatter {
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|---------|---------|---------|");
         System.out.println("|    6    |    7    |    8    |");
-        System.out.println("Select direction to shoot :");
+        System.out.println("\nSelect direction to shoot : [0-8]");
     }
 
     public static void printGoalAfterShotBeginner(boolean goalScored, int direction) {
         if (!goalScored) {
-            logger.info("No goal :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -104,7 +96,6 @@ public class Formatter {
             System.out.println("no goal :((((");
 
         } else {
-            logger.info("GOAL!!!!");
             switch (direction){
             case 0:
                 System.out.println("_______________________________");
@@ -138,7 +129,6 @@ public class Formatter {
 
     public static void printGoalAfterShotMedium(boolean goalScored, int direction) {
         if (!goalScored) {
-            logger.info("No goal :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -147,7 +137,6 @@ public class Formatter {
             System.out.println("    \\         \\         \\         \\");
             System.out.println("no goal :((((");
         } else {
-            logger.info("GOAL!!!!");
             switch (direction) {
             case 0:
                 System.out.println("_______________________________");
@@ -212,7 +201,6 @@ public class Formatter {
 
     public static void printGoalAfterShotExpert(boolean goalScored, int direction) {
         if (!goalScored) {
-            logger.info("No goal :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -221,7 +209,6 @@ public class Formatter {
             System.out.println("    \\         \\         \\         \\");
             System.out.println("no goal :((((");
         } else {
-            logger.info("GOAL!!!!");
             switch (direction) {
             case 0:
                 System.out.println("_______________________________");
@@ -304,7 +291,6 @@ public class Formatter {
 
     public static void printGoalAfterShot(boolean goalScored, int direction) {
         if (!goalScored) {
-            logger.info("No goal :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -314,7 +300,6 @@ public class Formatter {
             System.out.println("no goal :((((");
 
         } else {
-            logger.info("GOAL!!!!");
             switch (direction){
             case 0:
                 System.out.println("_______________________________");
@@ -426,7 +411,6 @@ public class Formatter {
     public static void printGoalAfterSaveForBeginner(boolean isGoalSaved, int direction) {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
-            logger.info("No save :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -436,7 +420,6 @@ public class Formatter {
             System.out.println("no save :((((");
 
         } else {
-            logger.info("SAVE!!!!");
             switch (direction){
                 case 0:
                     System.out.println("_______________________________");
@@ -480,7 +463,6 @@ public class Formatter {
     public static void printGoalAfterSaveMedium(boolean isGoalSaved, int direction) {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
-            logger.info("No save :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -489,7 +471,6 @@ public class Formatter {
             System.out.println("    \\         \\         \\         \\");
             System.out.println("no save :((((");
         } else {
-            logger.info("SAVE!!!!");
             switch (direction) {
                 case 0:
                     System.out.println("_______________________________");
@@ -595,7 +576,6 @@ public class Formatter {
     public static void printGoalAfterSaveExpert(boolean isGoalSaved, int direction) {
         assert MatchStat.getRoundCount() > 0 : "Round count should be greater than zero.";
         if (!isGoalSaved) {
-            logger.info("No save :((((");
             System.out.println("_______________________________");
             System.out.println("\\         \\         \\         \\");
             System.out.println(" \\         \\         \\         \\");
@@ -604,7 +584,6 @@ public class Formatter {
             System.out.println("    \\         \\         \\         \\");
             System.out.println("no save :((((");
         } else {
-            logger.info("SAVE!!!!");
             switch (direction) {
                 case 0:
                     System.out.println("_______________________________");
@@ -684,6 +663,59 @@ public class Formatter {
         showScore();
     }
 
+    //@@author ymirmeddeb
+    /**
+     * Prints the commands available after a match is over
+     */
+    public static void printHelpAfterMatch() {
+        System.out.println("Here are the commands available");
+        printWrapper("-");
+        System.out.println("    yes - If you want to start a new game.");
+        System.out.println("    no - If you do not want to start a new game. Exit the game.");
+        System.out.println("    bye - Exit the game.");
+        System.out.println("    help - Display this help message again.");
+        printWrapper("-");
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Prints the commands available when you first start the game
+     */
+    public static void printHelpAtStart() {
+        System.out.println("Here are the commands available");
+        printWrapper("-");
+        System.out.println("    head - Choose 'head' in a coin toss to decide who starts the game.");
+        System.out.println("    tail - Choose 'tail' in the same coin toss.");
+        System.out.println("    bye - Exit the game.");
+        System.out.println("    help - Display this help message again.");
+        printWrapper("-");
+    }
+
+    //@@author ymirmeddeb
+    /**
+     * Prints the commands available during the game
+     */
+    public static void printHelpDuringGame() {
+        System.out.println("Here are the commands available");
+        printWrapper("-");
+        System.out.println("    If it says 'Select direction to shoot :'");
+        System.out.println("        shoot[direction] - Choose a direction to shoot.");
+        printWrapper("-");
+        System.out.println("    If it says 'Select direction to save :'");
+        System.out.println("        save[direction] - Choose a direction to save.");
+        printWrapper("-");
+        System.out.println("    upgrade[power level] - Upgrade the power level of your player.");
+        System.out.println("        0 - Low power level.");
+        System.out.println("        1 - Medium power level.");
+        System.out.println("        2 - High power level.");
+        printWrapper("-");
+        System.out.println("    easy - Set the difficulty to 'easy'.");
+        System.out.println("    medium - Set the difficulty to 'medium'.");
+        System.out.println("    hard - Set the difficulty to 'hard'.");
+        System.out.println("    bye - Exit the game.");
+        System.out.println("    help - Display this help message again.");
+        printWrapper("-");
+    }
     /**
      * Prints "list is empty" if tasks list is empty
      */

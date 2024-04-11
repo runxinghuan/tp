@@ -132,13 +132,7 @@ public enum CommandList {
      * Prints the commands available after a match is over
      */
     public static void executeHelpAfterMatch() {
-        System.out.println("Here are the commands available");
-        System.out.println("--------------------------------");
-        System.out.println("    yes - If you want to start a new game.");
-        System.out.println("    no - If you do not want to start a new game. Exit the game.");
-        System.out.println("    bye - Exit the game.");
-        System.out.println("    help - Display this help message again.");
-        System.out.println("--------------------------------");
+        Formatter.printHelpAfterMatch();
     }
 
     //@@author ymirmeddeb
@@ -146,13 +140,7 @@ public enum CommandList {
      * Prints the commands available when you first start the game
      */
     public static void executeHelpAtStart() {
-        System.out.println("Here are the commands available");
-        System.out.println("--------------------------------");
-        System.out.println("    head - Choose 'head' in a coin toss to decide who starts the game.");
-        System.out.println("    tail - Choose 'tail' in the same coin toss.");
-        System.out.println("    bye - Exit the game.");
-        System.out.println("    help - Display this help message again.");
-        System.out.println("--------------------------------");
+        Formatter.printHelpAtStart();
     }
 
     //@@author ymirmeddeb
@@ -160,25 +148,7 @@ public enum CommandList {
      * Prints the commands available during the game
      */
     public static void executeHelpDuringGame() {
-        System.out.println("Here are the commands available");
-        System.out.println("--------------------------------");
-        System.out.println("    If it says 'Select direction to shoot :'");
-        System.out.println("        shoot[direction] - Choose a direction to shoot.");
-        System.out.println("    ----------------------------------------------------");
-        System.out.println("    If it says 'Select direction to save :'");
-        System.out.println("        save[direction] - Choose a direction to save.");
-        System.out.println("    ----------------------------------------------------");
-        System.out.println("    upgrade[power level] - Upgrade the power level of your player.");
-        System.out.println("        0 - Low power level.");
-        System.out.println("        1 - Medium power level.");
-        System.out.println("        2 - High power level.");
-        System.out.println("    ----------------------------------------------------");
-        System.out.println("    easy - Set the difficulty to 'easy'.");
-        System.out.println("    meduim - Set the difficulty to 'medium'.");
-        System.out.println("    hard - Set the difficulty to 'hard'.");
-        System.out.println("    bye - Exit the game.");
-        System.out.println("    help - Display this help message again.");
-        System.out.println("--------------------------------");
+        Formatter.printHelpDuringGame();
     }
 }
 
