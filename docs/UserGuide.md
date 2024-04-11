@@ -21,10 +21,14 @@ Teams take turns to kick from the penalty mark, until each has taken five kicks.
 goals than the other could possibly reach with all of its remaining kicks, the shoot-out immediately ends, regardless of
 the number of kicks remaining.
 
-For example, there are two teams team A and team B playing a penalty shoot-out. Both teams have taken three kicks. Team 
-A has scored 3 goals, while team B has scored 0 goal. Now both teams are left with two kicks. As the goal difference 
-between team A and team B (3) is larger than the number of kicks left for team B (2). The game ends immediately, with 
-team A being the winner.
+For example, there are two teams, team A and team B playing a penalty shoot-out. Suppose team A shoots first, and team A
+has taken three kicks, scoring all of them (three goals). While team B has taken two kicks now, scoring 0 goal. Now the 
+score difference between team A and B is three. The kicks remaining for team B is also three. As the score difference is
+not strictly larger than the kicks remaining for team B, it is still possible for team A to miss its two kicks remaining
+while team B scores all the three kicks left, making it to be 3:3 after five kicks. Hence, the game does not end 
+immediately. However, if team B misses its next kick, now the score difference is still three, but the remaining kicks 
+for team B becomes two. The goal difference (3) is larger than the number of kicks left for team B (2). Hence, the game 
+ends immediately, with team A being the winner.
 
 
 #### Sudden Death
@@ -34,28 +38,35 @@ additional rounds of one kick each are used until one team scores and the other 
 
 ### Player Attributes Overview
 
-Welcome to our real penalty simulator game, designed to immerse you in the authentic thrills of competition and the journey of skill enhancement in sports. As you navigate through the game, you will experience a realistic learning curve, just like in actual sports training.
+Welcome to our penalty simulator, crafted to offer you a slice of the real-world football experience. Just like in professional sports, progressing through our game mirrors the actual journey of skill development and mastery found in football training.
 
-In our game, each player is defined by two critical attributes: **Skill** and **Power**. These attributes are reflective of a real-life player's capabilities and play a pivotal role in determining the quality of your shots.
+#### Key Points on Skill and Power
 
-#### Skill: Your Path to Mastery
+- **Skill** affects your **directional control** during shots, evolving as you gain experience, similar to how footballers improve their aiming with practice.
+- **Power** determines the **accuracy and strength** of your shots, akin to a football player's ability to strike the ball powerfully.
 
-Skill determines the range of directions available to you for shooting. As you progress in the game, your ability to choose from a wider array of shooting directions improves, mirroring your player's growing expertise.
+Understanding these attributes is crucial for mastering the game and enhancing your virtual football career.
 
-- **Beginner**: Initially, your shooting options are limited to left, middle, and right, corresponding to directions 0, 1, and 2, respectively. This limited choice represents the initial phase of your sports journey.
-- **Medium**: As you dedicate time and effort to the game, your skills will sharpen. You'll unlock the ability to choose from an expanded range of directions, from 0 to 5, offering more nuanced control over your shots.
-- **Expert**: Reaching higher skill levels means even greater control. You'll be able to select from an impressive array of directions, 0 through 8, allowing for precision and creativity in your shots. An illustrative graph below showcases this progression:
+#### Detailed Attribute Explanation
 
-  ![Skill Level Progression Graph](photoUg%2FBeforeShot.png)
+##### Skill: Your Tactical Edge
 
-#### Power: The Force Behind Your Shots
+- **Levels:**
+  - **Beginner**: Shoot left, middle, right — your starting abilities. **Alternative directions: (0-2)**
+  - **Medium**: Unlock additional directions, reflecting your improved aiming skills. **Alternative directions: (0-5)**
+  - **Expert**: Master shooting with the widest range of directions, showcasing your peak precision. **Alternative directions: (0-8)**
+![Skill Level Progression Graph](photoUg%2FBeforeShot.png)
 
-In addition to skill, power is a crucial factor in the game. It influences the precision and overall quality of your shots, adding a layer of strategy to your gameplay.
+- **Progression**:
+  - Move from **Beginner to Medium** by playing at least one match.
+  - Advance from **Medium to Expert** after at least five matches, emulating the real-life practice and dedication required to excel in football.
 
-- **Building Power**: The power attribute reflects the force behind your shots. A higher power level means increased shot accuracy, allowing you to challenge opponents with confidence.
-- **Customization Freedom**: We believe in giving players control over their game experience. Therefore, you can freely set your player's power level anywhere from 0 to 2, tailoring your approach to matches according to your strategic preferences.
+#### Power: Your Strength on the Field
 
-Embrace the challenge of growing your player's attributes, and enjoy the journey towards becoming a master of the sport. Remember, every match is a step forward in your virtual sports career. Good luck!
+- Reflects the might behind each shot. Increasing your power level enhances the accuracy of your shots, mirroring the intensive training footballers undergo to perfect their strike force.
+- **Customize Your Power (0-2)**: Choose your power level freely at the beginning of each match, allowing you to strategize your gameplay based on your preferred playing style.
+
+By incorporating these attributes into our game, we aim to provide an immersive experience that closely aligns with the real challenges and achievements of football. As you progress, you’ll find that the journey from a beginner to an expert is not just about winning matches but about honing your skills and strategy to truly master the art of the game.
 
 ## Quick Start
 
@@ -69,7 +80,7 @@ penalty at direction 0 shown in the goal.\
 Some example commands you can try:
 * `shoot 0`: Shoot a penalty at direction 0 shown in the goal.
 * `save 0`: Make a save at direction 0 shown in the goal.
-* `upgrade 2`: Upgrade your player to the medium power level.
+* `upgrade 2`: Upgrade your player to the expert power level.
 * `yes`: Restarts a match after a match ends.
 * `no`: Does not restart a match after a match ends, and exits the game.
 * `bye`: Exits the game.  

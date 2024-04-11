@@ -96,12 +96,12 @@ public class Ui {
             }
         }
 
-        if (MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SAVE) {
+        if (MatchStat.getIsPlayerShootTurn() && selectedCommand == CommandList.SAVE) {
             Formatter.printErrorUnknown();
             return;
         }
 
-        if (!MatchStat.getIsPlayerTurn() && selectedCommand == CommandList.SHOOT) {
+        if (!MatchStat.getIsPlayerShootTurn() && selectedCommand == CommandList.SHOOT) {
             Formatter.printErrorUnknown();
             return;
         }

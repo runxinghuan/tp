@@ -6,14 +6,19 @@ package seedu.duke.stats;
  * Stats related to match progress of the game.
  */
 public class MatchStat {
-    private static int matchCount = 1;
-    private static int roundCount = 1;
-    private static int playerScore = 0;
-    private static int aiScore = 0;
-    private static boolean isPlayerWin = false;
-    private static boolean isMatchEnd = false;
-    private static boolean isPlayerTurn = true;
-    private static boolean isNewMatch = true;
+    public static final int MAX_ROUND_FOR_NOT_A_DRAW = 10;
+    public static final int INITIAL_ROUND_COUNT = 1;
+    public static final int INITIAL_MATCH_COUNT = 1;
+    public static final int INITIAL_SCORE = 0;
+    public static final int NUMBER_OF_TEAMS = 2;
+    static int matchCount = INITIAL_MATCH_COUNT;
+    static int roundCount = INITIAL_ROUND_COUNT;
+    static int playerScore = INITIAL_SCORE;
+    static int aiScore = INITIAL_SCORE;
+    static boolean isPlayerWin = false;
+    static boolean isMatchEnd = false;
+    static boolean isPlayerShootTurn = true;
+    static boolean isNewMatch = true;
 
     /**
      * Updates playerScore, aiScore and roundCount after "shoot" and "save" commands.
@@ -21,12 +26,12 @@ public class MatchStat {
      * @param isGoal Whether the shooter scores or not.
      */
     public static void updateStat(boolean isGoal) {
-        if (isPlayerTurn && isGoal) {
+        if (isPlayerShootTurn && isGoal) {
             playerScore += 1;
-        } else if (!isPlayerTurn && isGoal) {
+        } else if (!isPlayerShootTurn && isGoal) {
             aiScore += 1;
         }
-        isPlayerTurn = !isPlayerTurn;
+        isPlayerShootTurn = !isPlayerShootTurn;
 
         decideMatchEnd();
         assert playerScore + aiScore <= roundCount : "Wrong computation of score.";
@@ -37,24 +42,24 @@ public class MatchStat {
      * Resets the stats after a new match starts.
      */
     public static void updateForNewMatch() {
-        roundCount = 1;
-        playerScore = 0;
-        aiScore = 0;
+        roundCount = INITIAL_ROUND_COUNT;
+        playerScore = INITIAL_SCORE;
+        aiScore = INITIAL_SCORE;
         matchCount += 1;
         isMatchEnd = false;
-        isPlayerTurn = true;
+        isPlayerShootTurn = true;
     }
 
     /**
      * Decides whether a match ends based on best-of-five kicks and sudden death rules.
      */
-    private static void decideMatchEnd() {
-        int roundsLeftForOneSide = (10 - roundCount) / 2;
-        if (roundCount % 2 == 1) {
+    static void decideMatchEnd() {
+        int roundsLeftForOneSide = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
+        if (!isCompleteRound()) {
             roundsLeftForOneSide += 1;
         }
 
-        if (roundCount < 10 && playerScore > aiScore) {
+        if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore > aiScore) {
             int scoreDifference = playerScore - aiScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
@@ -62,7 +67,7 @@ public class MatchStat {
             }
         }
 
-        if (roundCount < 10 && playerScore < aiScore) {
+        if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore < aiScore) {
             int scoreDifference = aiScore - playerScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
@@ -70,7 +75,7 @@ public class MatchStat {
             }
         }
 
-        if (roundCount >= 10 && isCompleteRound() && playerScore != aiScore) {
+        if (roundCount >= MAX_ROUND_FOR_NOT_A_DRAW && isCompleteRound() && playerScore != aiScore) {
             isMatchEnd = true;
             isPlayerWin = playerScore > aiScore;
         }
@@ -78,9 +83,11 @@ public class MatchStat {
 
     /**
      * Decides whether both sides have finished shooting in a round.
+     * As there are two teams, they shoot penalties in turns, an even roundCount means both sides have finished
+     * shooting in a round.
      */
     private static boolean isCompleteRound() {
-        return roundCount % 2 == 0;
+        return roundCount % NUMBER_OF_TEAMS == 0;
     }
 
     public static boolean getIsNewMatch() {
@@ -115,16 +122,16 @@ public class MatchStat {
         MatchStat.matchCount = matchCount + 1;
     }
 
-    public static boolean getIsPlayerTurn() {
-        return isPlayerTurn;
+    public static boolean getIsPlayerShootTurn() {
+        return isPlayerShootTurn;
     }
 
     public static void setForShootFirst() {
-        isPlayerTurn = true;
+        isPlayerShootTurn = true;
     }
 
     public static void setForSaveFirst() {
-        isPlayerTurn = false;
+        isPlayerShootTurn = false;
     }
 
     public static void setMatchReady() {
