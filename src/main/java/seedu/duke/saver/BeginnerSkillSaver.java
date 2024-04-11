@@ -124,7 +124,7 @@ public class BeginnerSkillSaver extends Saver {
     @Override
     public float saveDirectionAdjust(int dir){
         if (dir>2){
-            System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
+            System.out.println("Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!");
             System.out.println("Practice makes perfect. Let's aim for those goals together!");
             dir = dir%3;
         }
