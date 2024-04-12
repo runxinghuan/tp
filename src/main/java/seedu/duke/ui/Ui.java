@@ -1,6 +1,12 @@
 package seedu.duke.ui;
 
-import seedu.duke.*;
+import seedu.duke.cointoss.CoinResult;
+import seedu.duke.cointoss.CoinToss;
+import seedu.duke.CommandList;
+import seedu.duke.DifficultyLevel;
+import seedu.duke.Formatter;
+import seedu.duke.Parser;
+import seedu.duke.SyntaxAnalyser;
 import seedu.duke.stats.MatchStat;
 import seedu.duke.stats.PlayerList;
 import seedu.duke.exception.ProcessInputException;
@@ -9,7 +15,6 @@ import seedu.duke.exception.BadTokenException;
 import seedu.duke.exception.IllegalCommandException;
 
 import java.util.Scanner;
-import java.util.logging.Level;
 
 public class Ui {
     public static final Scanner IN = new Scanner(System.in);
@@ -62,10 +67,10 @@ public class Ui {
         if (MatchStat.getIsNewMatch()) {
             switch (selectedCommand) {
             case HEAD:
-                CoinToss.executeCoinToss(CoinToss.HEAD);
+                CoinToss.executeCoinToss(CoinResult.HEAD);
                 return;
             case TAIL:
-                CoinToss.executeCoinToss(CoinToss.TAIL);
+                CoinToss.executeCoinToss(CoinResult.TAIL);
                 return;
             case BYE:
                 CommandList.executeBye();
