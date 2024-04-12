@@ -43,11 +43,11 @@ public class Duke {
             //@@author
 
             if (MatchStat.getIsMatchEnd()) {
-                Formatter.printMatchResult();
                 PlayerList.skillUpgrade(Ui.curPlayer);
                 playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
                 SaverList.saverSkillUpgrade(curSaver);
                 saverThisRound = SaverList.saverList.get(curSaver);
+                Formatter.printMatchResult();
             } else if (MatchStat.getIsPlayerShootTurn()) {
                 playerThisRound.printGoalBeforeShoot();
             } else {

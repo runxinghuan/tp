@@ -45,6 +45,7 @@ public enum CommandList {
         boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection, adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
+        PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isScoreGoal);
         PlayerList.playerList.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
     }
 
@@ -125,6 +126,7 @@ public enum CommandList {
         testForSave(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
         boolean isScoreGoal = goalCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
         MatchStat.updateStat(isScoreGoal);
+        PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isScoreGoal);
         SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(!isScoreGoal, Math.round(adjustedSaveDirection));
     }
 

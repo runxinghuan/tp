@@ -75,6 +75,7 @@ public class Ui {
                 return;
             default:
                 Formatter.printErrorUnknown();
+                return;
             }
         }
 
@@ -94,6 +95,7 @@ public class Ui {
                 return;
             default:
                 Formatter.printErrorUnknown();
+                return;
             }
         }
 
