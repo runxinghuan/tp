@@ -43,7 +43,7 @@ public class Saver {
      * Prints information about the saver, including name, number of matches played, power, and skill level.
      */
     public void printSelfInfo(){
-        System.out.println("--------Player Info--------");
+        System.out.println("--------Saver Info--------");
         System.out.println("Name: "+this.name);
         System.out.println("Number of match played: "+this.matchCount);
         printPower();

@@ -106,6 +106,7 @@ public enum CommandList {
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
         SaverList.saverList.get(Ui.curSaver).upgradePower(upgradeLevelIndex);
         SaverList.saverList.get(Ui.curSaver).printSelfInfo();
+        System.out.printf("Your power level has been upgraded to %s%n", level[0]);
     }
 
     //@@author ymirmeddeb
