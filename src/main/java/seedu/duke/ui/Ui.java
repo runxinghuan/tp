@@ -107,11 +107,6 @@ public class Ui {
             return;
         }
 
-        if (!MatchStat.getIsInGame() && (selectedCommand == CommandList.SHOOT || selectedCommand == CommandList.SAVE)) {
-            Formatter.printErrorUnknown();
-            return;
-        }
-
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();

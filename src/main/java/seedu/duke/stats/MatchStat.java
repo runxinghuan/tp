@@ -19,7 +19,6 @@ public class MatchStat {
     static int aiScore = INITIAL_SCORE;
     static boolean isPlayerWin = false;
     static boolean isMatchEnd = false;
-    static boolean isInGame = false;
     static boolean isPlayerShootTurn = true;
     static boolean isNewMatch = true;
 
@@ -51,7 +50,6 @@ public class MatchStat {
         aiScore = INITIAL_SCORE;
         matchCount += 1;
         isMatchEnd = false;
-        isInGame = true;
         isPlayerShootTurn = true;
     }
 
@@ -68,7 +66,6 @@ public class MatchStat {
             int scoreDifference = playerScore - aiScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
-                isInGame = false;
                 isPlayerWin = true;
             }
         }
@@ -77,14 +74,12 @@ public class MatchStat {
             int scoreDifference = aiScore - playerScore;
             if (scoreDifference > roundsLeftForOneSide) {
                 isMatchEnd = true;
-                isInGame = false;
                 isPlayerWin = false;
             }
         }
 
         if (roundCount >= MAX_ROUND_FOR_NOT_A_DRAW && isCompleteRound() && playerScore != aiScore) {
             isMatchEnd = true;
-            isInGame = false;
             isPlayerWin = playerScore > aiScore;
         }
     }
@@ -100,10 +95,6 @@ public class MatchStat {
 
     public static boolean getIsNewMatch() {
         return isNewMatch;
-    }
-
-    public static boolean getIsInGame() {
-        return isInGame;
     }
 
     public static boolean getIsPlayerWin() {
