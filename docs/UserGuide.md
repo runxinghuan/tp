@@ -88,9 +88,22 @@ Some example commands you can try:
 6. Refer to the Features below for details of each command.
 
 ## Features
-### Choose shoot direction: `shoot DIRECTION`
-`DIRECTION` refers to the direction the player wants the shot to follow as displayed on the graph.
-Format: `shoot 2`
+
+### Coin Toss
+
+Initiates the game by randomly deciding which player goes first, adding an element of chance and fairness to the start of the game.
+
+### Dynamic Difficulty Levels
+
+Allows you to adjust the game's difficulty setting (Easy, Medium, Hard) at any point, tailoring the challenge to your skill level and preferences.
+
+### Listing Commands
+
+Offers an overview of all available commands and their current statuses, helping you navigate the game's functionalities with ease.
+
+...add more features
+
+## Commands
 
 ### Shoot Command: `shoot`
 
@@ -103,16 +116,6 @@ The `shoot` command is an integral part of the game's penalty shootout mechanics
 When it's the AI's turn to save, you will be prompted to select a direction to shoot. Enter the shoot command followed by your chosen direction. For example:
 
 shoot[direction] - Choose a direction to take a shot. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
-
-#### Understanding Player Skill Levels
-
-Your ability to score goals is significantly impacted by your player's skill level. As you progress through the game, you'll have the opportunity to upgrade your player from a Beginner to Medium and finally to an Expert. Each level enhances your player's effectiveness:
-
-- BeginnerSkillPlayer: Starts with basic shooting capabilities. Ideal for new players getting accustomed to the game mechanics.
-
-- MediumSkillPlayer: Offers improved shooting chances with a moderate increase in skill and power. Suitable for players looking for a balanced challenge.
-
-- ExpertSkillPlayer: Provides the best shooting abilities, significantly increasing your chances of getting your shots through the AI's saves. Designed for experienced players seeking the ultimate challenge.
 
 #### Difficulty Settings
 
@@ -232,12 +235,57 @@ If the input is above 8, an error will be returned:
 Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
 Format: `upgrade 2`
 
+### Updrade Command: `uprade`
+The upgrade command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
+
+#### Usage
+
+To use the upgrade command, follow the syntax below:
+
+upgrade [power level]
+
+[power level]: A numeric value indicating the desired power level to which you want to upgrade. Valid inputs are:
+
+- 0 - Low power level
+
+- 1 - Medium power level
+
+- 2 - High power level
+
+#### Expected Outcome
+
+The user inputs `upgrade 1` in this example:
+
+```
+--------Player Info--------
+Name: Bruno
+Number of match played: 0
+Coins: 100
+Power: ### ###     Level-Medium
+Skill: ###         Level-Beginner
+---------------------------
+--------Player Info--------
+Name: Mars
+Number of match played: 0
+Power: ### ###     Level-Medium
+Skill: ###         Level-Beginner
+---------------------------
+Your power level has been upgraded to 1
+```
+
+#### Additional Notes
+
+- The `upgrade` command is only available during the penalty shootout phase.
+- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
+- The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
+
 ### Restarts a match after a match: `yes`
 When one match ends, you will be asked whether to have a new match or not. Type `yes` for a new match.
 
 Format: `yes`
 
-### Does not restart a match after a match: `no`
+#### Does not restart a match after a match: `no`
 When one match ends, you will be asked whether to have a new match or not. Type `no` for not having a new match, and 
 exits the game directly.
 
