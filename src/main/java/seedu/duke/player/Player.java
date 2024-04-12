@@ -13,7 +13,7 @@ public class Player {
     public int matchCount;
     public int power;
     private int skill;
-    private int coins;
+    public int coins;
     Random rand = new Random();
 
     public Player(String name, int matchCount) {
