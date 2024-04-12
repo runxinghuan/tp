@@ -36,9 +36,9 @@ New feature: Help
 
 - Helped maintain the issue tracker by assigning issues to myself and adding them to target milestones
 
-- Contributed to the `features` segment of the User Guide
+- Managed the `Features` and `Commands` segments of the User Guide
 
-- Helped to fic a major bug where the player is able to shoot even when not in a game
+- Helped to fix a major bug where the player is able to shoot even when not in a game
 
 #### Community
 

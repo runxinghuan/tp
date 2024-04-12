@@ -85,7 +85,7 @@ Some example commands you can try:
 * `no`: Does not restart a match after a match ends, and exits the game.
 * `bye`: Exits the game.  
 
-6. Refer to the Features below for details of each command.
+6. Refer to the Commands section of this User Guide for details on each command.
 
 ## Features
 
@@ -104,6 +104,182 @@ Offers an overview of all available commands and their current statuses, helping
 ...add more features
 
 ## Commands
+
+### Exit Command: `bye`
+
+#### Overview
+
+The `bye` command is a straightforward yet crucial feature of this game, allowing players to gracefully exit the game at any moment. This command ensures that users can leave the game safely, ensuring that their progress is saved (if applicable) and that the application closes properly.
+
+#### Usage
+
+To exit the game, simply enter the command:
+
+`bye`
+
+#### Expected Outcome
+
+```
+------------------------------------------------------------
+                See you next time on court!
+------------------------------------------------------------
+```
+### Help Command: `help`
+
+The `help` command is designed to assist you by displaying a list of available commands based on the current stage of the game. Whether you're just starting, in the heat of a match, or reflecting on your results post-match, `help` can guide you through your options.
+
+#### At Game Start
+
+When you first start the game, invoking this command will display options available for the initial coin toss, including how to exit the game if you change your mind about playing.
+
+Expected Outcome:
+
+At game start, the `help` command will display the following:
+
+```
+Here are the commands available
+------------------------------------------------------------
+    head - Choose 'head' in a coin toss to decide who starts the game.
+    tail - Choose 'tail' in the same coin toss.
+    bye - Exit the game.
+    help - Display this help message again.
+------------------------------------------------------------
+```
+
+#### During The Game
+
+Using help during gameplay will list actions you can take, such as shooting, saving, adjusting the difficulty, or upgrading your player's power level.
+
+Expected Outcome:
+
+During the game, the `help` command will display the following:
+
+```
+Here are the commands available
+------------------------------------------------------------
+    If it says 'Select direction to shoot :'
+        shoot[direction] - Choose a direction to shoot.
+------------------------------------------------------------
+    If it says 'Select direction to save :'
+        save[direction] - Choose a direction to save.
+------------------------------------------------------------
+    upgrade[power level] - Upgrade the power level of your player.
+        0 - Low power level.
+        1 - Medium power level.
+        2 - High power level.
+------------------------------------------------------------
+    easy - Set the difficulty to 'easy'.
+    meduim - Set the difficulty to 'medium'.
+    hard - Set the difficulty to 'hard'.
+    bye - Exit the game.
+    help - Display this help message again.
+------------------------------------------------------------
+```
+
+#### After a Match
+
+Once a match concludes, help will show you options for starting a new game or exiting.
+
+Expected Outcome:
+
+After a match, the `help` command will display the following:
+
+```
+Here are the commands available
+------------------------------------------------------------
+    yes - If you want to start a new game.
+    no - If you do not want to start a new game. Exit the game.
+    bye - Exit the game.
+    help - Display this help message again.
+------------------------------------------------------------
+```
+
+#### Additional Notes
+- The `help` command is  available at all stages of the penalty shootout phase.
+- The command is case-sensitive, so `help` is considered a valid command, but `Help` and `HELP` are considered invalid inputs.
+
+### Coin Toss Command: `head` or `tail`
+
+#### Overview
+
+The `head` and `tail` commands play a pivotal role in initiating gameplay through a fair and random selection process, akin to a coin toss. These commands are used at the start of a game to determine which player begins, adding an element of chance and strategy right from the outset.
+
+#### Usage 
+
+At the beginning of a game, you will be prompted to choose between `head` or `tail` for the coin toss. Enter one of the following commands based on your choice:
+
+- To choose heads:
+
+  `head`
+
+- To choose tails:
+
+  `tail`
+
+#### Expected Outcome
+
+If the coin lands on its side:
+
+```
+    --    
+   /  \  
+   \  /  
+    --    
+Oh no! The coin is standing upright on the ground!
+You need to guess again.
+```
+
+If the user inputs `head` and it is correct:
+
+```
+    ----    
+  / ^ ^ \  
+  \  -  /  
+    ----    
+You got a head!
+You guess it correctly! You can shoot first now!
+
+```
+
+If the user inputs `head` and it is incorrect:
+
+```
+    ----    
+  /  1  \  
+  \     /  
+    ----    
+You got a tail!
+You guess it wrongly. But you can save first.
+```
+
+If the user inputs `tail` and it is correct:
+
+```
+    ----    
+  /  1  \  
+  \     /  
+    ----    
+You got a tail!
+You guess it correctly! You can shoot first now!
+```
+
+If the user inputs `tail` and it is incorrect:
+
+```
+    ----    
+  / ^ ^ \  
+  \  -  /  
+    ----    
+You got a head!
+You guess it wrongly. But you can save first.
+```
+
+#### Additional Notes
+- The coin toss command is only available at the start of the game.
+- The coin toss command is completely randomised
+- The command is case-sensitive, so `head` is considered a valid command, but `Head` and `HEAD` are considered invalid inputs.
+
+
 
 ### Shoot Command: `shoot`
 
@@ -228,68 +404,6 @@ If the input is above 8, an error will be returned:
 - The `shoot` command is only available during the penalty shootout phase.
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `shoot 1` is considered a valid command, but `Shoot 1` and `SHOOT 1` are considered invalid inputs.
-
-
-### Set shooter's power: `upgrade LEVEL`
-`LEVEL` refers to the power level the player possesses, which affects the quality of the shot. The higher the power level, the more accurate the shot will be.
-Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
-Format: `upgrade 2`
-
-### Updrade Command: `uprade`
-The upgrade command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
-
-#### Usage
-
-To use the upgrade command, follow the syntax below:
-
-upgrade [power level]
-
-[power level]: A numeric value indicating the desired power level to which you want to upgrade. Valid inputs are:
-
-- 0 - Low power level
-
-- 1 - Medium power level
-
-- 2 - High power level
-
-#### Expected Outcome
-
-The user inputs `upgrade 1` in this example:
-
-```
---------Player Info--------
-Name: Bruno
-Number of match played: 0
-Coins: 100
-Power: ### ###     Level-Medium
-Skill: ###         Level-Beginner
----------------------------
---------Player Info--------
-Name: Mars
-Number of match played: 0
-Power: ### ###     Level-Medium
-Skill: ###         Level-Beginner
----------------------------
-Your power level has been upgraded to 1
-```
-
-#### Additional Notes
-
-- The `upgrade` command is only available during the penalty shootout phase.
-- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
-- The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
-
-
-### Restarts a match after a match: `yes`
-When one match ends, you will be asked whether to have a new match or not. Type `yes` for a new match.
-
-Format: `yes`
-
-#### Does not restart a match after a match: `no`
-When one match ends, you will be asked whether to have a new match or not. Type `no` for not having a new match, and 
-exits the game directly.
-
-Format: `no`
 
 ### Save Command: `save`
 
@@ -425,79 +539,157 @@ If the input is above 8, an error will be returned:
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
-### Help Command: `help`
+### Set shooter's power: `upgrade LEVEL`
+`LEVEL` refers to the power level the player possesses, which affects the quality of the shot. The higher the power level, the more accurate the shot will be.
+Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
+Format: `upgrade 2`
 
-The `help` command is designed to assist you by displaying a list of available commands based on the current stage of the game. Whether you're just starting, in the heat of a match, or reflecting on your results post-match, `help` can guide you through your options.
+### Updrade Command: `uprade`
+The upgrade command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
 
-#### At Game Start
+#### Usage
 
-When you first start the game, invoking this command will display options available for the initial coin toss, including how to exit the game if you change your mind about playing.
+To use the upgrade command, follow the syntax below:
 
-Expected Outcome:
+upgrade [power level]
 
-At game start, the `help` command will display the following:
+[power level]: A numeric value indicating the desired power level to which you want to upgrade. Valid inputs are:
 
-```
-Here are the commands available
-------------------------------------------------------------
-    head - Choose 'head' in a coin toss to decide who starts the game.
-    tail - Choose 'tail' in the same coin toss.
-    bye - Exit the game.
-    help - Display this help message again.
-------------------------------------------------------------
-```
+- 0 - Low power level
 
-#### During The Game
+- 1 - Medium power level
 
-Using help during gameplay will list actions you can take, such as shooting, saving, adjusting the difficulty, or upgrading your player's power level.
+- 2 - High power level
 
-Expected Outcome:
+#### Expected Outcome
 
-During the game, the `help` command will display the following:
+The user inputs `upgrade 1` in this example:
 
 ```
-Here are the commands available
-------------------------------------------------------------
-    If it says 'Select direction to shoot :'
-        shoot[direction] - Choose a direction to shoot.
-------------------------------------------------------------
-    If it says 'Select direction to save :'
-        save[direction] - Choose a direction to save.
-------------------------------------------------------------
-    upgrade[power level] - Upgrade the power level of your player.
-        0 - Low power level.
-        1 - Medium power level.
-        2 - High power level.
-------------------------------------------------------------
-    easy - Set the difficulty to 'easy'.
-    meduim - Set the difficulty to 'medium'.
-    hard - Set the difficulty to 'hard'.
-    bye - Exit the game.
-    help - Display this help message again.
-------------------------------------------------------------
-```
-
-#### After a Match
-
-Once a match concludes, help will show you options for starting a new game or exiting.
-
-Expected Outcome:
-
-After a match, the `help` command will display the following:
-
-```
-Here are the commands available
-------------------------------------------------------------
-    yes - If you want to start a new game.
-    no - If you do not want to start a new game. Exit the game.
-    bye - Exit the game.
-    help - Display this help message again.
-------------------------------------------------------------
+--------Player Info--------
+Name: Bruno
+Number of match played: 0
+Coins: 100
+Power: ### ###     Level-Medium
+Skill: ###         Level-Beginner
+---------------------------
+--------Player Info--------
+Name: Mars
+Number of match played: 0
+Power: ### ###     Level-Medium
+Skill: ###         Level-Beginner
+---------------------------
+Your power level has been upgraded to 1
 ```
 
 #### Additional Notes
-- The `help` command is  available at all stages of the penalty shootout phase.
-- The command is case-sensitive, so `help` is considered a valid command, but `Help` and `HELP` are considered invalid inputs.
+
+- The `upgrade` command is only available during the penalty shootout phase.
+- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
+- The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
+### Difficulty Setting Command: `easy`, `medium` or `hard`
+
+#### Overview
+
+The game offers three difficulty settings to cater to a wide range of player skills and preferences: `easy`, `medium`, and `hard`. These settings adjust the game's challenge level, affecting aspects such as AI behavior and enemy strength, allowing for a personalized gameplay experience.
+
+#### Usage
+
+To set the game's difficulty, enter one of the following commands (at the main menu or during gameplay):
+
+- For a more relaxed gameplay experience:
+
+  `easy`
+
+- For a balanced challenge:
+
+  `medium`
+
+- For the most challenging experience:
+
+  `hard`
+
+#### Expected Outcome
+
+When the user inputs `easy`:
+
+```
+Difficulty level set to EASY
+```
+
+When the user inputs `medium`:
+
+```
+Difficulty level set to MEDIUM
+```
+
+When the user inputs `hard`:
+
+```
+Difficulty level set to HARD
+```
+
+#### Additional Notes
+
+- The `upgrade` command is only available during the penalty shootout phase.
+- Make sure to observe the AI's pattern to improve your chances of saving the penalty.
+- The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
+### Restarts a match after a match: `yes`
+When one match ends, you will be asked whether to have a new match or not. Type `yes` for a new match.
+
+Format: `yes`
+
+#### Does not restart a match after a match: `no`
+When one match ends, you will be asked whether to have a new match or not. Type `no` for not having a new match, and
+exits the game directly.
+
+Format: `no`
+
+### Post Game Decision Command: `yes` or `no`
+
+#### Overview
+
+At the conclusion of a match, players are given the choice to either start a new game or exit. This decision is facilitated through the use of simple `yes` or `no` commands, ensuring a smooth transition based on the player's preference.
+
+#### Usage 
+
+Once a game ends, you will be prompted with the question "Want a new match?". Respond with one of the following commands based on your decision:
+
+- To start a new game:
+
+  `yes`
+
+- To exit:
+
+  `no`
+
+#### Expected Outcome
+
+If the user inputs `yes` (user just finished their first game in this example):
+
+```
+Match 2
+Round 1
+_______________________________
+|    0    |    1    |    2    |
+|         |         |         |
+|_________|_________|_________|
+|         |         |         |
+|    3    |    4    |    5    |
+|         |         |         |
+
+Select direction to shoot : [0-5]
+```
+
+If the user inputs `no`:
+
+```
+------------------------------------------------------------
+                See you next time on court!
+------------------------------------------------------------
+```
 
 ## FAQ
 
