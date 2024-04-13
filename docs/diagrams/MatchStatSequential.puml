@@ -8,12 +8,25 @@ participant CommandList << class >>
  -> CommandList: executeShoot("1")
 activate CommandList
 
+participant "curPlayer:Player" as Player
+CommandList -> Player: shootDirectionAdjust(1)
+activate Player
+return adjustedDirection
+
 participant Ai << class >>
 CommandList -> Ai: getAiDirection()
 activate Ai
-return direction
+return aiDir
 
-CommandList -> CommandList: goalCheck(1, direction)
+CommandList -> Player: aiDirectionAdjust(aiDir)
+activate Player
+return adjustedAiDirection
+
+CommandList -> Player: rangeAdjust()
+activate Player
+return adjustedRange
+
+CommandList -> CommandList: goalCheck(adjustedAiDirection, adjustedDirection, adjustedRange)
 activate CommandList
 return isScoreGoal
 
@@ -26,12 +39,9 @@ return
 
 return
 
-participant Formatter << class >>
-CommandList -> Formatter: printGoalAfterShot(isScoreGoal)
-activate Formatter
-Formatter -> Formatter: showScore()
-activate Formatter
-return
+
+CommandList -> Player: printGoalAfterShoot(isScoreGoal, adjustedDirection)
+activate Player
 
 return
 
