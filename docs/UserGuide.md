@@ -308,9 +308,10 @@ The game's difficulty setting also affects the shoot command's effectiveness. Yo
 If the goal is not scored:
 
 ```
-Shoot: [-]
-Save: [-]
-Range: [-]
+----AFTER SHOT ANALYSIS----
+Your shoot aims at: [-]
+Goalkeeper's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -325,9 +326,10 @@ no goal :((((
 If the goal is scored as a beginner player (direction is 0 in this example):
 
 ```
-Shoot: [-]
-Save: [-]
-Range: [-]
+----AFTER SHOT ANALYSIS----
+Your shoot aims at: [-]
+Goalkeeper's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -341,9 +343,10 @@ _______________________________
 If the goal is scored as a medium player (direction is 4 in this example):
 
 ```
-Shoot: [-]
-Save: [-]
-Range: [-]
+----AFTER SHOT ANALYSIS----
+Your shoot aims at: [-]
+Goalkeeper's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -356,12 +359,13 @@ _______________________________
 
 ```
 
-If the goal is scored as an expert player (direction is 6 in this example):
+If the goal is scored as an expert player (direction is 6 in this example)
 
 ```
-Shoot: [-]
-Save: [-]
-Range: [-]
+----AFTER SHOT ANALYSIS----
+Your shoot aims at: [-]
+Goalkeeper's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -372,16 +376,16 @@ _______________________________
 |    6    |    7    |  *   *  |
 ```
 
-If the input is above the maximum input allowed for the current expertise level, the game will play for you (beginner inputs 5 and goal is not scored in this example):
+If the input is above the maximum input allowed for the current expertise level, your shot will be considered missed the target (beginner inputs 5 and goal is not scored in this example):
 
 ```
-Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!
-Practice makes perfect. Let's aim for those goals together!
-Shoot: [-]
-Save: [-]
-Range: [-]
-10 coins added to your balance. Current balance: [-]
-Performance Coins earned: 10
+----------WARNING----------
+Oops! Remember, beginners should start with directions 0, 1, and 2. 
+You failed to shot on target.
+Practice makes perfect. Keep playing to unlock more kicks!
+---------------------------
+0 coins added to your balance. Current balance: [-]
+Performance Coins earned: 0
 _______________________________
 \         \         \         \
  \         \         \         \
@@ -389,12 +393,13 @@ _______________________________
    \         \         \         \
     \         \         \         \
 no goal :((((
-```
-
-If the input is above 8, an error will be returned:
 
 ```
- SyntaxAnalyser: SHOOT expects the 1st argument to be ^[0-8]$
+
+If the input direction is above 8, an error will be returned:
+
+```
+     SyntaxAnalyser: SHOOT expects the 1st argument to be integer between 0 to 8
 	 Ui: Bad Token Error, please check your arguments
 	 Ui: Command could not be executed 
 	 Try again
