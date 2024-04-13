@@ -82,12 +82,15 @@ public class BeginnerSkillPlayer extends Player {
     @Override
     public float shootDirectionAdjust(int dir){
         if (dir>2){
-            System.out.println("Oops! Remember, beginners start with directions 0, 1, and 2. But keep playing to unlock more kicks!");
-            System.out.println("Practice makes perfect. Let's aim for those goals together!");
-            dir = dir%3;
+            System.out.println("----------WARNING----------");
+            System.out.println("Oops! Remember, beginners should start with directions 0, 1, and 2. ");
+            System.out.println("You failed to shot on target.");
+            System.out.println("Practice makes perfect. Keep playing to unlock more kicks!");
+            System.out.println("---------------------------");
+            return this.shootDirectionFormula(-1,-1,-1,this.power);
         }
-        int left=(dir-1==0)?0:dir-1;
-        int right=(dir+1==2)?2:dir+1;
+        int left= Math.max(dir - 1, 0);
+        int right= Math.min(dir + 1, 2);
         return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
@@ -120,3 +123,4 @@ public class BeginnerSkillPlayer extends Player {
         return range;
     }
 }
+//@@author

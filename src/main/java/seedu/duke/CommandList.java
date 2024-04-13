@@ -21,10 +21,11 @@ public enum CommandList {
     }
 
     public static boolean goalCheck(float userInput, float aiInput, float range) {
-        assert userInput >= 0 && userInput <= 8 :
-                "Illegal userInput generated!";
         assert aiInput >= 0 && aiInput <= 8 :
                 "Illegal aiInput generated!";
+        if ((int)userInput==-1){
+            return false;
+        }
         return ((userInput>(aiInput+range))||userInput<(aiInput-range));
     }
 
@@ -43,7 +44,7 @@ public enum CommandList {
         float adjustedRange = PlayerList.playerList.get(Ui.curPlayer).rangeAdjust();
 
         testForShoot(adjustedDirection, adjustedAiDirection, adjustedRange);
-        boolean isScoreGoal = goalCheck(adjustedAiDirection, adjustedDirection, adjustedRange);
+        boolean isScoreGoal = goalCheck(adjustedDirection, adjustedAiDirection, adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
         PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isScoreGoal);
@@ -51,9 +52,13 @@ public enum CommandList {
     }
 
     private static void testForShoot(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
-        System.out.println("Shoot: " + adjustedDirection);
-        System.out.println("Save: " + adjustedAiDirection);
-        System.out.println("Range: " + adjustedRange);
+        int missedShot=-1;
+        if ((int)adjustedDirection!=missedShot){
+            System.out.println("----AFTER SHOT ANALYSIS----");
+            System.out.printf("Your shoot aims at: %.2f\n",adjustedDirection);
+            System.out.printf("Goalkeeper's cover range: %.2f\n",adjustedRange);
+            System.out.println("---------------------------");
+        }
     }
 
     public static void executeSetPower(String[] level){

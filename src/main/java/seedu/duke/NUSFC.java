@@ -2,6 +2,7 @@ package seedu.duke;
 
 import seedu.duke.exception.ProcessInputException;
 import seedu.duke.player.BeginnerSkillPlayer;
+import seedu.duke.player.MediumSkillPlayer;
 import seedu.duke.player.Player;
 import seedu.duke.saver.BeginnerSkillSaver;
 import seedu.duke.saver.Saver;
