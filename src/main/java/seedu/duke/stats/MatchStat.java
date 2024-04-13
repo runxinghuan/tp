@@ -1,7 +1,4 @@
 package seedu.duke.stats;
-
-import seedu.duke.ui.Ui;
-
 //@@author runxinghuan
 
 /**
@@ -50,20 +47,25 @@ public class MatchStat {
         matchCount += 1;
         isMatchEnd = false;
         isPlayerShootTurn = true;
+        isNewMatch = true;
     }
 
     /**
      * Decides whether a match ends based on best-of-five kicks and sudden death rules.
      */
     static void decideMatchEnd() {
-        int roundsLeftForOneSide = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
-        if (!isCompleteRound()) {
-            roundsLeftForOneSide += 1;
+        int roundsLeftForPlayer = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
+        int roundsLeftForAI = (MAX_ROUND_FOR_NOT_A_DRAW - roundCount) / NUMBER_OF_TEAMS;
+        if (isPlayerShootTurn && !isCompleteRound()) {
+            roundsLeftForPlayer += 1;
+        }
+        if (!isPlayerShootTurn && !isCompleteRound()) {
+            roundsLeftForAI += 1;
         }
 
         if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore > aiScore) {
             int scoreDifference = playerScore - aiScore;
-            if (scoreDifference > roundsLeftForOneSide) {
+            if (scoreDifference > roundsLeftForAI) {
                 isMatchEnd = true;
                 isPlayerWin = true;
             }
@@ -71,7 +73,7 @@ public class MatchStat {
 
         if (roundCount < MAX_ROUND_FOR_NOT_A_DRAW && playerScore < aiScore) {
             int scoreDifference = aiScore - playerScore;
-            if (scoreDifference > roundsLeftForOneSide) {
+            if (scoreDifference > roundsLeftForPlayer) {
                 isMatchEnd = true;
                 isPlayerWin = false;
             }
