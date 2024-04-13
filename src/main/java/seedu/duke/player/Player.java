@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+//@@author HenryGan138
 public class Player {
     public String name;
     public int matchCount;
@@ -91,6 +92,8 @@ public class Player {
     public float rangeAdjust() {
         return 0;
     }
+
+    //@@author
 
     // New method to create a custom team
     public static List<Player> createCustomTeam() {

@@ -136,8 +136,8 @@ public class Ui {
             difficultyLevel = DifficultyLevel.HARD;
             System.out.println("Difficulty level set to HARD");
             break;
-        case UPGRADE:
-            CommandList.executeUpgrade(readArgumentTokens);
+        case SETPOWER:
+            CommandList.executeSetPower(readArgumentTokens);
             CommandList.executeSaverUpgrade(readArgumentTokens);
             break;
         case SAVE:

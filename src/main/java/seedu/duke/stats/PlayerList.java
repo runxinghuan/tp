@@ -37,3 +37,4 @@ public class PlayerList {
         playerList.get(Ui.curPlayer).printSelfInfo();
     }
 }
+//author
