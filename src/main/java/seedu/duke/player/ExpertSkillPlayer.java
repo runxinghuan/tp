@@ -22,15 +22,16 @@ public class ExpertSkillPlayer extends Player {
 
     @Override
     protected void printPower() {
+        int powerLevelTotal = 3;
         System.out.print("Power:");
-        for (int i=0; i<3;i++){
-            if (i<power){
+        for (int i = 0; i < powerLevelTotal; i++){
+            if (i < power){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
             }
         }
-        if (power==1){
+        if (power == 1){
             System.out.println(" Level-Beginner");
         }else if (power == 2){
             System.out.println(" Level-Medium");
@@ -41,9 +42,10 @@ public class ExpertSkillPlayer extends Player {
 
     @Override
     protected void printSkill(){
+        int skillLevelTotal = 3;
         System.out.print("Skill:");
-        for (int i=0; i<3;i++){
-            if (i<skill){
+        for (int i = 0; i < skillLevelTotal; i++){
+            if (i < skill){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
@@ -82,8 +84,10 @@ public class ExpertSkillPlayer extends Player {
 
     @Override
     public float shootDirectionAdjust(int dir){
-        int left= Math.max(dir - 1, 0);
-        int right= Math.max(dir + 1, 8);
+        int expertMinShoot = 0;
+        int expertMaxShoot = 8;
+        int left= Math.max(dir - 1, expertMinShoot);
+        int right= Math.max(dir + 1, expertMaxShoot);
         return this.shootDirectionFormula(left,right,dir,this.power);
     }
 

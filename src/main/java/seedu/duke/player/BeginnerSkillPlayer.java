@@ -23,15 +23,16 @@ public class BeginnerSkillPlayer extends Player {
 
     @Override
     protected void printPower(){
+        int powerLevelTotal = 3;
         System.out.print("Power:");
-        for (int i=0; i<3;i++){
-            if (i<power){
+        for (int i = 0; i < powerLevelTotal; i++){
+            if (i < power){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
             }
         }
-        if (power==1){
+        if (power == 1){
             System.out.println(" Level-Beginner");
         }else if (power == 2){
             System.out.println(" Level-Medium");
@@ -42,9 +43,10 @@ public class BeginnerSkillPlayer extends Player {
 
     @Override
     protected void printSkill(){
+        int skillLevelTotal = 3;
         System.out.print("Skill:");
-        for (int i=0; i<3;i++){
-            if (i<skill){
+        for (int i = 0; i < skillLevelTotal; i++){
+            if (i < skill){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
@@ -81,16 +83,19 @@ public class BeginnerSkillPlayer extends Player {
 
     @Override
     public float shootDirectionAdjust(int dir){
-        if (dir>2){
+        int beginnerMinShoot = 0;
+        int beginnerMaxShoot = 2;
+        if (dir> beginnerMaxShoot){
             System.out.println("----------WARNING----------");
             System.out.println("Oops! Remember, beginners should start with directions 0, 1, and 2. ");
             System.out.println("You failed to shot on target.");
             System.out.println("Practice makes perfect. Keep playing to unlock more kicks!");
             System.out.println("---------------------------");
-            return this.shootDirectionFormula(-1,-1,-1,this.power);
+            int missTargetVariable = -1;
+            return this.shootDirectionFormula(missTargetVariable, missTargetVariable, missTargetVariable,this.power);
         }
-        int left= Math.max(dir - 1, 0);
-        int right= Math.min(dir + 1, 2);
+        int left= Math.max(dir - 1, beginnerMinShoot);
+        int right= Math.min(dir + 1, beginnerMaxShoot);
         return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
