@@ -1,27 +1,25 @@
-package seedu.duke;
+package seedu.duke.cointoss;
 
 //@@author runxinghuan
+import seedu.duke.Formatter;
 import seedu.duke.stats.MatchStat;
 
-import java.util.Random;
+import static seedu.duke.cointoss.CoinResult.UPRIGHT;
 
 /**
  * Coin toss before each match.
  */
 public class CoinToss {
-    public static final int HEAD = 1;
-    public static final int TAIL = 2;
-    public static final int UPRIGHT = 3;
-
     /**
      * Displays the coin result.
      * Then displays message according to the correctness of the guess.
      *
      * @param guess guess made by the user
      */
-    public static void executeCoinToss(int guess) {
-        int coinResult;
-        coinResult = tossACoin();
+    public static void executeCoinToss(CoinResult guess) {
+        Coin coin = new Coin();
+        CoinResult coinResult;
+        coinResult = coin.getResult();
         displayResult(coinResult);
 
         if (coinResult == UPRIGHT) {
@@ -37,7 +35,7 @@ public class CoinToss {
      * @param guess guess made by the user
      * @param coinResult result of the coin toss
      */
-    static void processGuessResult(int guess, int coinResult) {
+    static void processGuessResult(CoinResult guess, CoinResult coinResult) {
         if (guess == coinResult) {
             Formatter.printCorrectGuess();
             MatchStat.setForShootFirst();
@@ -53,7 +51,7 @@ public class CoinToss {
      *
      * @param coinResult result of the coin toss
      */
-    static void displayResult(int coinResult) {
+    static void displayResult(CoinResult coinResult) {
         switch (coinResult) {
         case HEAD:
             Formatter.printCoinHead();
@@ -67,25 +65,5 @@ public class CoinToss {
         default:
             break;
         }
-    }
-
-    /**
-     * Produces the result of a coin toss.
-     * There are three outcomes. The probability of each outcome is equal.
-     *
-     * @return result of a coin toss
-     */
-    public static int tossACoin() {
-        Random rand = new Random();
-        int result;
-        int coinResult = rand.nextInt(6);
-        if (coinResult <= 1) {
-            result = HEAD;
-        } else if (coinResult <= 3) {
-            result = TAIL;
-        } else {
-            result = UPRIGHT; //same probability for all three outcomes
-        }
-        return result;
     }
 }
