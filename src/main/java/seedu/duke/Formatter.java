@@ -704,7 +704,7 @@ public class Formatter {
         System.out.println("    If it says 'Select direction to save :'");
         System.out.println("        save[direction] - Choose a direction to save.");
         printWrapper("-");
-        System.out.println("    upgrade[power level] - Upgrade the power level of your player.");
+        System.out.println("    setpower [power level] - Set the power level of your player.");
         System.out.println("        0 - Low power level.");
         System.out.println("        1 - Medium power level.");
         System.out.println("        2 - High power level.");

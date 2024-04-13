@@ -7,7 +7,7 @@ import seedu.duke.ui.Ui;
 
 public enum CommandList {
 
-    BYE, SHOOT, PENALTY, YES, NO, UPGRADE, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL, HELP, CUSTOMIZATION;
+    BYE, SHOOT, PENALTY, YES, NO, SETPOWER, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL, HELP, CUSTOMIZATION;
 
     //insert new user command name here
     ;
@@ -32,7 +32,8 @@ public enum CommandList {
         Ai ai = new Ai(difficultyLevel);
         Penalty.executePenalty(ai);
     }
-  
+
+    //@@author HenryGan138
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
@@ -55,12 +56,13 @@ public enum CommandList {
         System.out.println("Range: " + adjustedRange);
     }
 
-    public static void executeUpgrade(String[] level){
+    public static void executeSetPower(String[] level){
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
         PlayerList.playerList.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
         PlayerList.playerList.get(Ui.curPlayer).printSelfInfo();
     }
+    //@@author
 
     //@@author ymirmeddeb
     /**

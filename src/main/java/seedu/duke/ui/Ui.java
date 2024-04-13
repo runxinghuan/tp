@@ -9,7 +9,6 @@ import seedu.duke.exception.BadTokenException;
 import seedu.duke.exception.IllegalCommandException;
 
 import java.util.Scanner;
-import java.util.logging.Level;
 
 public class Ui {
     public static final Scanner IN = new Scanner(System.in);
@@ -131,8 +130,8 @@ public class Ui {
             difficultyLevel = DifficultyLevel.HARD;
             System.out.println("Difficulty level set to HARD");
             break;
-        case UPGRADE:
-            CommandList.executeUpgrade(readArgumentTokens);
+        case SETPOWER:
+            CommandList.executeSetPower(readArgumentTokens);
             CommandList.executeSaverUpgrade(readArgumentTokens);
             break;
         case SAVE:
