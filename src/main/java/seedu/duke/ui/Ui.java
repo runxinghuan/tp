@@ -65,43 +65,13 @@ public class Ui {
 
         //@@author runxinghuan
         if (MatchStat.getIsNewMatch()) {
-            switch (selectedCommand) {
-            case HEAD:
-                CoinToss.executeCoinToss(CoinResult.HEAD);
-                return;
-            case TAIL:
-                CoinToss.executeCoinToss(CoinResult.TAIL);
-                return;
-            case BYE:
-                CommandList.executeBye();
-                return;
-            case HELP:
-                CommandList.executeHelpAtStart();
-                return;
-            default:
-                Formatter.printErrorUnknown();
-                return;
-            }
+            executeBeforeMatch(selectedCommand);
+            return;
         }
 
         if (MatchStat.getIsMatchEnd()) {
-            switch (selectedCommand) {
-            case YES:
-                MatchStat.updateForNewMatch();
-                return;
-            case NO:
-                CommandList.executeBye();
-                return;
-            case BYE:
-                CommandList.executeBye();
-                return;
-            case HELP:
-                CommandList.executeHelpAfterMatch();
-                return;
-            default:
-                Formatter.printErrorUnknown();
-                return;
-            }
+            executeAfterMatch(selectedCommand);
+            return;
         }
 
         if (MatchStat.getIsPlayerShootTurn() && selectedCommand == CommandList.SAVE) {
@@ -113,7 +83,15 @@ public class Ui {
             Formatter.printErrorUnknown();
             return;
         }
+        //@@author hwc0419
 
+        executeMainMatch(selectedCommand, readArgumentTokens);
+    }
+
+    /**
+     * Executes the command in a match.
+     */
+    private static void executeMainMatch(CommandList selectedCommand, String[] readArgumentTokens) {
         switch (selectedCommand) {
         case BYE:
             CommandList.executeBye();
@@ -161,5 +139,51 @@ public class Ui {
 
     public static boolean getIsRunning() {
         return isRunning;
+    }
+
+    //@@author runxinghuan
+
+    /**
+     * Executes the command when a match ends.
+     */
+    private static void executeAfterMatch(CommandList selectedCommand) {
+        switch (selectedCommand) {
+        case YES:
+            MatchStat.updateForNewMatch();
+            break;
+        case NO:
+            CommandList.executeBye();
+            break;
+        case BYE:
+            CommandList.executeBye();
+            break;
+        case HELP:
+            CommandList.executeHelpAfterMatch();
+            break;
+        default:
+            Formatter.printErrorUnknown();
+        }
+    }
+
+    /**
+     * Executes the command before a match starts.
+     */
+    private static void executeBeforeMatch(CommandList selectedCommand) {
+        switch (selectedCommand) {
+        case HEAD:
+            CoinToss.executeCoinToss(CoinResult.HEAD);
+            break;
+        case TAIL:
+            CoinToss.executeCoinToss(CoinResult.TAIL);
+            break;
+        case BYE:
+            CommandList.executeBye();
+            break;
+        case HELP:
+            CommandList.executeHelpAtStart();
+            break;
+        default:
+            Formatter.printErrorUnknown();
+        }
     }
 }
