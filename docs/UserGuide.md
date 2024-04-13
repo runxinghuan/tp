@@ -64,7 +64,7 @@ Understanding these attributes is crucial for mastering the game and enhancing y
 #### Power: Your Strength on the Field
 
 - Reflects the might behind each shot. Increasing your power level enhances the accuracy of your shots, mirroring the intensive training footballers undergo to perfect their strike force.
-- **Customize Your Power (0-2)**: Choose your power level freely at the beginning of each match, allowing you to strategize your gameplay based on your preferred playing style.
+- **Customize Your Power (0-2)**: You can set your player's power freely during the middle of the match, allowing you to strategize your gameplay based on your preferred playing style.
 
 By incorporating these attributes into our game, we aim to provide an immersive experience that closely aligns with the real challenges and achievements of football. As you progress, you’ll find that the journey from a beginner to an expert is not just about winning matches but about honing your skills and strategy to truly master the art of the game.
 
@@ -80,7 +80,7 @@ penalty at direction 0 shown in the goal.\
 Some example commands you can try:
 * `shoot 0`: Shoot a penalty at direction 0 shown in the goal.
 * `save 0`: Make a save at direction 0 shown in the goal.
-* `upgrade 2`: Upgrade your player to the expert power level.
+* `setpower 2`: Set your player to the expert power level.
 * `yes`: Restarts a match after a match ends.
 * `no`: Does not restart a match after a match ends, and exits the game.
 * `bye`: Exits the game.  
@@ -163,7 +163,7 @@ Here are the commands available
     If it says 'Select direction to save :'
         save[direction] - Choose a direction to save.
 ------------------------------------------------------------
-    upgrade[power level] - Upgrade the power level of your player.
+    setpower[power level] - Set the power level of your player.
         0 - Low power level.
         1 - Medium power level.
         2 - High power level.
@@ -539,21 +539,21 @@ If the input is above 8, an error will be returned:
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
-### Set shooter's power: `upgrade LEVEL`
+### Set shooter's power: `setpower LEVEL`
 `LEVEL` refers to the power level the player possesses, which affects the quality of the shot. The higher the power level, the more accurate the shot will be.
 Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
-Format: `upgrade 2`
+Format: `setpower 2`
 
-### Updrade Command: `uprade`
-The upgrade command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
+### Updrade Command: `setpower`
+The setpower command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
 
 #### Usage
 
-To use the upgrade command, follow the syntax below:
+To use the setpower command, follow the syntax below:
 
-upgrade [power level]
+setpower [power level]
 
-[power level]: A numeric value indicating the desired power level to which you want to upgrade. Valid inputs are:
+[power level]: A numeric value indicating the desired power level to which you want to set to your player. Valid inputs are:
 
 - 0 - Low power level
 
@@ -563,7 +563,7 @@ upgrade [power level]
 
 #### Expected Outcome
 
-The user inputs `upgrade 1` in this example:
+The user inputs `setpower 1` in this example:
 
 ```
 --------Player Info--------
@@ -579,12 +579,12 @@ Number of match played: 0
 Power: ### ###     Level-Medium
 Skill: ###         Level-Beginner
 ---------------------------
-Your power level has been upgraded to 1
+Your power level has been set to 1
 ```
 
 #### Additional Notes
 
-- The `upgrade` command is only available during the penalty shootout phase.
+- The `setpower` command is only available during the penalty shootout phase.
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
