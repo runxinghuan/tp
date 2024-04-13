@@ -11,7 +11,7 @@ import seedu.duke.ui.Ui;
 
 import static seedu.duke.ui.Ui.curSaver;
 
-public class Duke {
+public class NUSFC {
 
 
     /**
