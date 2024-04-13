@@ -82,8 +82,8 @@ public class ExpertSkillPlayer extends Player {
 
     @Override
     public float shootDirectionAdjust(int dir){
-        int left=(dir-1==0)?0:dir-1;
-        int right=(dir+1==8)?8:dir+1;
+        int left= Math.max(dir - 1, 0);
+        int right= Math.max(dir + 1, 8);
         return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
@@ -116,3 +116,4 @@ public class ExpertSkillPlayer extends Player {
         return range;
     }
 }
+//@@author

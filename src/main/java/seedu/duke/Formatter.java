@@ -2,6 +2,8 @@ package seedu.duke;
 
 import seedu.duke.stats.MatchStat;
 
+import java.util.Objects;
+
 public class Formatter {
 
     /**
@@ -55,7 +57,7 @@ public class Formatter {
         System.out.println("|    0    |    1    |    2    |");
         System.out.println("|         |         |         |");
         System.out.println("|         |         |         |");
-        System.out.println("\nSelect direction to shoot : [0-2]");
+        System.out.println("\nSelect direction to shoot : ");
     }
 
     public static void printGoalBeforeShotforMedium() {
@@ -69,7 +71,7 @@ public class Formatter {
         System.out.println("|         |         |         |");
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|         |         |         |");
-        System.out.println("\nSelect direction to shoot : [0-5]");
+        System.out.println("\nSelect direction to shoot : ");
     }
 
     public static void printGoalBeforeShotforExpert() {
@@ -82,7 +84,7 @@ public class Formatter {
         System.out.println("|    3    |    4    |    5    |");
         System.out.println("|---------|---------|---------|");
         System.out.println("|    6    |    7    |    8    |");
-        System.out.println("\nSelect direction to shoot : [0-8]");
+        System.out.println("\nSelect direction to shoot : ");
     }
 
     public static void printGoalAfterShotBeginner(boolean goalScored, int direction) {
@@ -792,6 +794,12 @@ public class Formatter {
         default:
             rankingSuffix = "th";
             break;
+        }
+
+        if ((Objects.equals(commandName, "SHOOT"))||(Objects.equals(commandName, "save"))){
+            regex="integer between 0 to 8";
+        }else if (Objects.equals(commandName, "SETPOWER")){
+            regex="integer betwen 0 to 2";
         }
         System.out.printf("\t SyntaxAnalyser: %s expects the %d%s argument to be %s\n",
                 commandName, userRanking, rankingSuffix, regex);

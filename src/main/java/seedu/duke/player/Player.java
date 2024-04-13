@@ -74,20 +74,18 @@ public class Player {
 
     public float shootDirectionFormula(int left, int right, int dir, int power) {
         float prob = rand.nextFloat();
-        float skillFactor = 1.0f + (skill * 0.1f);
-    
+
         if (power == 1) {
             prob = prob / 2;
-            return (float) (left * prob + dir * 0.5 * skillFactor + right * (0.5 - prob));
+            return (float) (left * prob + dir * 0.5  + right * (0.5 - prob));
         } else if (power == 2) {
             prob = prob / 4;
-            return (float) (left * prob + dir * 0.75 * skillFactor + right * (0.25 - prob));
+            return (float) (left * prob + dir * 0.75  + right * (0.25 - prob));
         } else {
             prob = prob / 10;
-            return (float) (left * prob + dir * 0.9 * skillFactor + right * (0.1 - prob));
+            return (float) (left * prob + dir * 0.9  + right * (0.1 - prob));
         }
     }
-    
 
     public float rangeAdjust() {
         return 0;
