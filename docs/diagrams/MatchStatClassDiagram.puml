@@ -4,16 +4,17 @@
 !include Style.puml
 
 class MatchStat {
-- {static} matchCount: int
-- {static} roundCount: int
-- {static} playerScore: int
-- {static} aiScore: int
-- {static} isPlayerWin: boolean
-- {static} isMatchEnd: boolean
-- {static} isPlayerTurn: boolean
+~ {static} matchCount: int
+~ {static} roundCount: int
+~ {static} playerScore: int
+~ {static} aiScore: int
+~ {static} isPlayerWin: boolean
+~ {static} isMatchEnd: boolean
+~ {static} isPlayerTurn: boolean
+~ {static} isNewMatch: boolean
 + {static} updateStat(isGoal: boolean)
 + {static} updateForNewMatch()
-- {static} decideMatchEnd()
+~ {static} decideMatchEnd()
 }
 
 

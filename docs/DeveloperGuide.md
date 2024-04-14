@@ -1,9 +1,5 @@
 # Developer Guide
 
-## Acknowledgements
-
-{list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
-
 ## Class Structure
 
 ## Product scope
@@ -34,7 +30,7 @@
 
 {Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
-
+# Design of various features
 ## Real penalty shootout setting
 
 
@@ -57,10 +53,11 @@ additional rounds of one kick each are used until one team scores and the other 
 ### Design
 
 
-The procedure is facilitated by `MatchStat`. It records current round number, match number, player score, Ai score, 
-whether it's the player's turn to shoot, whether the match ends, and whether the player wins. 
+The procedure is facilitated by `MatchStat` class. It records current round number, match number, player score, Ai 
+score, whether it's the player's turn to shoot, whether the match ends, whether the player wins, and whether the match 
+is a new match (has not started shooting).
 
-The `updateStat(boolean isPlayer, boolean isGoal)` method converts the outcomes of player's commands into player score 
+The `updateStat(boolean isGoal)` method converts the outcomes of player's commands into player score 
 and Ai score after `penalty` or `save` commands. 
 
 The `decideMatchEnd()` method decides whether a match ends based on the rules mentioned above. 
@@ -84,25 +81,67 @@ example, `shoot 1` is entered by the player.
 How the `MatchStat` class works:
 1. After parsing of the input, `executeShoot("1")` in the `CommandList` class is called.
 
-2. Then `getAiDirection()` in the `Ai` class is called. It returns `direction` of type `int`, which represents the 
+2. Then `getAiDirection()` in the `Ai` class is called. It returns `aiDir` of type `int`, which represents the 
 direction at which Ai wants to save the penalty.
 
-3. After that, `CommandList` has a self invocation to call its `goalCheck(1, direction)` method. This method decides 
-whether the shoot scores or not, and returns `isScoreGoal` of type `boolean`.
+3. Then methods 2, 6 and 8 will adjust the shoot direction and AI direction based on random numbers generated. They try 
+to add randomness into the game.
 
-4. `isScoreGoal` is then passed to the `updateStat(isScoreGoal)` method in the `MatchStat` class. The method changes 
-`playerScore` and `aiScore` (both stored in the same class) based on `isScoreGoal` read and `isPlayerTurn` stored in the
-same class. `MatchStat` then has a self invocation to call its `decideMatchEnd()` method.
+4. After that, `CommandList` has a self invocation to call its 
+`goalCheck(adjustedAiDirection, adjustedDirection, adjustedRange)` method. This method decides whether the shoot scores 
+or not, and returns `isScoreGoal` of type `boolean`.
 
-5. `decideMatchEnd()` method reads `roundCount`, `playerScore` and `aiScore` in the same class, and decides whether a 
-match ends based on the two rules mentioned above. It then changes `isMatchEnd` and `isPlayerWin` in the same class 
+5. `isScoreGoal` is then passed to the `updateStat(isScoreGoal)` method in the `MatchStat` class. The method changes 
+`playerScore` and `aiScore` (both stored in `MatchStat` class) based on `isScoreGoal` read and inverts 
+`isPlayerShootTurn` stored in `MatchStat` class to show now it's AI's turn to shoot. `MatchStat` then has a self 
+invocation to call its `decideMatchEnd()` method.
+
+6. `decideMatchEnd()` method reads `roundCount`, `playerScore` and `aiScore` in `MatchStat` class, and decides whether a 
+match ends based on the two rules mentioned above. It then changes `isMatchEnd` and `isPlayerWin` in `MatchStat` class 
 accordingly.
 
-6. After step 5, all the stats that need to be changed after `shoot` command have been updated. Hence, 
+7. After step 5, all the stats that need to be changed after `shoot` command have been updated. Hence, 
 `updateStat(isScoreGoal)` method returns. However, messages need to be printed out for the player to see that his 
-command finishes executing. Thus, the `printGoalAfterShot(isScoreGoal)` method in the `Formatter` class is called. It 
-prints out all the necessary messages for the user.
+command finishes executing. Thus, the `printGoalAfterShot(isScoreGoal, adjustedDirection)` method in the `Player` class 
+is called. It prints out all the necessary messages for the user.
 
+
+## Coin Toss
+
+### Overview
+
+Coin tosses are used to decide which team shoots first in the penalty shoot out. If the player guesses the coin toss 
+correctly, he can shoot first. If not, AI shoots first. We included a coin toss feature in the game.
+
+### Design
+
+Here’s a class diagram of the `CoinToss` component:
+
+![CoinTossClassDiagram.png](diagrams%2FCoinTossClassDiagram.png)
+
+There are two classes `CoinToss`, `Coin` and one enumeration `CoinResult`. We define an enumeration type called 
+`CoinResult` to ensure that variables of type `CoinResult` will never be assigned an invalid value. The `CoinToss` class
+is responsible for executing coin tosses. The `Coin` class represents a coin used in the coin toss. It has a result, and
+can be tossed. Note that there is no association between `CoinToss` and `Coin`, because `CoinToss` does not store an 
+attribute of the `Coin` class. `CoinToss` only has a dependency on `Coin`, because there is only a transient interaction
+in the `executeCoinToss(guess: CoinResult)` method.
+
+The sequence diagram below illustrates the interactions within the `CoinToss` component. For this example, `head` is 
+guessed by the player.
+
+![CoinTossSequential.png](diagrams%2FCoinTossSequential.png)
+
+How the `CoinToss` component works:
+1. After parsing of the input, `executeCoinToss(HEAD)` in the `CoinToss` class is called.
+2. Then a `coin` object of type `Coin` is created.
+3. In the constructor of Coin, `tossACoin()` method is executed, which assigns the `result` attribute of `coin` a value.
+This result represents the result of the coin toss.
+4. The `coin` object is created and returned to the `CoinToss` class. Then `getResult()` method of the `coin` object is 
+called. `coinResult` is returned to the `CoinToss` class.
+5. Then the `CoinToss` class calls `displayResult(coinResult)` to show player the result of the coin toss.
+6. The `CoinToss` class also calls `processGuessResult(guess, coinResult)` to decide whether the guess is correct. This 
+method also displays the correctness of the guess and updates the stats in MatchStat class accordingly.
+7. Finally, `executeCoinToss(HEAD)` returns.
 
 ## AI Class 
 

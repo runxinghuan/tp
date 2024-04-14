@@ -1,0 +1,25 @@
+@startuml
+'https://plantuml.com/class-diagram
+!include Style.puml
+
+class Coin {
+-result: CoinResult
++tossACoin(): CoinResult
+}
+
+CoinToss ..> "0..1"Coin
+class CoinToss {
++executeCoinToss(guess: CoinResult)
+~displayResult(coinResult: CoinResult)
+~processGuessResult(guess: CoinResult, coinResult: CoinResult)
+}
+
+
+class "<<enumeration>> \nCoinResult" as CoinResult
+enum CoinResult {
+HEAD
+TAIL
+UPRIGHT
+}
+
+@enduml
