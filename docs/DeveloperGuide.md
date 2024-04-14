@@ -488,6 +488,35 @@ An alternative to using an enum could be to use integer constants or string cons
 
 The `Ai` class depends on the `DifficultyLevel` enum to determine the range of directions for the AI. The `Penalty` class uses the `Ai` class to get the AI's direction and compares it with the user's input direction. The `CommandList` class provides the `goalCheck()` method to determine if a goal is scored based on the user's and AI's directions. The `Formatter` class is responsible for printing the goal result and error messages related to wrong argument types. The `Ui` class provides the user's input direction to the `Penalty` class.
 
+
+## Product scope
+### Target user profile
+
+Designed for football fans seeking a straightforward alternative to complex, high-spec "AAA" games like FIFA or PES. Ideal for those who prefer simplicity and quick gameplay over detailed simulation.
+
+### Value proposition
+
+NUSFC 24 offers football enthusiasts a refreshing break from the complexities of 3D games like FIFA or eFootball. Dive into the core thrill of football with our focus on the art of penalty shooting and goalkeeping, celebrating the pure joy and challenge of the game's decisive moments.
+
+## User Stories
+
+|Version| As a ... | I want to ...      | So that I can ...                   |
+|--------|----------|--------------------|-------------------------------------|
+|v1.0|user| see the goal       | know where to shoot my penalty      |
+|v2.0|user| level my player up | try different functions in the game |
+
+## Non-Functional Requirements
+
+{Give non-functional requirements}
+
+## Glossary
+
+* *glossary item* - Definition
+
+## Instructions for manual testing
+
+{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+
 ## Future Enhancements
 
 1. **Adaptive AI Difficulty**: Implement an adaptive AI difficulty system where the AI's behavior changes based on the player's performance. This could involve adjusting the range of directions or introducing other challenges for the AI.
