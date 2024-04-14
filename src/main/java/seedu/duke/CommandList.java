@@ -35,6 +35,14 @@ public enum CommandList {
     }
 
     //@@author HenryGan138
+    /**
+     * Executes the shooting process based on the provided argument tokens indicating the direction of the shoot.
+     * This method processes the selected shooting direction, adjusts it based on player abilities, checks if the
+     * shoot results in a goal, and updates various game statistics and player status accordingly.
+     *
+     * @param readArgumentTokens An array of strings representing command-line arguments.
+     *                           The first token is expected to be the shooting direction as a string, which should be convertible to an integer.
+     */
     public static void executeShoot(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
@@ -43,7 +51,7 @@ public enum CommandList {
         float adjustedAiDirection = PlayerList.playerList.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = PlayerList.playerList.get(Ui.curPlayer).rangeAdjust();
 
-        afterShootAnalysis(adjustedDirection, adjustedRange);
+        afterShootAnalysis(adjustedDirection);
         boolean isScoreGoal = goalCheck(adjustedDirection, adjustedAiDirection, adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
@@ -51,16 +59,29 @@ public enum CommandList {
         PlayerList.playerList.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
     }
 
-    private static void afterShootAnalysis(float adjustedDirection, float adjustedRange) {
+    /**
+     * Performs post-shoot analysis, printing the result of the shoot if it did not miss the target.
+     * This method is utilized internally by the {@code executeShoot} method.
+     *
+     * @param adjustedDirection The adjusted shooting direction calculated based on player skills and conditions.
+     */
+    private static void afterShootAnalysis(float adjustedDirection) {
         int missedShot=-1;
         if ((int)adjustedDirection!=missedShot){
             System.out.println("----AFTER SHOT ANALYSIS----");
             System.out.printf("Your shoot aims at: %.2f\n",adjustedDirection);
-            System.out.printf("Goalkeeper's cover range: %.2f\n",adjustedRange);
             System.out.println("---------------------------");
         }
     }
 
+    /**
+     * Sets the power level of the current player based on the specified level.
+     * This method reads the power level from the input, parses it to an integer, and applies it to the current player.
+     * After upgrading the player's power, it also prints the player's information to display the new state.
+     *
+     * @param level An array of strings where the first element should be the power level as a string.
+     *              This string should be convertible to an integer that corresponds to a valid power level.
+     */
     public static void executeSetPower(String[] level){
         String upgradeLevel = level[0];
         int upgradeLevelIndex = Integer.parseInt(upgradeLevel);
