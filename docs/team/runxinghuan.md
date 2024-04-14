@@ -29,6 +29,7 @@ penalty shoot-out for football only. It is written in Java, and has about 3 kLoC
    - Created all the necessary labels and milestones in the issue tracker
    - Managed releases `v1.0` and `v2.0` on GitHub (converted v2.0 UG to pdf)
    - Updated the "Introduction" and "Quick Start" parts of UG [#88](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/88)
+   - Updated the "Instructions for manual testing" part of DG
    - Created `Style.puml` file which corrects the style of UML diagrams added
   [#164](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/164)
    - Edited 'gradle.yml' to remove text ui test [#61](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/61)
