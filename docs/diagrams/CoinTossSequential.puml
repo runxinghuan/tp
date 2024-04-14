@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+!include Style.puml
+autonumber
+
+participant CoinToss << class >>
+-> CoinToss: executeCoinToss(HEAD)
+activate CoinToss
+
+participant "coin:Coin" as Coin
+create Coin
+CoinToss -> Coin: Coin()
+activate Coin
+
+Coin -> Coin: tossACoin()
+activate Coin
+return result
+return coin
+
+CoinToss -> Coin: getResult()
+activate Coin
+return coinResult
+destroy Coin
+
+CoinToss -> CoinToss: displayResult(coinResult)
+activate CoinToss
+return
+
+CoinToss -> CoinToss: processGuessResult(HEAD, coinResult)
+activate CoinToss
+return
+
+return
+@enduml

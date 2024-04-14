@@ -106,6 +106,43 @@ command finishes executing. Thus, the `printGoalAfterShot(isScoreGoal, adjustedD
 is called. It prints out all the necessary messages for the user.
 
 
+## Coin Toss
+
+### Overview
+
+Coin tosses are used to decide which team shoots first in the penalty shoot out. If the player guesses the coin toss 
+correctly, he can shoot first. If not, AI shoots first. We included a coin toss feature in the game.
+
+### Design
+
+Here’s a class diagram of the `CoinToss` component:
+
+![CoinTossClassDiagram.png](diagrams%2FCoinTossClassDiagram.png)
+
+There are two classes `CoinToss`, `Coin` and one enumeration `CoinResult`. We define an enumeration type called 
+`CoinResult` to ensure that variables of type `CoinResult` will never be assigned an invalid value. The `CoinToss` class
+is responsible for executing coin tosses. The `Coin` class represents a coin used in the coin toss. It has a result, and
+can be tossed. Note that there is no association between `CoinToss` and `Coin`, because `CoinToss` does not store an 
+attribute of the `Coin` class. `CoinToss` only has a dependency on `Coin`, because there is only a transient interaction
+in the `executeCoinToss(guess: CoinResult)` method.
+
+The sequence diagram below illustrates the interactions within the `CoinToss` component. For this example, `head` is 
+guessed by the player.
+
+![CoinTossSequential.png](diagrams%2FCoinTossSequential.png)
+
+How the `CoinToss` component works:
+1. After parsing of the input, `executeCoinToss(HEAD)` in the `CoinToss` class is called.
+2. Then a `coin` object of type `Coin` is created.
+3. In the constructor of Coin, `tossACoin()` method is executed, which assigns the `result` attribute of `coin` a value.
+This result represents the result of the coin toss.
+4. The `coin` object is created and returned to the `CoinToss` class. Then `getResult()` method of the `coin` object is 
+called. `coinResult` is returned to the `CoinToss` class.
+5. Then the `CoinToss` class calls `displayResult(coinResult)` to show player the result of the coin toss.
+6. The `CoinToss` class also calls `processGuessResult(guess, coinResult)` to decide whether the guess is correct. This 
+method also displays the correctness of the guess and updates the stats in MatchStat class accordingly.
+7. Finally, `executeCoinToss(HEAD)` returns.
+
 ## AI Class 
 
 ### Overview
