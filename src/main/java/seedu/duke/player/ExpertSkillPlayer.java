@@ -6,6 +6,7 @@ import seedu.duke.ui.Ui;
 //@@author HenryGan138
 
 public class ExpertSkillPlayer extends Player {
+    public static final int DIRECTIONINDEX_ADJUST_FOR_EXPERT = 4;
     private final int skill = 3;
 
     public ExpertSkillPlayer(String name, int matchCount) {
@@ -98,24 +99,24 @@ public class ExpertSkillPlayer extends Player {
 
     @Override
     public float aiDirectionAdjust(int aiDir) {
-        return (float) (4*aiDir);
+        return (float) (DIRECTIONINDEX_ADJUST_FOR_EXPERT *aiDir);
     }
 
     @Override
     public float rangeAdjust() {
-        float range=0;
+        float range;
         switch (Ui.difficultyLevel){
         case EASY:
-            range = (float)0.4;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_EXPERT*EASY_GK_COVERED_RANGE);
             break;
         case MEDIUM:
-            range = (float)0.8;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_EXPERT*MEDIUM_GK_COVERED_RANGE);
             break;
         case HARD:
-            range = (float)2;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_EXPERT*HARD_GK_COVERED_RANGE);
             break;
         default:
-            range =0;
+            return 0;
         }
         return range;
     }

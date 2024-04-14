@@ -12,10 +12,6 @@ public class BeginnerSkillPlayer extends Player {
         super(name, matchCount);
     }
 
-    public BeginnerSkillPlayer(String name, int matchCount, int power) {
-        super(name, matchCount, power);
-    }
-
     @Override
     public void printSelfInfo() {
         super.printSelfInfo();
@@ -111,19 +107,19 @@ public class BeginnerSkillPlayer extends Player {
 
     @Override
     public float rangeAdjust() {
-        float range=0;
+        float range;
         switch (Ui.difficultyLevel){
         case EASY:
-            range = (float)0.1;
+            range = (float)EASY_GK_COVERED_RANGE;
             break;
         case MEDIUM:
-            range = (float)0.2;
+            range = (float)MEDIUM_GK_COVERED_RANGE;
             break;
         case HARD:
-            range = (float)0.5;
+            range = (float)HARD_GK_COVERED_RANGE;
             break;
         default:
-            range =0;
+            return 0;
         }
         return range;
     }
