@@ -5,16 +5,16 @@ import seedu.duke.stats.MatchStat;
 import seedu.duke.stats.PlayerList;
 import seedu.duke.ui.Ui;
 
+//@@author hwc0419
 public enum CommandList {
 
     BYE, SHOOT, PENALTY, YES, NO, SETPOWER, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL, HELP, CUSTOMIZATION;
 
-    //insert new user command name here
-    ;
-
     /**
      * Exits the program
      */
+
+    //@@author
     public static void executeBye() {
         Formatter.printGoodbyeMsg();
         Ui.setIsRunning(false);
@@ -43,7 +43,7 @@ public enum CommandList {
         float adjustedAiDirection = PlayerList.playerList.get(Ui.curPlayer).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = PlayerList.playerList.get(Ui.curPlayer).rangeAdjust();
 
-        testForShoot(adjustedDirection, adjustedAiDirection, adjustedRange);
+        afterShootAnalysis(adjustedDirection, adjustedRange);
         boolean isScoreGoal = goalCheck(adjustedDirection, adjustedAiDirection, adjustedRange);
 
         MatchStat.updateStat(isScoreGoal);
@@ -51,7 +51,7 @@ public enum CommandList {
         PlayerList.playerList.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
     }
 
-    private static void testForShoot(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
+    private static void afterShootAnalysis(float adjustedDirection, float adjustedRange) {
         int missedShot=-1;
         if ((int)adjustedDirection!=missedShot){
             System.out.println("----AFTER SHOT ANALYSIS----");

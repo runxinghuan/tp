@@ -11,10 +11,8 @@ import seedu.duke.stats.PlayerList;
 import seedu.duke.ui.Ui;
 
 import static seedu.duke.ui.Ui.curSaver;
-
+//@@author hwc0419
 public class NUSFC {
-
-
     /**
      * Main entry-point for the java.duke.Duke application.
      */
@@ -28,6 +26,7 @@ public class NUSFC {
         //the PlayerThisRound will either return a new player, or a player existed in the PlayerList
 
         while (Ui.getIsRunning()) {
+            //@@author
             //@@author runxinghuan
             if (MatchStat.getIsNewMatch()) {
                 Formatter.printBeforeCoinToss();
@@ -44,11 +43,14 @@ public class NUSFC {
             //@@author
 
             if (MatchStat.getIsMatchEnd()) {
+                //@@author HenryGan138
                 PlayerList.skillUpgrade(Ui.curPlayer);
                 playerThisRound = PlayerList.playerList.get(Ui.curPlayer);
                 SaverList.saverSkillUpgrade(curSaver);
                 saverThisRound = SaverList.saverList.get(curSaver);
                 Formatter.printMatchResult();
+                //@@author
+                //@@author hwc0419
             } else if (MatchStat.getIsPlayerShootTurn()) {
                 playerThisRound.printGoalBeforeShoot();
             } else {
@@ -63,7 +65,7 @@ public class NUSFC {
             }
         }
     }
-
+    //@@author
     //Bruno is a sample player for demonstration, you can try any level player
     private static Player createNewPlayer() {
         PlayerList.playerList.add(new BeginnerSkillPlayer("Bruno", 0));

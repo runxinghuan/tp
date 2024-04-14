@@ -4,6 +4,7 @@ import seedu.duke.stats.MatchStat;
 
 import java.util.Objects;
 
+//@@author hwc0419
 public class Formatter {
 
     /**
@@ -41,6 +42,7 @@ public class Formatter {
         printWrapper("-");
     }
 
+    //@@author
     /**
      * Method to check if the shot resulted in a goal
      * If shoot direction matches save direction, it's not a goal and the returned value is false.
@@ -333,12 +335,11 @@ public class Formatter {
         showScore();
     }
 
+    //@@author runxinghuan
     private static void showScore() {
         System.out.println("Your score: " + MatchStat.getPlayerScore());
         System.out.println("Opponent's score: " + MatchStat.getAiScore());
     }
-
-    //@@author runxinghuan
 
     /**
      * Prints the result after a match ends.

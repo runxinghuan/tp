@@ -1,8 +1,8 @@
 package seedu.duke.stats;
+
 import seedu.duke.player.ExpertSkillPlayer;
 import seedu.duke.player.MediumSkillPlayer;
 import seedu.duke.player.Player;
-import seedu.duke.stats.MatchStat;
 import seedu.duke.ui.Ui;
 
 import java.util.ArrayList;

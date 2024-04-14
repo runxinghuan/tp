@@ -1,32 +1,61 @@
 @startuml skillUpgradeSequence
+'https://plantuml.com/sequence-diagram
 
-actor User
-entity "Ui" as UI
-control "PlayerList" as PL
-entity "Player" as P
-entity "MediumSkill" as MS
-entity "ExpertSkill" as ES
-database "MatchStat" as MSDB
+autonumber
+
+!include Style.puml
+
+participant User
+participant "UI" as UI
+participant "PlayerList" as PL << class >>
+participant "Player" as P
+participant "MediumSkillPlayer" as MS
+participant "ExpertSkillPlayer" as ES
+participant "MatchStat" as MSDB << class >>
 
 User -> PL : skillUpgrade(curPlayer)
+activate PL
+
 PL -> PL : get(curPlayer)
+
 PL -> P : matchCount = getMatchCount()
+activate P
+deactivate P
+
 PL -> P : getSkill()
+activate P
+deactivate P
 
 alt skill == 1
     PL -> MS : new(name, matchCount)
+    activate MS
     PL -> PL : add(MediumSkill)
+    deactivate MS
     PL -> UI : print("Skill updated to medium level.")
+    activate UI
+    deactivate UI
 else skill == 2 and matchCount >= 5
     PL -> ES : new(name, matchCount)
+    activate ES
     PL -> PL : add(ExpertSkill)
+    deactivate ES
     PL -> UI : print("Skill updated to expert level.")
+    activate UI
+    deactivate UI
 else
     PL -> UI : return
+    activate UI
+    deactivate UI
 end
 
 PL -> PL : curplayer = l1.size()-2
+
 PL -> PL : remove(0)
+
 PL -> P : printSelfInfo()
+activate P
+deactivate P
+
+deactivate PL
 
 @enduml

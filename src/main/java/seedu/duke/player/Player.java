@@ -1,8 +1,5 @@
 package seedu.duke.player;
 
-import seedu.duke.Formatter;
-import seedu.duke.ui.Ui;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,12 +7,15 @@ import java.util.Scanner;
 
 //@@author HenryGan138
 public class Player {
+    Random rand = new Random();
+    public static final double ONTARGET_PROBABILITY_FOR_BEGINNER = 0.5;
+    public static final double ONTARGET_PROBABILITY_FOR_MEDIUM = 0.75;
+    public static final double ONTARGET_PROBABILITY_FOR_EXPOERT = 0.9;
     public String name;
     public int matchCount;
     public int power;
     private int skill;
     public int coins;
-    Random rand = new Random();
 
     public Player(String name, int matchCount) {
         this.name = name;
@@ -77,13 +77,13 @@ public class Player {
 
         if (power == 1) {
             prob = prob / 2;
-            return (float) (left * prob + dir * 0.5  + right * (0.5 - prob));
+            return (float) (left * prob + dir * ONTARGET_PROBABILITY_FOR_BEGINNER + right * ((1 - ONTARGET_PROBABILITY_FOR_BEGINNER) - prob));
         } else if (power == 2) {
             prob = prob / 4;
-            return (float) (left * prob + dir * 0.75  + right * (0.25 - prob));
+            return (float) (left * prob + dir * ONTARGET_PROBABILITY_FOR_MEDIUM + right * ((1 - ONTARGET_PROBABILITY_FOR_MEDIUM) - prob));
         } else {
             prob = prob / 10;
-            return (float) (left * prob + dir * 0.9  + right * (0.1 - prob));
+            return (float) (left * prob + dir * ONTARGET_PROBABILITY_FOR_EXPOERT + right * ((1- ONTARGET_PROBABILITY_FOR_EXPOERT) - prob));
         }
     }
 
@@ -93,6 +93,7 @@ public class Player {
 
     //@@author
 
+    //@@author IncyBot
     // New method to create a custom team
     public static List<Player> createCustomTeam() {
         List<Player> customTeam = new ArrayList<>();
@@ -311,3 +312,4 @@ public class Player {
         }
     }
 }
+//@@author

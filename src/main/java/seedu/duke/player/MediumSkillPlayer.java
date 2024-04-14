@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class MediumSkillPlayer extends Player {
     private final int skill = 2;
-    Random rand = new Random();
     public MediumSkillPlayer(String name, int matchCount) {
         super(name, matchCount);
     }
@@ -24,15 +23,16 @@ public class MediumSkillPlayer extends Player {
 
     @Override
     protected void printPower() {
+        int powerLevelTotal = 3;
         System.out.print("Power:");
-        for (int i=0; i<3;i++){
-            if (i<power){
+        for (int i = 0; i < powerLevelTotal; i++){
+            if (i < power){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
             }
         }
-        if (power==1){
+        if (power == 1){
             System.out.println(" Level-Beginner");
         }else if (power == 2){
             System.out.println(" Level-Medium");
@@ -48,9 +48,10 @@ public class MediumSkillPlayer extends Player {
 
     @Override
     protected void printSkill(){
+        int skillLevelTotal = 3;
         System.out.print("Skill:");
-        for (int i=0; i<3;i++){
-            if (i<skill){
+        for (int i = 0; i < skillLevelTotal; i++){
+            if (i < skill){
                 System.out.print(" ###");
             }else{
                 System.out.print("    ");
@@ -76,21 +77,24 @@ public class MediumSkillPlayer extends Player {
     @Override
     public void upgradePower(int level) {
         assert level>=0&&level<=2;
-        this.power=level+1;
+        this.power = level + 1;
     }
 
     @Override
     public float shootDirectionAdjust(int dir){
-        if (dir>5){
+        int mediumMinShoot = 0;
+        int mediumMaxShoot = 5;
+        if (dir > mediumMaxShoot){
             System.out.println("----------WARNING----------");
             System.out.println("Oops! Remember, medium player could shoot with direction between 0 to 5.");
             System.out.println("You failed to shot on target.");
             System.out.println("Practice makes perfect. Keep playing to unlock more kicks!\"");
             System.out.println("---------------------------");
-            return this.shootDirectionFormula(-1,-1,-1,this.power);
+            int missTargetIndex = -1;
+            return this.shootDirectionFormula(missTargetIndex, missTargetIndex, missTargetIndex,this.power);
         }
-        int left= Math.max(dir - 1, 0);
-        int right= Math.min(dir + 1, 5);
+        int left= Math.max(dir - 1, mediumMinShoot);
+        int right= Math.min(dir + 1, mediumMaxShoot);
         return this.shootDirectionFormula(left,right,dir,this.power);
     }
 
