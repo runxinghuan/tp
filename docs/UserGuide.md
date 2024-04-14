@@ -78,12 +78,12 @@ the application.
 5. Type the command in the terminal and press Enter to execute it. e.g. typing `shoot 0` and pressing Enter will shoot a
 penalty at direction 0 shown in the goal.\
 Some example commands you can try:
-* `shoot 0`: Shoot a penalty at direction 0 shown in the goal.
-* `save 0`: Make a save at direction 0 shown in the goal.
-* `setpower 2`: Set your player to the expert power level.
-* `yes`: Restarts a match after a match ends.
-* `no`: Does not restart a match after a match ends, and exits the game.
-* `bye`: Exits the game.  
+   * `shoot 0`: Shoot a penalty at direction 0 shown in the goal.
+   * `save 0`: Make a save at direction 0 shown in the goal.
+   * `setpower 2`: Set your player to the expert power level.
+   * `yes`: Restarts a match after a match ends.
+   * `no`: Does not restart a match after a match ends, and exits the game.
+   * `bye`: Exits the game.  
 
 6. Refer to the Commands section of this User Guide for details on each command.
 
@@ -700,7 +700,13 @@ If the user inputs `no`:
 
 ## Command Summary
 
-* Guesses head in the coin toss `head`
-* Guesses tail in the coin toss `tail`
-* Restarts a match after a match `yes`
-* Does not restart a match after a match `no`
+* Help command `help`
+* Guess head in the coin toss `head`
+* Guess tail in the coin toss `tail`
+* Restart a match after a match `yes`
+* Do not restart a match after a match `no`
+* Shoot a penalty `shoot int`
+* Save a penalty `save int`
+* Set difficulty `easy`, `medium` or `hard`
+* Set shooter's power `setpower int`
+* Exit the program `bye`
