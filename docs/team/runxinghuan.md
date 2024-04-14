@@ -29,7 +29,8 @@ penalty shoot-out for football only. It is written in Java, and has about 3 kLoC
    - Created all the necessary labels and milestones in the issue tracker
    - Managed releases `v1.0` and `v2.0` on GitHub (converted v2.0 UG to pdf)
    - Updated the "Introduction" and "Quick Start" parts of UG [#88](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/88)
-   - Updated the "Instructions for manual testing" part of DG
+   - Updated the "Command Summary" part of UG [#189](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/189)
+   - Updated the "Instructions for manual testing" part of DG [#188](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/188)
    - Created `Style.puml` file which corrects the style of UML diagrams added
   [#164](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/164)
    - Edited 'gradle.yml' to remove text ui test [#61](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/61)
@@ -53,3 +54,6 @@ penalty shoot-out for football only. It is written in Java, and has about 3 kLoC
     - Added implementation details of the `MatchStat` class [#91](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/91)
     - Diagrams added: ![MatchStatClassDiagram.png](..%2Fdiagrams%2FMatchStatClassDiagram.png)
   ![MatchStatSequential.png](..%2Fdiagrams%2FMatchStatSequential.png)
+    - Added implementation details of the `CoinToss` component [#187](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/187)
+    - Diagrams added: ![CoinTossClassDiagram.png](..%2Fdiagrams%2FCoinTossClassDiagram.png)
+  ![CoinTossSequential.png](..%2Fdiagrams%2FCoinTossSequential.png)
