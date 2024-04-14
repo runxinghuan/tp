@@ -2,33 +2,7 @@
 
 ## Class Structure
 
-## Product scope
-### Target user profile
 
-{Describe the target user profile}
-
-### Value proposition
-
-{Describe the value proposition: what problem does it solve?}
-
-## User Stories
-
-|Version| As a ... | I want to ... | So that I can ...|
-|--------|----------|---------------|------------------|
-|v1.0|new user|see usage instructions|refer to them when I forget how to use the application|
-|v2.0|user|find a to-do item by name|locate a to-do without having to go through the entire list|
-
-## Non-Functional Requirements
-
-{Give non-functional requirements}
-
-## Glossary
-
-* *glossary item* - Definition
-
-## Instructions for manual testing
-
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
 
 # Design of various features
 ## Real penalty shootout setting
@@ -539,22 +513,53 @@ NUSFC 24 offers football enthusiasts a refreshing break from the complexities of
 
 ## User Stories
 
-|Version| As a ... | I want to ...      | So that I can ...                   |
-|--------|----------|--------------------|-------------------------------------|
-|v1.0|user| see the goal       | know where to shoot my penalty      |
-|v2.0|user| level my player up | try different functions in the game |
+| Version | As a ... | I want to ...      | So that I can ...                   |
+|---------|----------|--------------------|-------------------------------------|
+| v1.0    | user     | see the goal       | know where to shoot my penalty      |
+| v1.0    | user     | have an ai goalkeeper | know whether my penalty is saved    |
+| v2.0    | user     | level my player up | try different functions in the game |
+| v2.0    | user     | have a real penalty shootout setting                   | experience a more realistic game    |
+| v2.0    | user     | toss a coin before each match                   | see which team should shoot first   |
+
 
 ## Non-Functional Requirements
 
-{Give non-functional requirements}
+1. Should work on any *mainstream OS* as long as it has Java `11` or above installed.
+2. Should allow the player to play as long as he wants without a noticeable sluggishness in performance for typical 
+usage.
 
 ## Glossary
 
-* *glossary item* - Definition
+* Mainstream OS: Windows, Linux, Unix, macOS
 
 ## Instructions for manual testing
 
-{Give instructions on how to do a manual product testing e.g., how to load sample data to be used for testing}
+### Launch and shutdown
+1. Initial launch
+   1. Download the jar file and copy into an empty folder
+   2. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run
+      the application.
+2. Use `bye` to exit the game
+
+### Coin Toss
+1. Prerequisites: You are at the beginning of a match.
+2. Test case: `head` or `tail`
+
+   Expected: A coin is tossed, and its result is shown. If the coin is not `UPRIGHT`, you are told whether you guess it
+right, and you can start the game properly.
+3. Test case: `bye`
+
+    Expected: You will exit the program.
+4. Test case: Other invalid commands like `shoot 0`, `save 0`, `...`
+
+   Expected: An error message is shown, and you are asked to guess the coin result again.
+
+### Match Ending Criteria
+1. Prerequisites: You finished guessing the coin toss, and are in a match.
+2. You need to enter alternating commands `shoot int` and `save int` to progress the match.
+3. Try to make the scores to satisfy the two penalty shoot out rules (Best-of-five Kicks and Sudden Death).
+
+   Expected: The match ends, showing whether you have won or lost.
 
 ## Future Enhancements
 
