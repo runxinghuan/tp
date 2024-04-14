@@ -5,16 +5,16 @@ import seedu.duke.stats.MatchStat;
 import seedu.duke.stats.PlayerList;
 import seedu.duke.ui.Ui;
 
+//@@author hwc0419
 public enum CommandList {
 
     BYE, SHOOT, PENALTY, YES, NO, SETPOWER, EASY, MEDIUM, HARD, SAVE, HEAD, TAIL, HELP, CUSTOMIZATION;
 
-    //insert new user command name here
-    ;
-
     /**
      * Exits the program
      */
+
+    //@@author
     public static void executeBye() {
         Formatter.printGoodbyeMsg();
         Ui.setIsRunning(false);
