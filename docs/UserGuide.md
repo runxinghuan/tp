@@ -202,7 +202,8 @@ Here are the commands available
 
 #### Overview
 
-The `head` and `tail` commands play a pivotal role in initiating gameplay through a fair and random selection process, akin to a coin toss. These commands are used at the start of a game to determine which player begins, adding an element of chance and strategy right from the outset.
+Before each match, there is a coin toss. If the player guesses the result of the coin toss correctly. He can shoot first.
+If not, AI shoots first.
 
 #### Usage 
 
@@ -691,13 +692,10 @@ If the user inputs `no`:
 ------------------------------------------------------------
 ```
 
-## FAQ
-
-**Q**: How do I transfer my data to another computer? 
-
-**A**: {your answer here}
 
 ## Command Summary
 
+* Guesses head in the coin toss `head`
+* Guesses tail in the coin toss `tail`
 * Restarts a match after a match `yes`
 * Does not restart a match after a match `no`
