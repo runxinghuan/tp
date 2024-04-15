@@ -88,22 +88,6 @@ public enum CommandList {
         PlayerList.playerList.get(Ui.curPlayer).upgradePower(upgradeLevelIndex);
         PlayerList.playerList.get(Ui.curPlayer).printSelfInfo();
     }
-    //@@author
-
-    //@@author ymirmeddeb
-    /**
-     * Logs the details of a save attempt for testing and debugging purposes.
-     * This method prints the adjusted direction of the saver's attempt, the direction of the AI's shot, and the range within which a save is considered successful.
-     *
-     * @param adjustedDirection The adjusted direction of the saver's save attempt.
-     * @param adjustedAiDirection The direction of the AI's shot.
-     * @param adjustedRange The range within which a save attempt is considered successful.
-     */
-    private static void testForSave(float adjustedDirection, float adjustedAiDirection, float adjustedRange) {
-        System.out.println("Save: " + adjustedDirection);
-        System.out.println("Shoot: " + adjustedAiDirection);
-        System.out.println("Range: " + adjustedRange);
-    }
 
     //@@author ymirmeddeb
     /**
@@ -116,11 +100,12 @@ public enum CommandList {
      * @return {@code true} if the save attempt is successful, {@code false} otherwise.
      */
     public static boolean saveCheck(float userInput, float aiInput, float range) {
-        assert userInput >= 0 && userInput <= 8 :
-                "Illegal userInput generated!";
         assert aiInput >= 0 && aiInput <= 8 :
                 "Illegal aiInput generated!";
-        return ((userInput>(aiInput+range))||userInput<(aiInput-range));
+        if ((int)userInput==-1){
+            return false;
+        }
+        return ((userInput<(aiInput+range))||userInput>(aiInput-range));
     }
 
     //@@author ymirmeddeb
@@ -138,6 +123,16 @@ public enum CommandList {
         System.out.printf("Your power level has been upgraded to %s%n", level[0]);
     }
 
+    private static void afterSaveAnalysis(float adjustedDirection, float adjustedRange) {
+        int missedShot=-1;
+        if ((int)adjustedDirection!=missedShot){
+            System.out.println("----AFTER SAVE ANALYSIS----");
+            System.out.printf("Your save aims at: %.2f\n",adjustedDirection);
+            System.out.printf("Shooter's cover range: %.2f\n",adjustedRange);
+            System.out.println("---------------------------");
+        }
+    }
+
     //@@author ymirmeddeb
     /**
      * Executes a save attempt, adjusting the direction based on the current saver's abilities, comparing it to the AI's shot direction, and determining the success of the save.
@@ -148,14 +143,17 @@ public enum CommandList {
     public static void executeSave(String[] readArgumentTokens) {
         String selectedDirection = readArgumentTokens[0];
         int selectedDirectionIndex = Integer.parseInt(selectedDirection);
+
         float adjustedSaveDirection = SaverList.saverList.get(Ui.curSaver).saveDirectionAdjust(selectedDirectionIndex);
         float adjustedAiDirection = SaverList.saverList.get(Ui.curSaver).aiDirectionAdjust(Ai.getAiDirection());
         float adjustedRange = SaverList.saverList.get(Ui.curSaver).rangeAdjust();
-        testForSave(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
-        boolean isScoreGoal = goalCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
-        MatchStat.updateStat(isScoreGoal);
-        PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isScoreGoal);
-        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(!isScoreGoal, Math.round(adjustedSaveDirection));
+
+        afterSaveAnalysis(adjustedSaveDirection, adjustedRange);
+        boolean isGoalSaved = saveCheck(adjustedSaveDirection, adjustedAiDirection, adjustedRange);
+
+        MatchStat.updateStat(isGoalSaved);
+        PlayerList.playerList.get(Ui.curPlayer).calculatePerformanceCoins(isGoalSaved);
+        SaverList.saverList.get(Ui.curSaver).printGoalAfterSave(!isGoalSaved, Math.round(adjustedSaveDirection));
     }
 
     //@@author ymirmeddeb
