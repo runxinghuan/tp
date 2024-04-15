@@ -6,8 +6,8 @@ import seedu.duke.ui.Ui;
 //@@author HenryGan138
 
 public class ExpertSkillPlayer extends Player {
-    public static final int DIRECTIONINDEX_ADJUST_FOR_EXPERT = 4;
     private final int skill = 3;
+    public static final int DIRECTIONINDEX_ADJUST_FOR_EXPERT = 4;
 
     public ExpertSkillPlayer(String name, int matchCount) {
         super(name, matchCount);
@@ -65,11 +65,6 @@ public class ExpertSkillPlayer extends Player {
     @Override
     public void printGoalBeforeShoot() {
         Formatter.printGoalBeforeShotforExpert();
-    }
-
-    @Override
-    public void printGoalBeforeSave() {
-        Formatter.printGoalBeforeSaveForExpert();
     }
 
     @Override

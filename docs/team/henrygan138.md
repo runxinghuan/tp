@@ -6,16 +6,17 @@ NUSFC 24 is an association football-themed game app. It is played via a Command 
 
 ### Summary of Contributions
 ### Code Contributions
-[RepoSense link](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=HenryGan138&tabRepo=AY2324S2-CS2113-F15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
+[Link to my code](https://nus-cs2113-ay2324s2.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2024-02-23&tabOpen=true&tabType=authorship&tabAuthor=HenryGan138&tabRepo=AY2324S2-CS2113-F15-3%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false&authorshipIsIgnoredFilesChecked=false)
 
 ### Enhancements Implemented
 
 #### New Feature: Player Class Design and Implementation
 - **What it does**:
-    - Utilizes Object-Oriented Programming and ArrayLists to manage dynamic data, offers a fundamental skeleton structure for NUSFC's other implementations
     - Designs structure and implements functions through the parent `Player` class, and its inheritance for `BeginnerSkillPlayer`, `MediumSkillPlayer`, and `ExpertSkillPlayer`.
     - Develops the upgrade mechanism so that create differentiated user experiences.
-- **Highlights**: This feature improves the project development by providing a scalable and polymorphic approach to player management, and offering an interface for team's adding functions
+- **Highlights**:
+  - Utilizes Object-Oriented Programming and ArrayLists to manage dynamic data, offers a fundamental skeleton structure for NUSFC's other implementations
+  - This feature improves the project development by providing a scalable and polymorphic approach to player management, and offering an interface for team's adding functions
 
 #### New Feature: Shoot
 - **What it does**:
@@ -32,12 +33,12 @@ NUSFC 24 is an association football-themed game app. It is played via a Command 
 - **Highlights**: Enhances player engagement by making game objectives clearer and the interface more intuitive. Addressing this required reimagining the UI to balance informative content with ease of understanding.
 
 ### Documentation
-#### UG
+#### User Guide
 - Detailed how users can control the shooter, demonstrating the role of player attributes in gameplay and how these parameters will affect shooting quality.
 - Explained the player upgrade process, aiding users in gameplay planning.
 - Refine the content in `shoot` command.
 
-#### DG
+#### Developer Guide
 - Added explanations on the design logic and implementation details for `Player` and `PlayerList`, and demonstrate how these two classes interact to support game functions. 
 - Included a Class Diagram to illustrate the relationships between the `Player` and `PlayerList` classes.
 - Provided a Sequence Diagram for the skill upgrade mechanism to clarify the process flow.

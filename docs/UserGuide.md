@@ -372,7 +372,7 @@ _______________________________
 |    6    |    7    |  *   *  |
 ```
 
-If the input is above the maximum input allowed for the current expertise level, your shot will be considered missed the target (beginner inputs 5 in this example):
+If the input is above the maximum input allowed for the current expertise level but less than 9, your shot will be considered missed the target (beginner inputs 5 and goal is not scored in this example):
 
 ```
 ----------WARNING----------
@@ -392,7 +392,7 @@ no goal :((((
 
 ```
 
-If the input direction is above 8, an error will be returned:
+If the input direction is above 8, your input is considered invalid, and an error will be returned. You need to input again:
 
 ```
      SyntaxAnalyser: SHOOT expects the 1st argument to be integer between 0 to 8

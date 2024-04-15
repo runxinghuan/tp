@@ -62,11 +62,6 @@ public class BeginnerSkillPlayer extends Player {
     }
 
     @Override
-    public void printGoalBeforeSave() {
-        Formatter.printGoalBeforeSaveForBeginner();
-    }
-
-    @Override
     public void printGoalAfterShoot(boolean goalScored, int direction) {
         Formatter.printGoalAfterShotBeginner(goalScored, direction);
     }
