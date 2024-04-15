@@ -6,7 +6,8 @@ import seedu.duke.player.ExpertSkillPlayer;
 import seedu.duke.player.MediumSkillPlayer;
 import seedu.duke.stats.PlayerList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class PlayerListTest {
     @Test
