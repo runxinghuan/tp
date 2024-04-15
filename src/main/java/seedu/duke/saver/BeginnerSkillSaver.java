@@ -123,13 +123,19 @@ public class BeginnerSkillSaver extends Saver {
      */
     @Override
     public float saveDirectionAdjust(int dir){
-        if (dir>2){
-            System.out.println("Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!");
-            System.out.println("Practice makes perfect. Let's aim for those goals together!");
-            dir = dir%3;
+        int beginnerMinSave = 0;
+        int beginnerMaxSave = 2;
+        if (dir>beginnerMaxSave){
+            System.out.println("----------WARNING----------");
+            System.out.println("Oops! Remember, beginner saver can only save with direction between 0 to 2.");
+            System.out.println("You failed to save the shot.");
+            System.out.println("Practice makes perfect. Keep playing to unlock more saves!\"");
+            System.out.println("---------------------------");
+            int missTargetIndex = -1;
+            return this.saveDirectionFormula(missTargetIndex, missTargetIndex, missTargetIndex,this.power);
         }
-        int left=(dir-1==0)?0:dir-1;
-        int right=(dir+1==2)?2:dir+1;
+        int left= Math.max(dir - 1, beginnerMinSave);
+        int right= Math.min(dir + 1, beginnerMaxSave);
         return this.saveDirectionFormula(left,right,dir,this.power);
     }
 

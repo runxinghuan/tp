@@ -9,6 +9,10 @@ import java.util.Random;
  */
 
 public class Saver {
+    public static final double SAVING_PROBABILITY_FOR_BEGINNER = 0.5;
+    public static final double SAVING_PROBABILITY_FOR_MEDIUM = 0.75;
+    public static final double SAVING_PROBABILITY_FOR_EXPERT = 0.9;
+
     public String name; // The name of the saver
     public int matchCount; // The number of matches the saver has played
     public int power; // Represents the physical power/strength of the saver
@@ -120,16 +124,17 @@ public class Saver {
      * @return The calculated direction value.
      */
     public float saveDirectionFormula(int left, int right, int dir, int power){
-        float prob=rand.nextFloat();
-        if (power==1){
-            prob=prob/2;
-            return (float) (left*prob+dir*0.5+right*(0.5-prob));
-        }else if (power==2){
-            prob=prob/4;
-            return (float) (left*prob+dir*0.75+right*(0.25-prob));
-        }else{
-            prob=prob/10;
-            return (float)(left*prob+dir*0.9+right*(0.1-prob));
+        float prob = rand.nextFloat();
+
+        if (power == 1) {
+            prob = prob / 2;
+            return (float) (left * prob + dir * SAVING_PROBABILITY_FOR_BEGINNER + right * ((1 - SAVING_PROBABILITY_FOR_BEGINNER) - prob));
+        } else if (power == 2) {
+            prob = prob / 4;
+            return (float) (left * prob + dir * SAVING_PROBABILITY_FOR_MEDIUM + right * ((1 - SAVING_PROBABILITY_FOR_MEDIUM) - prob));
+        } else {
+            prob = prob / 10;
+            return (float) (left * prob + dir * SAVING_PROBABILITY_FOR_EXPERT + right * ((1- SAVING_PROBABILITY_FOR_EXPERT) - prob));
         }
     }
 

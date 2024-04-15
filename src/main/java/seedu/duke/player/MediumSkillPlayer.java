@@ -86,8 +86,8 @@ public class MediumSkillPlayer extends Player {
         int mediumMaxShoot = 5;
         if (dir > mediumMaxShoot){
             System.out.println("----------WARNING----------");
-            System.out.println("Oops! Remember, medium player could shoot with direction between 0 to 5.");
-            System.out.println("You failed to shot on target.");
+            System.out.println("Oops! Remember, medium player can only shoot with direction between 0 to 5.");
+            System.out.println("You failed to shoot on target.");
             System.out.println("Practice makes perfect. Keep playing to unlock more kicks!\"");
             System.out.println("---------------------------");
             int missTargetIndex = -1;

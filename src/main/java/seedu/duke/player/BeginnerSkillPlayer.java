@@ -87,8 +87,8 @@ public class BeginnerSkillPlayer extends Player {
         int beginnerMaxShoot = 2;
         if (dir> beginnerMaxShoot){
             System.out.println("----------WARNING----------");
-            System.out.println("Oops! Remember, beginners should start with directions 0, 1, and 2. ");
-            System.out.println("You failed to shot on target.");
+            System.out.println("Oops! Remember, beginners can only start with directions 0, 1, and 2. ");
+            System.out.println("You failed to shoot on target.");
             System.out.println("Practice makes perfect. Keep playing to unlock more kicks!");
             System.out.println("---------------------------");
             int missTargetVariable = -1;
