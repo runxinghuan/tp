@@ -98,7 +98,7 @@ Some example commands you can try:
 * Shoot a penalty `shoot int`
 * Save a penalty `save int`
 * Set shooter's power `setpower int`
-* * Set difficulty `easy`, `medium` or `hard`
+* Set difficulty `easy`, `medium` or `hard`
 * Customize player's settings `customization`
 * [coming soon] Customize saver's settings `customization`
 * Restart a match after a match `yes`
