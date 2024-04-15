@@ -87,26 +87,6 @@ Some example commands you can try:
 
 6. Refer to the Commands section of this User Guide for details on each command.
 
-## Features
-
-### Coin Toss
-
-Initiates the game by randomly deciding which player goes first, adding an element of chance and fairness to the start of the game.
-
-### Dynamic Difficulty Levels
-
-Allows you to adjust the game's difficulty setting (Easy, Medium, Hard) at any point, tailoring the challenge to your skill level and preferences.
-
-### Listing Commands
-
-Offers an overview of all available commands and their current statuses, helping you navigate the game's functionalities with ease.
-
-...add more features
-
-### Customizations for Saver
-
-[Coming Soon] The user will be able to purchase customizations for their saver, just like thy can currently for their player
-
 ## Commands
 
 ### Command Summary
@@ -117,8 +97,10 @@ Offers an overview of all available commands and their current statuses, helping
 * Guess tail in the coin toss `tail`
 * Shoot a penalty `shoot int`
 * Save a penalty `save int`
-* Set difficulty `easy`, `medium` or `hard`
 * Set shooter's power `setpower int`
+* * Set difficulty `easy`, `medium` or `hard`
+* Customize player's settings `customization`
+* [coming soon] Customize saver's settings `customization`
 * Restart a match after a match `yes`
 * Do not restart a match after a match `no`
 
@@ -653,6 +635,93 @@ Difficulty level set to HARD
 - The `upgrade` command is only available during the penalty shootout phase.
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
+
+### Customization Command: `customization`
+
+#### Overview
+
+The customization feature allows players to personalize their in-game character to better reflect their playing style and preferences. This feature is accessible at various points in the game, such as at start up, during a game, or before starting a new match.
+
+#### Usage
+
+To use the `customization` command, follow the syntax below:
+
+customization 
+
+A Customization Menu will be displayed. Enter the number of the customization you would like to purchase.
+
+#### Expected Outcome
+
+The user inputs `customization`:
+
+```
+Customization Menu:
+1. Purchase Customizations
+2. View Coin Balance
+3. Exit
+Enter your choice:
+```
+
+If the user inputs `1`:
+
+```
+Available Customization Items:
+1. Power Boost - Cost: 150 coins
+2. Skill Boost - Cost: 200 coins
+3. Fancy Uniform - Cost: 100 coins
+Enter the number of the customization item you want to purchase: 2
+```
+
+- If the user then inputs 1 (they have enough coins to make the purchase):
+
+```
+150 coins deducted from your balance. Current balance: [-]
+You have purchased the Power Boost customization!
+Power increased by 1! Current Power: [-]
+```
+
+- If the user then inputs 2 (they do not have enough coins to make the purchase):
+
+```
+Insufficient coins to purchase the Skill Boost customization.
+```
+
+- If the user then inputs 3 [coming soon]:
+
+```
+Invalid choice. Purchase canceled.
+```
+
+If the user inputs 2:
+
+```
+Your current coin balance is: [-]
+```
+
+If the user inputs 3:
+
+```
+Exiting Customization Menu.
+```
+
+If the user inputs an integer above 3:
+
+```
+Invalid choice. Please try again.
+```
+
+If the user inputs a non-integer value:
+
+```
+Invalid input. Please enter a number.
+```
+
+#### Additional Notes
+
+- The `customization` command is available at any point during the game.
+- The `customization` command is currently only available for your player. Customizations for the saver will be implemented in later iterations.
+- The command is case-sensitive, so `customization` is considered a valid command, but `Customization` and `CUSTOMIZATIOM` are considered invalid inputs.
+
 
 ### Post Game Decision Command: `yes` or `no`
 
