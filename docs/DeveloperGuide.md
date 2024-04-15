@@ -241,7 +241,7 @@ ArrayList<Player> stores and manages player objects, allowing for efficient acce
 
 Polymorphism is integral to our game, allowing us to abstract player actions in the `Player` class and provide specific implementations in its subclasses. This design pattern simplifies codebase maintenance and enhances gameplay by introducing dynamic behavior based on the player's skill level.
 
-#### Sample 1: ExecuteShoot Method
+#### Implementation: ExecuteShoot Method
 
 The `executeShoot` method from CommandList Class exemplifies polymorphism in action, adjusting player behavior during shooting based on player's skill level.
 
@@ -254,7 +254,7 @@ public static void executeShoot(String[] readArgumentTokens) {
   PlayerList.l1.get(Ui.curPlayer).printGoalAfterShoot(isScoreGoal, Math.round(adjustedDirection));
 }
 ```
-### Skill Upgrade Mechanism
+#### Implementation: Skill Upgrade Mechanism
 
 The `skillUpgrade` method in the `PlayerList` class is a key feature, allowing players to improve their skills based on game performance. The method checks the player's current skill and match count, upgrading their skill level if certain conditions are met.
 he mechanism operates through a structured process, enhancing the gaming experience by offering a realistic approach to skill progression:
