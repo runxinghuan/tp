@@ -457,13 +457,15 @@ NUSFC 24 offers football enthusiasts a refreshing break from the complexities of
 
 ## User Stories
 
-| Version | As a ... | I want to ...      | So that I can ...                   |
-|---------|----------|--------------------|-------------------------------------|
-| v1.0    | user     | see the goal       | know where to shoot my penalty      |
-| v1.0    | user     | have an ai goalkeeper | know whether my penalty is saved    |
-| v2.0    | user     | level my player up | try different functions in the game |
-| v2.0    | user     | have a real penalty shootout setting                   | experience a more realistic game    |
-| v2.0    | user     | toss a coin before each match                   | see which team should shoot first   |
+| Version | As a ... | I want to ...                        | So that I can ...                           |
+|---------|----------|--------------------------------------|---------------------------------------------|
+| v1.0    | user     | see the goal                         | know where to shoot my penalty              |
+| v1.0    | user     | add shoot command                    | choose the penalty direction like real game |
+| v1.0    | user     | have an ai goalkeeper                | know whether my penalty is saved            |
+| v2.0    | user     | level my player up                   | try different functions in the game         |
+| v2.0    | user     | have a real penalty shootout setting | experience a more realistic game            |
+| v2.0    | user     | toss a coin before each match        | see which team should shoot first           |
+| v2.0    | user     | select difficulty mode               | keep refining my skills                     |
 
 
 ## Non-Functional Requirements
