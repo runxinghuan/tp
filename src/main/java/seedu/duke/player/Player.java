@@ -7,33 +7,55 @@ import java.util.Scanner;
 
 //@@author HenryGan138
 public class Player {
-    Random rand = new Random();
-    private static final double ONTARGET_PROBABILITY_FOR_BEGINNER = 0.5;
-    private static final double ONTARGET_PROBABILITY_FOR_MEDIUM = 0.75;
-    private static final double ONTARGET_PROBABILITY_FOR_EXPOERT = 0.9;
+    // Constants
     public static final double EASY_GK_COVERED_RANGE = 0.1;
     public static final double MEDIUM_GK_COVERED_RANGE = 0.2;
     public static final double HARD_GK_COVERED_RANGE = 0.5;
+    public static final int COIN_NUMBER_INITIALIZE = 0;
+    private static final double ONTARGET_PROBABILITY_FOR_BEGINNER = 0.5;
+    private static final double ONTARGET_PROBABILITY_FOR_MEDIUM = 0.75;
+    private static final double ONTARGET_PROBABILITY_FOR_EXPOERT = 0.9;
+
+    // Instance fields
     public String name;
     public int matchCount;
     public int power;
     private int skill;
     public int coins;
+    private Random rand = new Random();
 
+    /**
+     * Constructor for creating a player with a specified name and match count, initializing with default power and coins.
+     *
+     * @param name The name of the player.
+     * @param matchCount The number of matches the player has participated in.
+     */
     public Player(String name, int matchCount) {
         this.name = name;
         this.matchCount = matchCount;
         this.power = 1;
-        this.coins = 0;
+        this.coins = COIN_NUMBER_INITIALIZE;
     }
 
+    /**
+     * Constructor for creating a player with specified name, match count, and power.
+     *
+     * @param name The name of the player.
+     * @param matchCount The number of matches the player has participated in.
+     * @param power The initial power level of the player.
+     */
     public Player(String name, int matchCount, int power) {
         this.name = name;
         this.matchCount = matchCount;
         this.power = power;
-        this.coins = 0;
+        this.coins = COIN_NUMBER_INITIALIZE;
     }
 
+    /**
+     * Prints basic information about the player including name, match count, and coins.
+     * This method also calls the overridden {@code printPower} and {@code printSkill} methods
+     * to display power and skill level-specific details.
+     */
     public void printSelfInfo() {
         System.out.println("--------Player Info--------");
         System.out.println("Name: " + this.name);
@@ -44,37 +66,81 @@ public class Player {
         System.out.println("---------------------------");
     }
 
+    /**
+     * Retrieves the skill level of the player. This method is intended for overriding to provide specific skill levels in subclasses.
+     *
+     * @return The skill level of the player.
+     */
     public int getSkill() { //For inheritance
         return skill;
     }
 
+    /**
+     * Prints the power level of the player. This method is intended for overriding in subclasses to provide detailed power level information.
+     */
     protected void printPower() {
-    } //For override
+    }
 
+    /**
+     * Prints the skill level of the player. This method is intended for overriding in subclasses to provide detailed skill level information.
+     */
     protected void printSkill() {
-    } //For override
+    }
 
+    /**
+     * Placeholder method to be overridden in subclasses to print messages before a shoot attempt.
+     */
     public void printGoalBeforeShoot() {
-    } //For override
+    }
 
-    public void printGoalBeforeSave() {
-    } //For override
-
+    /**
+     * Placeholder method to be overridden in subclasses to handle actions and print messages after a shoot based on whether a goal was scored.
+     *
+     * @param goalScored Indicates if a goal was scored.
+     * @param direction The direction in which the goal was attempted.
+     */
     public void printGoalAfterShoot(boolean goalScored, int direction) {
         calculatePerformanceCoins(goalScored);
-    } //For override
+    }
 
+    /**
+     * Placeholder method to be overridden in subclasses to upgrade the player's power level based on the given level.
+     *
+     * @param level The new power level to set.
+     */
     public void upgradePower(int level) {
-    } //For override
+    }
 
+    /**
+     * Placeholder method to be overridden in subclasses to adjust AI direction for shooting based on the player's capabilities.
+     *
+     * @param aiDir The AI's proposed shooting direction.
+     * @return The adjusted direction.
+     */
     public float aiDirectionAdjust(int aiDir) {
-        return 0;
-    } //For override
+        return COIN_NUMBER_INITIALIZE;
+    }
 
+    /**
+     * Placeholder method to be overridden in subclasses to adjust the shooting direction based on the player's input and capabilities.
+     *
+     * @param dir The intended direction of the shoot.
+     * @return The adjusted shooting direction.
+     */
     public float shootDirectionAdjust(int dir) {
-        return 0;
-    }  //For override
+        return COIN_NUMBER_INITIALIZE;
+    }
 
+    /**
+     * Calculates the shooting direction formula based on the player's power and intended direction.
+     * This method uses a random probability influenced by the player's power to adjust the shooting accuracy.
+     *
+     * @param left The left boundary for the shooting direction.
+     * @param right The right boundary for the shooting direction.
+     * @param dir The intended direction of the shoot.
+     * @param power The power level of the player.
+     * @return The adjusted shooting direction.
+     */
     public float shootDirectionFormula(int left, int right, int dir, int power) {
         float prob = rand.nextFloat();
 
@@ -90,8 +156,13 @@ public class Player {
         }
     }
 
+    /**
+     * Placeholder method to be overridden in subclasses to adjust the range of shooting based on the player's capabilities and game difficulty.
+     *
+     * @return The adjusted shooting range.
+     */
     public float rangeAdjust() {
-        return 0;
+        return COIN_NUMBER_INITIALIZE;
     }
 
     //@@author
@@ -122,16 +193,16 @@ public class Player {
             Player player;
             switch (skillLevel) {
                 case 1:
-                    player = new BeginnerSkillPlayer(playerName, 0);
+                    player = new BeginnerSkillPlayer(playerName, COIN_NUMBER_INITIALIZE);
                     break;
                 case 2:
-                    player = new MediumSkillPlayer(playerName, 0);
+                    player = new MediumSkillPlayer(playerName, COIN_NUMBER_INITIALIZE);
                     break;
                 case 3:
-                    player = new ExpertSkillPlayer(playerName, 0);
+                    player = new ExpertSkillPlayer(playerName, COIN_NUMBER_INITIALIZE);
                     break;
                 default:
-                    player = new BeginnerSkillPlayer(playerName, 0);
+                    player = new BeginnerSkillPlayer(playerName, COIN_NUMBER_INITIALIZE);
                     break;
             }
             customTeam.add(player);
@@ -210,7 +281,7 @@ public class Player {
 
     // Method to reset the player's coins to zero
     public void resetCoins() {
-        coins = 0;
+        coins = COIN_NUMBER_INITIALIZE;
         System.out.println("Your coin balance has been reset to zero.");
     }
 
@@ -221,7 +292,7 @@ public class Player {
 
     // Method to calculate and add coins based on the player's performance
     public void calculatePerformanceCoins(boolean goalScored) {
-        int performanceCoins = 0;
+        int performanceCoins = COIN_NUMBER_INITIALIZE;
     
         if (goalScored) {
             performanceCoins += 10;    }

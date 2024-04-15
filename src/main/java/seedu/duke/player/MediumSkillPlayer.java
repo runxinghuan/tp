@@ -6,8 +6,8 @@ import seedu.duke.ui.Ui;
 //@@author HenryGan138
 
 public class MediumSkillPlayer extends Player {
-    public static final double DIRECTIONINDEX_ADJUST_FOR_MEDIUM = 2.5;
     private final int skill = 2;
+    public static final double DIRECTIONINDEX_ADJUST_FOR_MEDIUM = 2.5;
     public MediumSkillPlayer(String name, int matchCount) {
         super(name, matchCount);
     }
@@ -63,11 +63,6 @@ public class MediumSkillPlayer extends Player {
     @Override
     public void printGoalBeforeShoot() {
         Formatter.printGoalBeforeShotforMedium();
-    }
-
-    @Override
-    public void printGoalBeforeSave() {
-        Formatter.printGoalBeforeSaveForMedium();
     }
 
     @Override
