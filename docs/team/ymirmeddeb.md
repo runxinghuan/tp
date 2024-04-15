@@ -36,14 +36,16 @@ New feature: Help
 
 - Helped maintain the issue tracker by assigning issues to myself and adding them to target milestones
 
-- Managed the `Features` and `Commands` segments of the User Guide
+- Managed the whole `Commands` segment of the User Guide
 
 - Helped to fix a major bug where the player is able to shoot even when not in a game
+
+- Found and fixed a bug where if the user inputs a non-integer value in the customization menu, an error was returned and the program was exited
 
 #### Community
 
 - Reported a serious bug where the player is able to shoot even when not in a game
 
-- Helpd other members of the team when they needed help or clarification
+- Helped other members of the team when they needed help or clarification
 
 - Reported bugs and raised issues for the team assigned to me in the PE Dry Run
