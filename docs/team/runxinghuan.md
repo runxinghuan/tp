@@ -35,6 +35,7 @@ penalty shoot-out for football only. It is written in Java, and has about 3 kLoC
   [#164](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/164)
    - Edited 'gradle.yml' to remove text ui test [#61](https://github.com/AY2324S2-CS2113-F15-3/tp/pull/61)
    - Communicated with other team members about the deadline and workflow each week
+   - Submitted the final deliverables
 
 
 - Review/mentoring contributions: 
