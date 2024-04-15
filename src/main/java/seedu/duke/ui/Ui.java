@@ -160,6 +160,9 @@ public class Ui {
         case HELP:
             CommandList.executeHelpAfterMatch();
             break;
+        case CUSTOMIZATION:
+            PlayerList.playerList.get(curPlayer).displayCustomizationMenu();
+            return;
         default:
             Formatter.printErrorUnknown();
         }
@@ -182,6 +185,9 @@ public class Ui {
         case HELP:
             CommandList.executeHelpAtStart();
             break;
+        case CUSTOMIZATION:
+            PlayerList.playerList.get(curPlayer).displayCustomizationMenu();
+            return;
         default:
             Formatter.printErrorUnknown();
         }

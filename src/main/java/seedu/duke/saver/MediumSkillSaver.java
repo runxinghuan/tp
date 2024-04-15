@@ -135,13 +135,19 @@ public class MediumSkillSaver extends Saver {
      */
     @Override
     public float saveDirectionAdjust(int dir){
-        if (dir>5){
-            System.out.println("Oops! Remember, medium savers can only save directions 0 to 5. But keep playing to unlock more saves!");
-            System.out.println("Practice makes perfect. Let's save for those goals together!");
-            dir = dir%3;
+        int mediumMinSave = 0;
+        int mediumMaxSave = 5;
+        if (dir>mediumMaxSave){
+            System.out.println("----------WARNING----------");
+            System.out.println("Oops! Remember, medium saver can only save with direction between 0 to 5.");
+            System.out.println("You failed to save the shot.");
+            System.out.println("Practice makes perfect. Keep playing to unlock more saves!\"");
+            System.out.println("---------------------------");
+            int missTargetIndex = -1;
+            return this.saveDirectionFormula(missTargetIndex, missTargetIndex, missTargetIndex,this.power);
         }
-        int left=(dir-1==0)?0:dir-1;
-        int right=(dir+1==2)?2:dir+1;
+        int left= Math.max(dir - 1, mediumMinSave);
+        int right= Math.min(dir + 1, mediumMaxSave);
         return this.saveDirectionFormula(left,right,dir,this.power);
     }
 
