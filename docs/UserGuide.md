@@ -71,7 +71,7 @@ By incorporating these attributes into our game, we aim to provide an immersive 
 ## Quick Start
 
 1. Ensure that you have Java 11 or above installed in your laptop.
-2. Download the latest version of `NUSFC 24` from [here](https://github.com/AY2324S2-CS2113-F15-3/tp/releases/tag/v2.0).
+2. Download the latest version of `NUSFC 24` from [here](https://github.com/AY2324S2-CS2113-F15-3/tp/releases/tag/v2.1).
 3. Copy the file to the folder where you want to play the game.
 4. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar tp.jar` command to run
 the application.
