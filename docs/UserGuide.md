@@ -311,7 +311,6 @@ If the goal is not scored:
 ```
 ----AFTER SHOT ANALYSIS----
 Your shoot aims at: [-]
-Goalkeeper's cover range: [-]
 ---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
@@ -329,7 +328,6 @@ If the goal is scored as a beginner player (direction is 0 in this example):
 ```
 ----AFTER SHOT ANALYSIS----
 Your shoot aims at: [-]
-Goalkeeper's cover range: [-]
 ---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
@@ -346,7 +344,6 @@ If the goal is scored as a medium player (direction is 4 in this example):
 ```
 ----AFTER SHOT ANALYSIS----
 Your shoot aims at: [-]
-Goalkeeper's cover range: [-]
 ---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
@@ -365,7 +362,6 @@ If the goal is scored as an expert player (direction is 6 in this example)
 ```
 ----AFTER SHOT ANALYSIS----
 Your shoot aims at: [-]
-Goalkeeper's cover range: [-]
 ---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10

@@ -2,11 +2,11 @@ package seedu.duke.player;
 
 import seedu.duke.Formatter;
 import seedu.duke.ui.Ui;
-import java.util.Random;
 
 //@@author HenryGan138
 
 public class MediumSkillPlayer extends Player {
+    public static final double DIRECTIONINDEX_ADJUST_FOR_MEDIUM = 2.5;
     private final int skill = 2;
     public MediumSkillPlayer(String name, int matchCount) {
         super(name, matchCount);
@@ -105,24 +105,24 @@ public class MediumSkillPlayer extends Player {
 
     @Override
     public float aiDirectionAdjust(int aiDir) {
-        return (float) (2.5*aiDir);
+        return (float) (DIRECTIONINDEX_ADJUST_FOR_MEDIUM * aiDir);
     }
 
     @Override
     public float rangeAdjust() {
-        float range=0;
+        float range;
         switch (Ui.difficultyLevel){
         case EASY:
-            range = (float)0.25;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_MEDIUM *EASY_GK_COVERED_RANGE);
             break;
         case MEDIUM:
-            range = (float)0.5;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_MEDIUM *MEDIUM_GK_COVERED_RANGE);
             break;
         case HARD:
-            range = (float)1.25;
+            range = (float)(DIRECTIONINDEX_ADJUST_FOR_MEDIUM *HARD_GK_COVERED_RANGE);;
             break;
         default:
-            range =0;
+            return 0;
         }
         return range;
     }

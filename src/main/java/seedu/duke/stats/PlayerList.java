@@ -8,15 +8,17 @@ import seedu.duke.ui.Ui;
 import java.util.ArrayList;
 
 //@@author HenryGan138
-
 /**
- * Provides functionality for managing a list of player objects,
- * v2.0 add the ability to upgrade a player's skill based on their current skill level and match count.
- *
+ * The PlayerList class manages the list of players in the game. It includes methods to manage players'
+ * skills and performance after each match, and to create new player instances as players advance in skills.
  */
 public class PlayerList {
     public static ArrayList<Player> playerList = new ArrayList<>();
 
+    /**
+     * Upgrades the skill level of the current player based on their performance.
+     * This method checks the player's current skill and match count to determine if they qualify for a skill level upgrade.
+     */
     public static void skillUpgrade(int curPlayer){
         Player player = playerList.get(curPlayer);
         player.matchCount= Math.max(MatchStat.getMatchCount(),player.matchCount);

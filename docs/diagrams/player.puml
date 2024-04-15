@@ -1,4 +1,5 @@
 @startuml FootballPenaltyShooterGameClassDiagram
+!include Style.puml
 
 skinparam classAttributeIconSize 0
 

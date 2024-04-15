@@ -8,9 +8,12 @@ import java.util.Scanner;
 //@@author HenryGan138
 public class Player {
     Random rand = new Random();
-    public static final double ONTARGET_PROBABILITY_FOR_BEGINNER = 0.5;
-    public static final double ONTARGET_PROBABILITY_FOR_MEDIUM = 0.75;
-    public static final double ONTARGET_PROBABILITY_FOR_EXPOERT = 0.9;
+    private static final double ONTARGET_PROBABILITY_FOR_BEGINNER = 0.5;
+    private static final double ONTARGET_PROBABILITY_FOR_MEDIUM = 0.75;
+    private static final double ONTARGET_PROBABILITY_FOR_EXPOERT = 0.9;
+    public static final double EASY_GK_COVERED_RANGE = 0.1;
+    public static final double MEDIUM_GK_COVERED_RANGE = 0.2;
+    public static final double HARD_GK_COVERED_RANGE = 0.5;
     public String name;
     public int matchCount;
     public int power;

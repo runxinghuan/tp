@@ -181,55 +181,48 @@ The constructor initializes the `minDirection` and `maxDirection` based on the `
 
 An alternative design could be to have separate classes for different difficulty levels, each with its own implementation of the `getAiDirection()` method. However, this would lead to code duplication and make the codebase more difficult to maintain.
 
-## Player Class
+## Player Class Overview
 
-### Introduction
+### Design
 
-The `Player` class utilizes Object-Oriented Programming principles to track and store a user's performance, implementing functionality that varies based on the player's skill level. As the foundation of our player management system, it encapsulates common attributes and behaviors essential for all player types.
+The `Player` class is a class designed to implementing shoot function and storing user parameters that influence game performance. This class encapsulates essential player attributes which are vital throughout the game:
+
+- `name`: String - The name of the player.
+- `matchCount`: int - Counts the number of matches played.
+- `power`: int - Indicates the player's power level, affecting the accuracy of shots.
+- `skill`: int - Determines the range of directional choices available to the player during gameplay.
 
 ### Skill Level Subclasses
 
-Subclasses `BeginnerSkill`, `MediumSkill`, and `ExpertSkill` are derived from the `Player` base class, each tailored to represent different skill levels. These subclasses override specific methods to provide behaviors unique to each skill level, ensuring a dynamic and engaging gameplay experience.
+The game features several subclasses derived from the `Player` class, each representing different skill levels: `BeginnerSkillPlayer`, `MediumSkillPlayer`, and `ExpertSkillPlayer`. These subclasses provide specialized behaviors through method overriding, tailored to each skill level for a dynamic and engaging gameplay experience.
 
-### Attributes
+### Implementation Details
 
-- `name`: String - Identifies the player.
-- `matchCount`: int - Tracks the number of matches played.
-- `power`: int - Represents the player's power level.
-- `skill`: int - Indicates the player's skill level.
+The `Player` class uses Object-Oriented Programming (OOP) principles, particularly polymorphism and encapsulation, to manage player attributes and behaviors dynamically. An `ArrayList<Player>` is utilized to manage collections of these player instances effectively.
 
-### Methods
+- **Example Scenario**:
+   - When a user starts the game, a `BeginnerSkillPlayer` named "Bruno" is instantiated.
+   - All actions taken by the player, such as completing matches or adjusting power settings, trigger updates within the `Player` class.
+   - The `Player` class interacts with the `PlayerList` to manage and update player data collectively.
 
-- `printSelfInfo()`: Displays the player's basic information.
-- `printGoalBeforeShoot()`: Prepares the player for a shooting attempt.
-- `printGoalBeforeSave()`: Prepares the player for a saving attempt.
-- `printGoalAfterShoot(boolean goalScored, int direction)`: Shows the outcome of a shooting attempt.
-- `upgradePower(int level)`: Enhances the player's power based on the specified level.
-- `shootDirectionAdjust(int dir)`: Modifies the shooting direction for the player.
-- `shootDirectionFormula(int left, int right, int dir, int power)`: Computes the shooting direction.
-- `aiDirectionAdjust(int aiDir)`: Modifies the AI's direction to offer a challenge.
-- `rangeAdjust()`: Modifies the shooting range according to the game's difficulty.
+This structure is designed to leverage the flexibility of OOP to adapt player functionalities based on game interactions dynamically.
+
+### Methods and Their Roles
+
+Each method in the `Player` class is designed to perform specific roles that enhance the interactivity and responsiveness of the game environment:
+
+- `printSelfInfo()`: Displays the player's basic information, including name, match count, power, and skill.
+- `printGoalBeforeShoot()`: Prepares the player for a shooting attempt, visualized through an on-screen graph.
+- `printGoalBeforeSave()`: Prepares the player for a saving attempt, supported by graphical feedback.
+- `printGoalAfterShoot(boolean goalScored, int direction)`: Outputs the result of a shooting attempt, enhancing player feedback.
+- `upgradePower(int level)`: Allows players to set their power level, influencing shot effectiveness.
+- `shootDirectionAdjust(int dir)`: Alters shooting direction based on the player's current power level.
+- `shootDirectionFormula(int left, int right, int dir, int power)`: Calculates the optimal shooting direction using provided parameters.
+- `aiDirectionAdjust(int aiDir)`: Adjusts AI behavior based on the player's skill level, ensuring suitable challenge levels.
+- `rangeAdjust()`: Modifies the shooting range to match the game's set difficulty levels.
 
   ![UML Class Diagram](diagrams%2Fplayer.png)
 
-```java
-public class MediumSkill extends Player {
-    @Override
-    public void printGoalBeforeShoot() {
-        Formatter.printGoalBeforeShotforMedium();
-    }
-
-    @Override
-    public void printGoalBeforeSave() {
-        Formatter.printGoalBeforeSaveForMedium();
-    }
-
-    @Override
-    public void printGoalAfterShoot(boolean goalScored, int direction) {
-        Formatter.printGoalAfterShotMedium(goalScored, direction);
-    }
-}
-```
 ## PlayerList Class
 
 ### Attributes
@@ -242,15 +235,15 @@ public class MediumSkill extends Player {
 
 ### Utilizing ArrayList
 
-The `PlayerList` class showcases the strategic use of `ArrayList<Player>` for player management, chosen for its dynamic resizing capabilities and efficient access times. This choice aligns with our need to manage a variable number of player objects dynamically.
+ArrayList<Player> stores and manages player objects, allowing for efficient access and modification, which is essential for real-time gameplay updates.
 
 ### Leveraging Polymorphism
 
 Polymorphism is integral to our game, allowing us to abstract player actions in the `Player` class and provide specific implementations in its subclasses. This design pattern simplifies codebase maintenance and enhances gameplay by introducing dynamic behavior based on the player's skill level.
 
-#### ExecuteShoot Method
+#### Sample 1: ExecuteShoot Method
 
-The `executeShoot` method exemplifies polymorphism in action, adjusting player behavior during shooting based on their skill level.
+The `executeShoot` method from CommandList Class exemplifies polymorphism in action, adjusting player behavior during shooting based on player's skill level.
 
 ```java
 public static void executeShoot(String[] readArgumentTokens) {
@@ -266,13 +259,13 @@ public static void executeShoot(String[] readArgumentTokens) {
 The `skillUpgrade` method in the `PlayerList` class is a key feature, allowing players to improve their skills based on game performance. The method checks the player's current skill and match count, upgrading their skill level if certain conditions are met.
 he mechanism operates through a structured process, enhancing the gaming experience by offering a realistic approach to skill progression:
 
-1. **Skill Level Assessment**: The system evaluates a player's current skill level alongside their performance metrics, such as match count and success rate.
+1. **Skill Level Assessment**: Evaluates a player's current skill level and performance metrics, like match count and success rate.
 
-2. **Determination of Skill Upgrade Eligibility**: Utilizing predefined criteria, the system determines if a player qualifies for a skill upgrade. These criteria may include metrics like a minimum number of matches played or specific performance thresholds.
+2. **Determination of Skill Upgrade Eligibility**: Responsible to assess if a player qualifies for a skill upgrade, based on their game performance.
 
-3. **Application of Skill Upgrade**: Eligible players will have their skill attribute adjusted to a higher level. This upgrade might unlock new abilities, enhance stats, or offer other in-game advantages.
+3. **Application of Skill Upgrade**: Adjusts the player's skill attribute to a higher level if they meet the necessary criteria and enhancing their gameplay capabilities.
 
-4. **Feedback to the User**: The system informs the user of the successful skill upgrade through UI messages or other feedback mechanisms, providing immediate recognition of their achievement.
+4. **Feedback to the User**: Provides in-game notifications or UI messages to inform the player of their upgraded skills
 
 ![UML Class Diagram](diagrams%2FupdateSkill.png)
 
