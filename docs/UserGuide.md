@@ -87,23 +87,22 @@ Some example commands you can try:
 
 6. Refer to the Commands section of this User Guide for details on each command.
 
-## Features
-
-### Coin Toss
-
-Initiates the game by randomly deciding which player goes first, adding an element of chance and fairness to the start of the game.
-
-### Dynamic Difficulty Levels
-
-Allows you to adjust the game's difficulty setting (Easy, Medium, Hard) at any point, tailoring the challenge to your skill level and preferences.
-
-### Listing Commands
-
-Offers an overview of all available commands and their current statuses, helping you navigate the game's functionalities with ease.
-
-...add more features
-
 ## Commands
+
+### Command Summary
+
+* Exit the program `bye`
+* Help command `help`
+* Guess head in the coin toss `head`
+* Guess tail in the coin toss `tail`
+* Shoot a penalty `shoot int`
+* Save a penalty `save int`
+* Set shooter's power `setpower int`
+* * Set difficulty `easy`, `medium` or `hard`
+* Customize player's settings `customization`
+* [coming soon] Customize saver's settings `customization`
+* Restart a match after a match `yes`
+* Do not restart a match after a match `no`
 
 ### Exit Command: `bye`
 
@@ -292,7 +291,7 @@ The `shoot` command is an integral part of the game's penalty shootout mechanics
 
 When it's the AI's turn to save, you will be prompted to select a direction to shoot. Enter the shoot command followed by your chosen direction. For example:
 
-shoot[direction] - Choose a direction to take a shot. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
+shoot [direction] - Choose a direction to take a shot. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
 
 #### Difficulty Settings
 
@@ -377,7 +376,7 @@ If the input is above the maximum input allowed for the current expertise level 
 
 ```
 ----------WARNING----------
-Oops! Remember, beginners should start with directions 0, 1, and 2. 
+Oops! Remember, beginners can only start with directions 0, 1, and 2. 
 You failed to shot on target.
 Practice makes perfect. Keep playing to unlock more kicks!
 ---------------------------
@@ -417,7 +416,7 @@ The `save` command is an integral part of the game's penalty shootout mechanics,
 
 When it's the AI's turn to shoot, you will be prompted to select a direction to save. Enter the save command followed by your chosen direction. For example:
 
-save[direction] - Choose a direction to attempt a save. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
+save [direction] - Choose a direction to attempt a save. Directions are represented by numbers (e.g., 0 for left, 1 for center, and 2 for right --> for beginners).
 
 #### Understanding Saver Skill Levels
 
@@ -444,9 +443,10 @@ The game's difficulty setting also affects the save command's effectiveness. You
 If the goal is not saved:
 
 ```
-Save: [-]
-Shoot: [-]
-Range: [-]
+----AFTER SAVE ANALYSIS----
+Your save aims at: [-]
+Shooter's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -461,9 +461,10 @@ no save :((((
 If the goal is saved as a beginner saver (direction is 0 in this example):
 
 ```
-Save: [-]
-Shoot: [-]
-Range: [-]
+----AFTER SAVE ANALYSIS----
+Your save aims at: [-]
+Shooter's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -477,9 +478,10 @@ _______________________________
 If the goal is saved as a medium saver (direction is 4 in this example):
 
 ```
-Save: [-]
-Shoot: [-]
-Range: [-]
+----AFTER SAVE ANALYSIS----
+Your save aims at: [-]
+Shooter's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -495,9 +497,10 @@ _______________________________
 If the goal is saved as an expert saver (direction is 6 in this example):
 
 ```
-Save: [-]
-Shoot: [-]
-Range: [-]
+----AFTER SAVE ANALYSIS----
+Your save aims at: [-]
+Shooter's cover range: [-]
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -508,14 +511,14 @@ _______________________________
 |    6    |    7    |  SAVED  |
 ```
 
-If the input is above the maximum input allowed for the current expertise level, the game will play for you (beginner inputs 5 and goal is not saved in this example):
+If the input is above the maximum input allowed for the current expertise level, the game will play for you (beginner inputs 5 in this example):
 
 ```
-Oops! Remember, beginners start with directions 0 to 2. But keep playing to unlock more kicks!
-Practice makes perfect. Let's aim for those goals together!
-Save: [-]
-Shoot: [-]
-Range: [-]
+----------WARNING----------
+Oops! Remember, beginner saver can only save with direction between 0 to 2.
+You failed to save the shot.
+Practice makes perfect. Keep playing to unlock more saves!"
+---------------------------
 10 coins added to your balance. Current balance: [-]
 Performance Coins earned: 10
 _______________________________
@@ -541,17 +544,12 @@ If the input is above 8, an error will be returned:
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
-### Set shooter's power: `setpower LEVEL`
-`LEVEL` refers to the power level the player possesses, which affects the quality of the shot. The higher the power level, the more accurate the shot will be.
-Levels range from 0 to 2, with 0 indicating beginner, 1 indicating medium, and 2 indicating expert.
-Format: `setpower 2`
-
-### Updrade Command: `setpower`
+### Updrade Power Command: `setpower`
 The setpower command is a powerful feature designed to boost your player's abilities, offering a strategic advantage in the game. This command allows you to elevate your player's power level, making it easier to overcome challenges and succeed in your endeavors.
 
 #### Usage
 
-To use the setpower command, follow the syntax below:
+To use the `setpower` command, follow the syntax below:
 
 setpower [power level]
 
@@ -638,16 +636,92 @@ Difficulty level set to HARD
 - Make sure to observe the AI's pattern to improve your chances of saving the penalty.
 - The command is case-sensitive, so `save 1` is considered a valid command, but `Save 1` and `SAVE 1` are considered invalid inputs.
 
-### Restarts a match after a match: `yes`
-When one match ends, you will be asked whether to have a new match or not. Type `yes` for a new match.
+### Customization Command: `customization`
 
-Format: `yes`
+#### Overview
 
-#### Does not restart a match after a match: `no`
-When one match ends, you will be asked whether to have a new match or not. Type `no` for not having a new match, and
-exits the game directly.
+The customization feature allows players to personalize their in-game character to better reflect their playing style and preferences. This feature is accessible at various points in the game, such as at start up, during a game, or before starting a new match.
 
-Format: `no`
+#### Usage
+
+To use the `customization` command, follow the syntax below:
+
+customization 
+
+A Customization Menu will be displayed. Enter the number of the customization you would like to purchase.
+
+#### Expected Outcome
+
+The user inputs `customization`:
+
+```
+Customization Menu:
+1. Purchase Customizations
+2. View Coin Balance
+3. Exit
+Enter your choice:
+```
+
+If the user inputs `1`:
+
+```
+Available Customization Items:
+1. Power Boost - Cost: 150 coins
+2. Skill Boost - Cost: 200 coins
+3. Fancy Uniform - Cost: 100 coins
+Enter the number of the customization item you want to purchase: 2
+```
+
+- If the user then inputs 1 (they have enough coins to make the purchase):
+
+```
+150 coins deducted from your balance. Current balance: [-]
+You have purchased the Power Boost customization!
+Power increased by 1! Current Power: [-]
+```
+
+- If the user then inputs 2 (they do not have enough coins to make the purchase):
+
+```
+Insufficient coins to purchase the Skill Boost customization.
+```
+
+- If the user then inputs 3 [coming soon]:
+
+```
+Invalid choice. Purchase canceled.
+```
+
+If the user inputs 2:
+
+```
+Your current coin balance is: [-]
+```
+
+If the user inputs 3:
+
+```
+Exiting Customization Menu.
+```
+
+If the user inputs an integer above 3:
+
+```
+Invalid choice. Please try again.
+```
+
+If the user inputs a non-integer value:
+
+```
+Invalid input. Please enter a number.
+```
+
+#### Additional Notes
+
+- The `customization` command is available at any point during the game.
+- The `customization` command is currently only available for your player. Customizations for the saver will be implemented in later iterations.
+- The command is case-sensitive, so `customization` is considered a valid command, but `Customization` and `CUSTOMIZATIOM` are considered invalid inputs.
+
 
 ### Post Game Decision Command: `yes` or `no`
 
@@ -693,16 +767,3 @@ If the user inputs `no`:
 ------------------------------------------------------------
 ```
 
-
-## Command Summary
-
-* Help command `help`
-* Guess head in the coin toss `head`
-* Guess tail in the coin toss `tail`
-* Restart a match after a match `yes`
-* Do not restart a match after a match `no`
-* Shoot a penalty `shoot int`
-* Save a penalty `save int`
-* Set difficulty `easy`, `medium` or `hard`
-* Set shooter's power `setpower int`
-* Exit the program `bye`

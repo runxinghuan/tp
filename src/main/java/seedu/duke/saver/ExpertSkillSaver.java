@@ -125,8 +125,10 @@ public class ExpertSkillSaver extends Saver {
      */
     @Override
     public float saveDirectionAdjust(int dir){
-        int left=(dir-1==0)?0:dir-1;
-        int right=(dir+1==8)?8:dir+1;
+        int expertMinSave = 0;
+        int expertMaxSave = 8;
+        int left= Math.max(dir - 1, expertMinSave);
+        int right= Math.max(dir + 1, expertMaxSave);
         return this.saveDirectionFormula(left,right,dir,this.power);
     }
 
